@@ -29,15 +29,22 @@
 .site-nav {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--space-1) var(--space-6);
+  gap: var(--space-1) var(--space-2);
   margin-inline: auto;
 }
 .site-nav a {
+  padding-inline: var(--space-3);
+  border-radius: var(--radius-sm);
   color: var(--color-text-muted);
   text-decoration: none;
+  transition:
+    background-color var(--duration),
+    color var(--duration);
 }
+/* A link bar, not links in prose, so a soft pill marks hover instead of an underline. */
 .site-nav a:hover {
-  text-decoration: underline;
+  background: var(--color-selected);
+  color: var(--color-hero-ink);
 }
 .site-nav a,
 .site-language,
