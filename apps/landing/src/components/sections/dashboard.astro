@@ -1,18 +1,90 @@
 ---
 import { messagesFor, type Locale } from '../../i18n';
-import InfoSection from '../ui/info-section.astro';
+import BrandText from '../ui/brand-text.astro';
+import '../../styles/dashboard.css';
+import '../../styles/dashboard-mock.css';
 interface Props {
   readonly locale: Locale;
 }
 const { locale } = Astro.props;
 const words = messagesFor(locale).dashboard;
+const [plan, usage, sign] = words.cards;
+/** Icons for plan and websites, usage, and sign language. */
+const icons = [
+  'M7 3h7l5 5v13H7Zm7 0v5h5M10 13h6M10 17h6',
+  'M4 20h16M7 16v-5m5 5V7m5 9V9',
+  'M3 5h18v14H3Zm7 4v6l5-3Z',
+];
+/** Bar heights for the illustrative usage chart, in percent. It shows a shape, not data. */
+const bars = [38, 55, 46, 70, 62, 84, 74];
 ---
 
-<InfoSection
-  id="dashboard"
-  locale={locale}
-  title={words.title}
-  intro={words.intro}
-  cards={words.cards}
-  split="end"
-/>
+<section id="dashboard" class="section container dashboard" aria-labelledby="dashboard-title">
+  <div class="dashboard-mock" aria-hidden="true">
+    <div class="mock-bar">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <div class="mock-body">
+      <div class="mock-side">
+        <span class="mock-logo"></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <div class="mock-main">
+        <div class="mock-tile mock-plan">
+          <span class="mock-label">{plan?.title}</span>
+          <span class="mock-line"></span>
+          <span class="mock-line short"></span>
+          <span class="mock-pill"></span>
+        </div>
+        <div class="mock-tile mock-usage">
+          <span class="mock-label">{usage?.title}</span>
+          <div class="mock-chart">
+            {bars.map((height) => (
+              <span style={`--h: ${String(height)}%`}></span>
+            ))}
+          </div>
+        </div>
+        <div class="mock-tile mock-videos">
+          <span class="mock-label">{sign?.title}</span>
+          <div class="mock-thumbs">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="dashboard-copy">
+    <h2 id="dashboard-title">
+      <BrandText text={words.title} locale={locale} />
+    </h2>
+    <p class="dashboard-intro">
+      <BrandText text={words.intro} locale={locale} />
+    </p>
+    <ul class="dashboard-rows" role="list">
+      {words.cards.map((card, index) => (
+        <li>
+          <span class="dashboard-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" focusable="false">
+              <path d={icons[index] ?? ''} />
+            </svg>
+          </span>
+          <div>
+            <h3>
+              <BrandText text={card.title} locale={locale} />
+            </h3>
+            <p>
+              <BrandText text={card.body} locale={locale} />
+            </p>
+          </div>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>

@@ -1,0 +1,68 @@
+/*
+ * Dashboard: an illustrative dashboard window (shapes only, no data) beside the copy and the three areas as icon
+ * rows. A real screenshot can replace the window when one exists.
+ */
+.dashboard {
+  display: grid;
+  gap: var(--space-10);
+  align-items: center;
+}
+.dashboard-copy h2 {
+  margin-block-end: var(--space-4);
+}
+.dashboard-intro {
+  margin: 0 0 var(--space-8);
+  color: var(--color-marketing-muted);
+  font-size: var(--text-lg);
+}
+.dashboard-rows {
+  display: grid;
+  gap: var(--space-5);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.dashboard-rows li {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: var(--space-4);
+  align-items: start;
+}
+.dashboard-rows h3 {
+  margin: 0 0 var(--space-1);
+  font-size: var(--text-md);
+}
+.dashboard-rows p {
+  margin: 0;
+  color: var(--color-marketing-muted);
+  font-size: var(--text-sm);
+}
+.dashboard-icon {
+  display: grid;
+  place-items: center;
+  inline-size: var(--space-10);
+  block-size: var(--space-10);
+  border-radius: var(--radius);
+  background: var(--color-selected);
+  color: var(--color-brand);
+}
+.dashboard-icon svg {
+  inline-size: var(--icon-size);
+  block-size: var(--icon-size);
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+/* On one column the title leads, then the illustration. */
+@media (max-width: 63.9375rem) {
+  .dashboard-copy {
+    order: -1;
+  }
+}
+@media (min-width: 64rem) {
+  .dashboard {
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+    gap: var(--space-16);
+  }
+}
