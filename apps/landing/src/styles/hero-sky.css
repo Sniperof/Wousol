@@ -12,15 +12,22 @@
   --braille-size: 90px 24px;
   position: relative;
   isolation: isolate;
-  /* The first screen is the hero: it fills the viewport and centres its content below the header. */
+  /* The hero fills short screens, but stops at --hero-height-max on tall ones so the space around it stays modest. */
   display: grid;
   align-content: center;
   /* The header's own height in the flow: its top margin, a button and its padding, and its border. */
   --header-flow: calc(
     var(--space-3) + var(--button-height) + var(--space-2) * 2 + var(--border-width) * 2
   );
-  min-block-size: calc(100vh + var(--header-offset) - var(--header-flow));
-  min-block-size: calc(100svh + var(--header-offset) - var(--header-flow));
+  --hero-height-max: 46rem;
+  min-block-size: min(
+    calc(100vh + var(--header-offset) - var(--header-flow)),
+    var(--hero-height-max)
+  );
+  min-block-size: min(
+    calc(100svh + var(--header-offset) - var(--header-flow)),
+    var(--hero-height-max)
+  );
   margin-block-start: calc(-1 * var(--header-offset));
   padding-block-start: var(--header-offset);
   color: var(--color-hero-ink);
