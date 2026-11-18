@@ -10,8 +10,11 @@ interface Props {
   readonly locale: Locale;
 }
 const { locale } = Astro.props;
-const words = messagesFor(locale).installation;
+const messages = messagesFor(locale);
+const words = messages.installation;
 const numberFormat = new Intl.NumberFormat(locale);
+const lastStep = words.steps.length - 1;
+const [beforeAttribute, afterAttribute] = words.ignore.split('{attribute}');
 ---
 
 <section
@@ -29,10 +32,21 @@ const numberFormat = new Intl.NumberFormat(locale);
         <BrandText text={words.intro} locale={locale} />
       </p>
       <ol class="visitor-grid installation-steps" role="list">
+        <li class="installation-step">
+          <span class="step-number" aria-hidden="true">
+            {numberFormat.format(1)}
+          </span>
+          <h3 class="installation-step-static">
+            <BrandText text={words.request.title} locale={locale} />
+          </h3>
+          <p>
+            <BrandText text={words.request.body} locale={locale} />
+          </p>
+        </li>
         {words.steps.map((step, index) => (
           <li class="installation-step" data-current={String(index === 0)}>
             <span class="step-number" aria-hidden="true">
-              {numberFormat.format(index + 1)}
+              {index === lastStep ? '✓' : numberFormat.format(index + 2)}
             </span>
             <h3>
               <button
@@ -53,10 +67,37 @@ const numberFormat = new Intl.NumberFormat(locale);
           </li>
         ))}
       </ol>
+      <p class="installation-ignore">
+        {beforeAttribute}
+        <code dir="ltr">data-dap-ignore</code>
+        {afterAttribute}
+      </p>
+      <a class="button secondary" href="#request-demo" data-request-kind="demo">
+        {messages.nav.contact}
+      </a>
     </div>
     <InstallationPreview locale={locale} />
   </div>
 </section>
+<style>
+  .installation-step-static {
+    display: flex;
+    align-items: center;
+    min-block-size: var(--button-height);
+  }
+  .installation-ignore {
+    margin-block: var(--space-6);
+    color: var(--color-marketing-muted);
+    font-size: var(--text-sm);
+  }
+  code {
+    padding-inline: var(--space-1);
+    border-radius: var(--radius-sm);
+    background: var(--color-selected);
+    color: var(--color-hero-ink);
+    font-family: var(--font-mono);
+  }
+</style>
 <script>
   import { startInstallation } from '../../installation/controller';
   document.querySelectorAll<HTMLElement>('[data-installation]').forEach((root) => {

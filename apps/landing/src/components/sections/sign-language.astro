@@ -1,0 +1,27 @@
+---
+import { messagesFor, type Locale } from '../../i18n';
+import InfoSection from '../ui/info-section.astro';
+import BrandText from '../ui/brand-text.astro';
+interface Props {
+  readonly locale: Locale;
+}
+const { locale } = Astro.props;
+const messages = messagesFor(locale);
+const words = messages.sign;
+---
+
+<InfoSection
+  id="sign-language"
+  locale={locale}
+  title={words.title}
+  intro={words.intro}
+  cards={words.cards}
+  band
+>
+  <p>
+    <BrandText text={words.note} locale={locale} />
+  </p>
+  <a class="button secondary" href="#request-demo" data-request-kind="demo">
+    {messages.nav.contact}
+  </a>
+</InfoSection>

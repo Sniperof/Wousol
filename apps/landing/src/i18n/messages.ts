@@ -1,8 +1,11 @@
-interface Group {
+export interface Group {
   readonly title: string;
   readonly body: string;
 }
-export type SolutionKind = 'widget' | 'services' | 'tailored';
+/** A visitor need: what it does, then who it helps, on a secondary line. */
+export interface Need extends Group {
+  readonly helps: string;
+}
 export interface Messages {
   readonly languageName: string;
   readonly siteName: string;
@@ -11,10 +14,12 @@ export interface Messages {
   readonly nav: {
     readonly menu: string;
     readonly features: string;
-    readonly installation: string;
-    readonly demo: string;
-    readonly requestDemo: string;
     readonly signLanguage: string;
+    readonly installation: string;
+    readonly dashboard: string;
+    readonly liveDemo: string;
+    readonly demo: string;
+    readonly contact: string;
     readonly label: string;
   };
   readonly hero: {
@@ -22,6 +27,7 @@ export interface Messages {
     readonly lede: string;
   };
   readonly preview: {
+    readonly textSize: string;
     readonly textSizeHint: string;
     readonly label: string;
     readonly title: string;
@@ -39,45 +45,52 @@ export interface Messages {
     readonly signTitle: string;
     readonly signBody: string;
   };
-  readonly solutions: {
+  readonly visit: {
     readonly title: string;
     readonly intro: string;
-    readonly illustrations: Readonly<Record<SolutionKind, string>>;
-    readonly cards: readonly {
-      readonly kind: SolutionKind;
-      readonly title: string;
-      readonly body: string;
-      readonly action: string;
-    }[];
+    readonly cards: readonly Need[];
+    readonly signLink: string;
   };
-  readonly features: {
+  readonly sign: {
     readonly title: string;
     readonly intro: string;
-    readonly groups: readonly Group[];
+    readonly cards: readonly Group[];
+    readonly note: string;
+  };
+  readonly benefits: {
+    readonly title: string;
+    readonly cards: readonly Group[];
+    readonly source: string;
   };
   readonly installation: {
     readonly title: string;
     readonly intro: string;
+    readonly request: Group;
     readonly steps: readonly Group[];
     readonly snippet: string;
     readonly caption: string;
+    /** `{attribute}` marks where the attribute name appears, set as code. */
+    readonly ignore: string;
     readonly previewLabel: string;
     readonly preferencesTitle: string;
   };
-  readonly privacy: {
+  readonly dashboard: {
     readonly title: string;
-    readonly body: string;
-    readonly points: readonly string[];
+    readonly intro: string;
+    readonly cards: readonly Group[];
   };
   readonly final: {
-    readonly contact: string;
     readonly title: string;
     readonly body: string;
+    readonly email: string;
     readonly subject: string;
   };
   readonly footer: {
+    readonly about: string;
+    readonly navLabel: string;
+    readonly badge: string;
     readonly note: string;
     readonly byline: string;
-    readonly navLabel: string;
+    readonly copyright: string;
   };
 }

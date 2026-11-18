@@ -29,7 +29,6 @@
   --shadow-dialog: 0 24px 64px rgb(20 33 61 / 0.28);
   --color-scrim: rgb(20 33 61 / 0.52);
   --preview-glass-blur: 10px;
-  --hero-secondary-size: 0.875em;
   --features-top-space-scale: 0.92;
   --paper-sign-ink: #7d4c92;
   --paper-sign-soft: #f3ebf6;
@@ -44,7 +43,7 @@
   --hero-weight: 700;
   --hero-tracking: -0.045em;
   --hero-line-height: 1.08;
-  --hero-title-width: 14ch;
+  --hero-title-width: 18ch;
   --hero-curve: 50% 3rem;
   --preview-stage-min: 22rem;
   --preview-orb-size: 8.5rem;

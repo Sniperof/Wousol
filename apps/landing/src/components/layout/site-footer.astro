@@ -1,8 +1,11 @@
 ---
 import { homePathOf, messagesFor, otherLocale, type Locale } from '../../i18n';
 import { pricingWords } from '../../i18n/pricing';
+import { demoSalesEmail } from '../../config/contact';
+import { enquiryHref } from '../../pricing/enquiry';
 import Brand from '../ui/brand.astro';
 import BrandText from '../ui/brand-text.astro';
+import DemoLink from '../ui/demo-link.astro';
 interface Props {
   readonly locale: Locale;
 }
@@ -17,24 +20,35 @@ const other = otherLocale(locale);
       <div class="footer-brand">
         <Brand locale={locale} tone="white" />
         <p>
-          <BrandText text={messages.meta.description} locale={locale} />
+          <BrandText text={messages.footer.about} locale={locale} />
         </p>
+        <p class="contact">
+          <a href="#request-demo" data-request-kind="demo">
+            {messages.nav.contact}
+          </a>
+          <span aria-hidden="true">·</span>
+          <a href={enquiryHref(demoSalesEmail, messages.final.subject)} dir="ltr">
+            {demoSalesEmail}
+          </a>
+        </p>
+        <p class="badge">{messages.footer.badge}</p>
       </div>
       <nav aria-label={messages.footer.navLabel}>
         <a href="#features">{messages.nav.features}</a>
         <a href="#sign-language">{messages.nav.signLanguage}</a>
         <a href="#installation">{messages.nav.installation}</a>
+        <a href="#dashboard">{messages.nav.dashboard}</a>
         <a href="#pricing" data-pricing-nav hidden>
           {pricingWords(locale).nav}
         </a>
-        <a href="#request-demo" data-request-kind="demo">
-          {messages.nav.requestDemo}
-        </a>
+        <DemoLink locale={locale} label={messages.nav.liveDemo} plain />
       </nav>
     </div>
     <div class="footer-bottom">
       <span class="byline">
         <BrandText text={messages.footer.byline} locale={locale} />
+        <span aria-hidden="true">·</span>
+        <BrandText text={messages.footer.copyright} locale={locale} />
         <span aria-hidden="true">·</span>
         <a href={homePathOf(other)} lang={other} hreflang={other}>
           {messagesFor(other).languageName}
@@ -58,7 +72,7 @@ const other = otherLocale(locale);
   .footer-content {
     display: grid;
     gap: var(--space-8);
-    padding-block: var(--space-12) var(--space-8);
+    padding-block: var(--space-12) var(--space-24);
   }
   .footer-top {
     display: flex;
@@ -76,16 +90,31 @@ const other = otherLocale(locale);
     margin: 0;
     color: var(--color-footer-muted);
   }
+  .footer-brand .contact {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0 var(--space-2);
+    color: var(--color-brand-text);
+  }
+  .footer-brand .badge {
+    justify-self: start;
+    padding: var(--space-1) var(--space-3);
+    border: var(--border-width) solid var(--color-footer-rule);
+    border-radius: var(--radius-full);
+    color: var(--color-brand-text);
+    font-size: var(--text-sm);
+  }
   nav {
     display: flex;
     flex-wrap: wrap;
     gap: var(--space-2) var(--space-6);
   }
-  a {
+  .footer :global(a) {
     color: var(--color-brand-text);
     text-decoration: none;
   }
-  a:hover {
+  .footer :global(a:hover) {
     text-decoration: underline;
   }
   [data-pricing-nav][hidden] {

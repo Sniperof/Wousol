@@ -1,6 +1,7 @@
 export const enPricing = {
-  title: 'A plan for every website',
-  intro: 'Choose the room your website needs. Give every visitor more choice.',
+  title: 'One more step toward access',
+  intro:
+    'This step ends with a plan that fits each website. The Wosoul team replies within one business day to activate your subscription.',
   monthly: 'Monthly',
   yearly: 'Yearly',
   period: 'Billing period',
@@ -16,8 +17,7 @@ export const enPricing = {
     'As many websites as you need',
     'Priority support and onboarding',
   ],
-  choose: 'Request this plan',
-  customRequest: 'Request a custom plan',
+  choose: 'Contact us',
   notOffered: 'Not offered for this billing period',
   priceOnRequest: 'Price on request',
   moreFeatures: 'View all features',

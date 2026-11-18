@@ -34,6 +34,16 @@ const { scene } = Astro.props;
         <path class="prop-ink" d="M179 99q5 5 0 10m5-15q10 10 0 20" />
       </g>
     </g>
+  ) : scene === 'contrast' ? (
+    <g>
+      <circle class="prop-focus" cx="173" cy="74" r="17" />
+      <path class="character-fill" d="M173 57a17 17 0 0 1 0 34Z" />
+      <g data-character-action>
+        <rect class="prop-focus" x="148" y="104" width="14" height="14" rx="4" />
+        <rect class="character-fill" x="166" y="104" width="14" height="14" rx="4" />
+        <rect class="prop-soft" x="184" y="104" width="14" height="14" rx="4" />
+      </g>
+    </g>
   ) : scene === 'reading' ? (
     <g>
       <path class="prop-ink" d="m146 87 9-25 9 25m-15-8h12m10 8 6-17 6 17m-10-6h8" />

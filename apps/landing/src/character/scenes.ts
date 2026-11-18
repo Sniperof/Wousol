@@ -1,4 +1,10 @@
-export const featureScenes = ['sign-language', 'read-aloud', 'reading', 'navigation'] as const;
+export const featureScenes = [
+  'reading',
+  'contrast',
+  'read-aloud',
+  'navigation',
+  'sign-language',
+] as const;
 export type CharacterScene = (typeof featureScenes)[number];
 
 export interface CharacterPersona {
@@ -11,6 +17,7 @@ const personas: Record<CharacterScene, CharacterPersona> = {
   'read-aloud': { gender: 'male', style: 'cardigan' },
   reading: { gender: 'female', style: 'turtleneck' },
   navigation: { gender: 'male', style: 'bomber' },
+  contrast: { gender: 'female', style: 'cardigan' },
 };
 
 export function personaFor(scene: CharacterScene): CharacterPersona {

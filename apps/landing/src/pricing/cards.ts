@@ -20,14 +20,19 @@ function brandedElement(tag: string, text: string, locale: Locale): HTMLElement 
  * A link to the request form. It names what was chosen in attributes, and the form (which sits outside the cards, so
  * rebuilding them keeps what a visitor typed) reads them from a click; without scripts it is a plain link to the form.
  */
+/** Every card says the same words, so the plan's name follows them for screen readers. */
 function requestLink(
   label: string,
+  planName: string,
   choice: { readonly plan: string; readonly period: Period } | { readonly kind: 'custom' },
 ): HTMLAnchorElement {
   const link = document.createElement('a');
   link.className = 'button';
   link.href = '#request-demo';
-  link.textContent = label;
+  const name = document.createElement('span');
+  name.className = 'visually-hidden';
+  name.textContent = ` · ${planName}`;
+  link.append(label, name);
   if ('plan' in choice) {
     link.dataset.requestPlan = choice.plan;
     link.dataset.requestPeriod = choice.period;
@@ -44,7 +49,7 @@ function standard(plan: PublicPlan, locale: Locale, period: Period): HTMLElement
   const amount = period === 'monthly' ? plan.monthlyPrice : plan.yearlyPrice;
   const action = element('div', '', 'plan-action');
   if (amount !== null || plan.priceHidden)
-    action.append(requestLink(words.choose, { plan: plan.name, period }));
+    action.append(requestLink(words.choose, plan.name, { plan: plan.name, period }));
   card.append(offerOf(plan, amount, locale, period), featureList(plan.features, locale), action);
   return card;
 }
@@ -82,6 +87,7 @@ function customCard(locale: Locale, custom: PublicPlanCatalog['custom']): HTMLEl
   card.dataset.highlighted = 'false';
   const offer = element('div', '', 'plan-offer');
   const action = element('div', '', 'plan-action');
+  const customTitle = (locale === 'ar' ? custom.titleAr : custom.titleEn) || words.customTitle;
   offer.append(
     brandedElement(
       'p',
@@ -91,16 +97,12 @@ function customCard(locale: Locale, custom: PublicPlanCatalog['custom']): HTMLEl
   );
   card.append(
     badgeSlot(false, locale),
-    brandedElement(
-      'h3',
-      (locale === 'ar' ? custom.titleAr : custom.titleEn) || words.customTitle,
-      locale,
-    ),
+    brandedElement('h3', customTitle, locale),
     offer,
     perkList(locale),
     action,
   );
-  action.append(requestLink(words.customRequest, { kind: 'custom' }));
+  action.append(requestLink(words.choose, customTitle, { kind: 'custom' }));
   return card;
 }
 function badgeSlot(featured: boolean, locale: Locale): HTMLElement {

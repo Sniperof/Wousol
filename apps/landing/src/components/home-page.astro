@@ -1,11 +1,12 @@
 ---
 import type { Locale } from '../i18n';
-import Pricing from './sections/pricing.astro';
 import Hero from './sections/hero.astro';
-import Solutions from './sections/solutions.astro';
 import Features from './sections/features.astro';
+import SignLanguage from './sections/sign-language.astro';
+import Benefits from './sections/benefits.astro';
 import Installation from './sections/installation.astro';
-import Privacy from './sections/privacy.astro';
+import Dashboard from './sections/dashboard.astro';
+import Pricing from './sections/pricing.astro';
 import FinalInvitation from './sections/final-invitation.astro';
 interface Props {
   readonly locale: Locale;
@@ -14,9 +15,10 @@ const { locale } = Astro.props;
 ---
 
 <Hero locale={locale} />
-<Solutions locale={locale} />
 <Features locale={locale} />
-<Pricing locale={locale} />
+<SignLanguage locale={locale} />
+<Benefits locale={locale} />
 <Installation locale={locale} />
-<Privacy locale={locale} />
+<Dashboard locale={locale} />
+<Pricing locale={locale} />
 <FinalInvitation locale={locale} />

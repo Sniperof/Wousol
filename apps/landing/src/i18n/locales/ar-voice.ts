@@ -1,7 +1,7 @@
 import type { Messages } from '../messages';
 
 export const arVoice: Messages['preview']['voice'] = {
-  play: 'استمع إلى المقطع',
+  play: 'تشغيل المقطع',
   stop: 'أوقف القراءة',
   loading: 'جارٍ تجهيز الصوت…',
   speaking: 'تُقرأ العيّنة الآن…',

@@ -1,0 +1,18 @@
+---
+import { messagesFor, type Locale } from '../../i18n';
+import InfoSection from '../ui/info-section.astro';
+interface Props {
+  readonly locale: Locale;
+}
+const { locale } = Astro.props;
+const words = messagesFor(locale).dashboard;
+---
+
+<InfoSection
+  id="dashboard"
+  locale={locale}
+  title={words.title}
+  intro={words.intro}
+  cards={words.cards}
+  band
+/>

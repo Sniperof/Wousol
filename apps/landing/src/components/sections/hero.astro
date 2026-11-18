@@ -8,17 +8,13 @@ interface Props {
 }
 const { locale } = Astro.props;
 const messages = messagesFor(locale);
-const [title, emphasis] = messages.hero.title.split('\n');
 ---
 
 <div class="hero-surface">
   <section class="hero container" aria-labelledby="hero-title">
     <div class="copy">
       <h1 id="hero-title">
-        <BrandText text={title ?? ''} locale={locale} />{' '}
-        <span class="headline-line">
-          <BrandText text={emphasis ?? ''} locale={locale} />
-        </span>
+        <BrandText text={messages.hero.title} locale={locale} />
       </h1>
       <p class="lede">
         <BrandText text={messages.hero.lede} locale={locale} />
@@ -26,7 +22,7 @@ const [title, emphasis] = messages.hero.title.split('\n');
       <div class="actions">
         <DemoLink locale={locale} label={messages.nav.demo} />
         <a class="button secondary" href="#request-demo" data-request-kind="demo">
-          {messages.nav.requestDemo}
+          {messages.nav.contact}
         </a>
       </div>
     </div>
@@ -61,16 +57,10 @@ const [title, emphasis] = messages.hero.title.split('\n');
     letter-spacing: var(--hero-tracking);
     text-wrap: balance;
   }
-  .headline-line {
-    display: block;
-  }
   :global(html:lang(ar)) h1 {
     max-inline-size: 100%;
     font-size: var(--text-hero-ar);
     text-wrap: wrap;
-  }
-  :global(html:lang(ar)) .headline-line {
-    font-size: var(--hero-secondary-size);
   }
   .lede {
     font-size: var(--text-lg);
