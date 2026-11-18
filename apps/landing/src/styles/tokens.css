@@ -69,7 +69,7 @@
   --preview-rings-compact: 25rem;
   --hero-art-size: 40rem;
   --hero-copy: 38rem;
-  --hero-max: 88rem;
+  --hero-max: 76rem;
   --pricing-card-min: min(14rem, calc(100vw - var(--space-8) - var(--space-2)));
   --pricing-card-max: 18rem;
   --pricing-section-max: 88rem;
