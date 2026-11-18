@@ -7,12 +7,44 @@
   --color-dark-muted: rgb(255 255 255 / 0.78);
   --color-dark-rule: rgb(255 255 255 / 0.16);
   --color-dark-accent: #9db7ff;
+  --color-dark-glow: rgb(0 71 255 / 0.55);
+  --color-dark-glow-soft: rgb(52 117 255 / 0.3);
 }
 [data-installation].dark-band {
+  --glow-end: 100%;
+  --glow-start: 0%;
+  position: relative;
+  isolation: isolate;
   padding-block: var(--space-16);
   background: var(--color-dark-surface);
   box-shadow: 0 0 0 100vmax var(--color-dark-surface);
   clip-path: inset(0 -100vmax);
+}
+/* Glows from the brand blues, as in the hero sky, over a navy that stays dominant: a stronger one behind the
+   preview's top corner, a faint one at the opposite bottom corner, both clear of the copy. */
+[data-installation].dark-band::before {
+  content: '';
+  position: absolute;
+  inset-block: 0;
+  inset-inline-start: 50%;
+  z-index: -1;
+  inline-size: 100vw;
+  translate: -50%;
+  background:
+    radial-gradient(44rem 28rem at var(--glow-end) 0%, var(--color-dark-glow), transparent 70%),
+    radial-gradient(
+      36rem 24rem at var(--glow-start) 100%,
+      var(--color-dark-glow-soft),
+      transparent 70%
+    );
+  pointer-events: none;
+}
+:root[dir='rtl'] [data-installation].dark-band {
+  --glow-end: 0%;
+  --glow-start: 100%;
+}
+:root[dir='rtl'] [data-installation].dark-band::before {
+  translate: 50%;
 }
 .dark-band .installation-copy {
   --color-hero-ink: var(--color-dark-ink);

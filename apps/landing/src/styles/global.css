@@ -9,6 +9,10 @@
 html {
   scroll-padding-block-start: var(--header-offset);
 }
+/* Full-bleed section backgrounds may reach past the page edge; they must never make it scroll sideways. */
+main {
+  overflow-x: clip;
+}
 body {
   margin: 0;
   background: var(--color-bg);
