@@ -2,6 +2,7 @@
 .reading-preview {
   --wave-fill-start: 700ms;
   --wave-fill-step: 170ms;
+  --ring-cycle: 9s;
 }
 /* Read aloud: the wave starts grey and fills with blue bar by bar, in reading direction, as if the sample plays. */
 .preview-panel .voice-wave rect {
@@ -39,5 +40,42 @@
   }
   45% {
     transform: scale(0.94);
+  }
+}
+/*
+ * The rings behind the panel ripple outward in one slow, steady loop, each a third of a cycle behind the last, so one
+ * is always on its way out. They no longer follow the steps, which made them blink on and off.
+ */
+.preview-stage .orbit-rings circle {
+  animation: ring-ripple var(--ring-cycle) cubic-bezier(0.37, 0, 0.63, 1) infinite;
+}
+.preview-stage .orbit-rings circle:nth-child(2) {
+  animation-delay: calc(var(--ring-cycle) / -3);
+}
+.preview-stage .orbit-rings circle:nth-child(3) {
+  animation-delay: calc(var(--ring-cycle) / -1.5);
+}
+.reading-preview:not([data-playing='true']) .orbit-rings circle {
+  animation-play-state: paused;
+}
+:root[data-reduce-motion='true'] .preview-stage .orbit-rings circle {
+  animation: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .preview-stage .orbit-rings circle {
+    animation: none;
+  }
+}
+@keyframes ring-ripple {
+  0% {
+    opacity: 0;
+    transform: scale(0.72);
+  }
+  35% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.1);
   }
 }
