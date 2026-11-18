@@ -4,8 +4,8 @@
  * a ring, and every patch fades out before the band edges. The title, button and reply lines sit centred between them.
  */
 .invitation {
-  --tint-deep: color-mix(in srgb, var(--color-brand) 48%, transparent);
-  --tint-soft: color-mix(in srgb, var(--color-brand) 28%, transparent);
+  --tint-deep: color-mix(in srgb, var(--color-brand) 40%, transparent);
+  --tint-soft: color-mix(in srgb, var(--color-brand) 22%, transparent);
   --x1: 96%;
   --x2: 84%;
   --x3: 72%;
