@@ -1,6 +1,7 @@
 /*
- * The closing call as a light sky band, the hero's own palette: blue glows over the soft sky, the faint braille dots
- * on the outer side, and the title, button and reply lines centred on the light part. The page ends as it begins.
+ * The closing call on the page's own background: the hero's blue glows on both outer sides, fading before the band
+ * ends so no edge shows, the faint braille dots over the deeper one,
+ * and the title, button and reply lines centred between them.
  */
 .invitation {
   --glow-end: 100%;
@@ -33,16 +34,15 @@
 }
 .invitation::before {
   background:
-    radial-gradient(40rem 26rem at var(--glow-end) 0%, var(--hero-glow-deep), transparent 70%),
-    radial-gradient(34rem 24rem at var(--glow-start) 100%, var(--hero-glow-mist), transparent 70%),
-    var(--color-hero-surface);
+    radial-gradient(30rem 12rem at var(--glow-end) 50%, var(--hero-glow-deep), transparent 70%),
+    radial-gradient(30rem 12rem at var(--glow-start) 50%, var(--hero-glow-mist), transparent 70%);
 }
 .invitation::after {
   background: var(--hero-braille-ink);
   -webkit-mask-image:
-    var(--braille), radial-gradient(26rem 20rem at var(--dots-at), black 15%, transparent 70%);
+    var(--braille), radial-gradient(26rem 12rem at var(--dots-at), black 15%, transparent 70%);
   mask-image:
-    var(--braille), radial-gradient(26rem 20rem at var(--dots-at), black 15%, transparent 70%);
+    var(--braille), radial-gradient(26rem 12rem at var(--dots-at), black 15%, transparent 70%);
   -webkit-mask-size:
     var(--braille-size),
     100% 100%;
