@@ -1,28 +1,27 @@
 /*
- * The closing call on the page's own background. The braille dots carry the hero's gradient themselves: two fields of
- * dots on the outer sides, coloured deep blue at the heart of each and fading through the mist to nothing, so the dots
- * are the glow. The title, button and reply lines sit centred between them.
+ * The closing call on the page's own background. The braille dots carry a soft, uneven tint of the hero's blues: a few
+ * faint patches of different sizes overlap on the outer sides, so the colour drifts across the dots instead of forming
+ * a ring, and every patch fades out before the band edges. The title, button and reply lines sit centred between them.
  */
 .invitation {
-  --glow-end: 100%;
-  --glow-start: 0%;
-  --field-end: 38rem 12rem;
-  --field-start: 32rem 11rem;
+  --tint-deep: color-mix(in srgb, var(--color-brand) 48%, transparent);
+  --tint-soft: color-mix(in srgb, var(--color-brand) 28%, transparent);
+  --x1: 96%;
+  --x2: 84%;
+  --x3: 72%;
+  --x4: 6%;
+  --x5: 18%;
   position: relative;
   isolation: isolate;
   padding-block: var(--space-24);
   text-align: center;
 }
 :root[dir='rtl'] .invitation {
-  --glow-end: 0%;
-  --glow-start: 100%;
-}
-/* On a phone the fields shrink to the edges, so no strong dot sits behind the text. */
-@media (max-width: 47.9375rem) {
-  .invitation {
-    --field-end: 9rem 14rem;
-    --field-start: 7rem 12rem;
-  }
+  --x1: 4%;
+  --x2: 16%;
+  --x3: 28%;
+  --x4: 94%;
+  --x5: 82%;
 }
 .invitation::before {
   content: '';
@@ -33,24 +32,28 @@
   inline-size: 100vw;
   translate: -50%;
   background:
-    radial-gradient(
-      var(--field-end) at var(--glow-end) 50%,
-      var(--color-brand) 30%,
-      var(--hero-glow-deep) 55%,
-      transparent 82%
-    ),
-    radial-gradient(
-      var(--field-start) at var(--glow-start) 50%,
-      var(--color-brand) 15%,
-      var(--hero-glow-mist) 50%,
-      transparent 78%
-    );
+    radial-gradient(22rem 9rem at var(--x1) 38%, var(--tint-deep), transparent 100%),
+    radial-gradient(15rem 7rem at var(--x2) 68%, var(--tint-soft), transparent 100%),
+    radial-gradient(11rem 6rem at var(--x3) 30%, var(--tint-soft), transparent 100%),
+    radial-gradient(17rem 8rem at var(--x4) 62%, var(--tint-soft), transparent 100%),
+    radial-gradient(10rem 5rem at var(--x5) 34%, var(--tint-deep), transparent 100%);
   -webkit-mask: var(--braille) 0 50% / var(--braille-size) repeat;
   mask: var(--braille) 0 50% / var(--braille-size) repeat;
   pointer-events: none;
 }
 :root[dir='rtl'] .invitation::before {
   translate: 50%;
+}
+/* On a phone the outer patches stay and the inner ones go, so no tinted dot sits behind the text. */
+@media (max-width: 47.9375rem) {
+  .invitation {
+    --x3: -40%;
+    --x5: -40%;
+  }
+  :root[dir='rtl'] .invitation {
+    --x3: 140%;
+    --x5: 140%;
+  }
 }
 .invitation h2 {
   max-inline-size: 24ch;
