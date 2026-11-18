@@ -1,5 +1,5 @@
 import { watchMotionPreference } from '../preview/motion';
-import { replayScene, updateScene, type SceneState } from './scene-state';
+import { updateScene, type SceneState } from './scene-state';
 
 function createSceneObserver(
   scenes: ReadonlyMap<Element, SceneState>,
@@ -29,14 +29,8 @@ export function startCharacterScenes(document: Document): () => void {
   for (const root of document.querySelectorAll<HTMLElement>('[data-character]')) {
     const scene: SceneState = { root, visible: false };
     scenes.set(root, scene);
+    // The pointer does not touch the scenes: they play on their own while in view.
     observer?.observe(root);
-    root.addEventListener(
-      'pointerenter',
-      () => {
-        replayScene(scene, reduced, document.hidden);
-      },
-      { signal: scope.signal },
-    );
   }
   const stopMotion = watchMotionPreference(document.documentElement, (value) => {
     reduced = value;

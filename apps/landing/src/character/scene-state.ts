@@ -14,11 +14,3 @@ export function updateScene(scene: SceneState, reduced: boolean, hidden: boolean
   if (playing) root.dataset.started = 'true';
   root.dataset.playing = String(playing);
 }
-
-export function replayScene(scene: SceneState, reduced: boolean, hidden: boolean): void {
-  if (!scene.visible || reduced || hidden) return;
-  scene.root.dataset.started = 'false';
-  // A deliberate hover restarts the choreographed CSS loop without timers.
-  scene.root.getBoundingClientRect();
-  updateScene(scene, reduced, hidden);
-}
