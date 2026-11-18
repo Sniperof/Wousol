@@ -3,6 +3,7 @@ import type { Locale } from '../i18n';
 import { pricingWords } from '../i18n/pricing';
 import { featureList, perkList } from './feature-list';
 import { formatPrice } from './format-price';
+import { sitesLabel } from './sites';
 import { setBrandText } from '../brand/dom';
 export type Period = 'monthly' | 'yearly';
 function element(tag: string, text: string, className = ''): HTMLElement {
@@ -25,9 +26,11 @@ function requestLink(
   label: string,
   planName: string,
   choice: { readonly plan: string; readonly period: Period } | { readonly kind: 'custom' },
+  featured = false,
 ): HTMLAnchorElement {
   const link = document.createElement('a');
-  link.className = 'button';
+  // Only the featured plan's button is filled, so it leads; the others are outlined.
+  link.className = featured ? 'button' : 'button secondary';
   link.href = '#request-demo';
   const name = document.createElement('span');
   name.className = 'visually-hidden';
@@ -49,8 +52,13 @@ function standard(plan: PublicPlan, locale: Locale, period: Period): HTMLElement
   const amount = period === 'monthly' ? plan.monthlyPrice : plan.yearlyPrice;
   const action = element('div', '', 'plan-action');
   if (amount !== null || plan.priceHidden)
-    action.append(requestLink(words.choose, plan.name, { plan: plan.name, period }));
-  card.append(offerOf(plan, amount, locale, period), featureList(plan.features, locale), action);
+    action.append(
+      requestLink(words.choose, plan.name, { plan: plan.name, period }, plan.isFeatured),
+    );
+  const offer = offerOf(plan, amount, locale, period);
+  const sites = sitesLabel(plan.siteLimit, locale);
+  if (sites) offer.prepend(element('p', sites, 'plan-sites'));
+  card.append(offer, featureList(plan.features, locale), action);
   return card;
 }
 /** The amount and its note. A hidden price is a dash the screen reader skips, with the words "Price on request" beside it. */

@@ -19,6 +19,15 @@ export const enPricing = {
   choose: 'Contact us',
   notOffered: 'Not offered for this billing period',
   priceOnRequest: 'Price on request',
+  /** How many websites a plan covers, by plural form; {n} is the number. */
+  sites: {
+    zero: '{n} websites',
+    one: '1 website',
+    two: 'Up to {n} websites',
+    few: 'Up to {n} websites',
+    many: 'Up to {n} websites',
+    other: 'Up to {n} websites',
+  },
   moreFeatures: 'View all features',
   featuresTitle: '{plan} features',
   closeFeatures: 'Close features',

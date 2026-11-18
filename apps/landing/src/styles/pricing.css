@@ -37,9 +37,11 @@
   font-weight: var(--weight-strong);
 }
 .price-card h3 {
-  font-size: var(--text-lg);
+  font-size: var(--text-section);
   margin-block: 0;
 }
+/* The plan's name leads; how many websites it covers follows, then the price note. */
+
 .price {
   font-size: var(--text-price);
   font-weight: var(--hero-weight);
@@ -50,7 +52,9 @@
   font-variant-numeric: tabular-nums;
 }
 .price-on-request {
-  font-size: var(--text-section);
+  color: var(--plan-muted);
+  font-size: var(--text-md);
+  font-weight: var(--weight-regular);
   letter-spacing: normal;
 }
 .price-note {
@@ -63,7 +67,9 @@
   margin: 0;
 }
 .plan-offer .price-on-request {
-  font-size: var(--text-section);
+  color: var(--plan-muted);
+  font-size: var(--text-md);
+  font-weight: var(--weight-regular);
   letter-spacing: normal;
 }
 .price-note {
@@ -78,4 +84,10 @@
 .price-card .button {
   padding-inline: var(--space-4);
   text-align: center;
+}
+/* After the generic offer text rule, and as specific, so the sites line keeps the brand colour. */
+.plan-offer > p.plan-sites {
+  margin: 0 0 var(--space-1);
+  color: var(--color-brand);
+  font-weight: var(--weight-strong);
 }

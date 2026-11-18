@@ -19,6 +19,15 @@ export const arPricing = {
   choose: 'تواصل معنا',
   notOffered: 'غير متاحة لفترة الاشتراك هذه',
   priceOnRequest: 'السعر عند الطلب',
+  /** How many websites a plan covers, by Arabic plural form; {n} is the number. */
+  sites: {
+    zero: '{n} موقع',
+    one: 'موقع واحد',
+    two: 'حتى موقعين',
+    few: 'حتى {n} مواقع',
+    many: 'حتى {n} موقعًا',
+    other: 'حتى {n} موقع',
+  },
   moreFeatures: 'اعرض جميع الميزات',
   featuresTitle: 'ميزات خطة {plan}',
   closeFeatures: 'إغلاق الميزات',

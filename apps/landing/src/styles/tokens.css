@@ -68,7 +68,7 @@
   --hero-copy: 38rem;
   --hero-max: 76rem;
   --pricing-card-min: min(14rem, calc(100vw - var(--space-8) - var(--space-2)));
-  --pricing-card-max: 18rem;
+  --pricing-card-max: 23rem;
   --pricing-section-max: 88rem;
   --solution-card-min: 18rem;
   --benefit-card-min: 14rem;
