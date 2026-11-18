@@ -1,12 +1,6 @@
 @import '@dap/design-tokens/tokens.css';
 @import '@dap/design-tokens/select.css';
-@font-face {
-  font-family: Inter;
-  font-style: normal;
-  font-weight: 100 900;
-  font-display: swap;
-  src: url('../assets/fonts/InterVariable.woff2') format('woff2');
-}
+@import './fonts.css';
 :root {
   --font-sans: Inter, system-ui, -apple-system, 'Segoe UI', sans-serif;
   --color-brand: #0047ff;
@@ -21,6 +15,13 @@
   --color-focus: var(--color-brand);
   --color-hero-surface: #f4f7ff;
   --color-hero-ink: #14213d;
+  /* The dark band: a deeper shade of the navy ink, with light text and a lighter blue for the brand name. */
+  --color-dark-surface: #0b1633;
+  --color-dark-raised: #1a2850;
+  --color-dark-ink: #ffffff;
+  --color-dark-muted: rgb(255 255 255 / 0.78);
+  --color-dark-rule: rgb(255 255 255 / 0.16);
+  --color-dark-accent: #9db7ff;
   --color-marketing-muted: #58657c;
   --color-preview-glass: rgb(255 255 255 / 0.64);
   --color-preview-paper: rgb(255 255 255 / 0.9);
@@ -126,7 +127,7 @@
   --color-footer-rule: rgb(255 255 255 / 0.24);
 }
 :root:lang(ar) {
-  --font-sans: var(--font-arabic);
+  --font-sans: 'Readex Pro', Inter, Tahoma, system-ui, sans-serif;
   --hero-tracking: normal;
   --hero-line-height: 1.45;
   --line-heading: 1.6;

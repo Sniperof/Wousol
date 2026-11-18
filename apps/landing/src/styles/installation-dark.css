@@ -1,0 +1,36 @@
+/* How it works on the dark navy band. Only the copy column turns light-on-dark; the preview keeps its own light page. */
+[data-installation].dark-band {
+  padding-block: var(--space-16);
+  background: var(--color-dark-surface);
+  box-shadow: 0 0 0 100vmax var(--color-dark-surface);
+  clip-path: inset(0 -100vmax);
+}
+.dark-band .installation-copy {
+  --color-hero-ink: var(--color-dark-ink);
+  --color-marketing-muted: var(--color-dark-muted);
+  --color-selected: var(--color-dark-raised);
+  --brand-word-color: var(--color-dark-accent);
+  --color-focus: var(--color-dark-ink);
+  color: var(--color-dark-ink);
+}
+.dark-band .installation-copy .step-number {
+  background: var(--color-dark-raised);
+  color: var(--color-dark-ink);
+}
+[data-installation].dark-band[data-ready='true'] .installation-step[data-current='true'] h3,
+.dark-band .installation-step-select:hover:not(:disabled) {
+  color: var(--color-dark-accent);
+}
+.dark-band .installation-copy .button.secondary {
+  --brand-word-color: var(--color-brand);
+}
+.dark-band .installation-snippet {
+  border-color: var(--color-dark-rule);
+  background: var(--color-dark-raised);
+}
+.dark-band .installation-caption {
+  color: var(--color-dark-muted);
+}
+.dark-band .installation-caption .brand-word {
+  color: var(--color-dark-accent);
+}

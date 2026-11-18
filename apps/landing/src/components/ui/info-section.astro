@@ -12,12 +12,19 @@ interface Props {
   readonly cards: readonly Group[];
   /** Sets the section on the soft hero surface, to separate it from its neighbours. */
   readonly band?: boolean;
+  /** Puts the heading beside a single column of cards; `end` moves the cards to the start side. */
+  readonly split?: 'start' | 'end';
 }
-const { id, locale, title, intro, cards, band = false } = Astro.props;
+const { id, locale, title, intro, cards, band = false, split } = Astro.props;
 ---
 
-<section id={id} class:list={['section info-section', { band }]} aria-labelledby={`${id}-title`}>
-  <div class="container">
+<section
+  id={id}
+  class:list={['section info-section', { band }]}
+  data-split={split}
+  aria-labelledby={`${id}-title`}
+>
+  <div class="container info-layout">
     <div class="section-heading">
       <h2 id={`${id}-title`}>
         <BrandText text={title} locale={locale} />
@@ -64,5 +71,36 @@ const { id, locale, title, intro, cards, band = false } = Astro.props;
     margin: 0;
     color: var(--color-marketing-muted);
     font-size: var(--text-sm);
+  }
+  @media (min-width: 64rem) {
+    [data-split] .info-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+      grid-template-areas: 'heading cards' 'after cards';
+      grid-template-rows: auto 1fr;
+      column-gap: var(--space-16);
+    }
+    [data-split='end'] .info-layout {
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+      grid-template-areas: 'cards heading' 'cards after';
+    }
+    [data-split] .section-heading {
+      grid-area: heading;
+      margin: 0;
+      text-align: start;
+    }
+    [data-split] .section-heading p {
+      margin-inline: 0;
+    }
+    [data-split] .info-grid {
+      --card-min: 100%;
+      grid-area: cards;
+    }
+    [data-split] .info-after {
+      grid-area: after;
+      align-content: start;
+      justify-items: start;
+      text-align: start;
+    }
   }
 </style>

@@ -6,6 +6,7 @@ import '../../styles/visitor-cards.css';
 import '../../styles/installation-walkthrough.css';
 import '../../styles/installation-site.css';
 import '../../styles/installation-motion.css';
+import '../../styles/installation-dark.css';
 interface Props {
   readonly locale: Locale;
 }
@@ -19,7 +20,7 @@ const [beforeAttribute, afterAttribute] = words.ignore.split('{attribute}');
 
 <section
   id="installation"
-  class="section container band"
+  class="section container dark-band"
   aria-labelledby="installation-title"
   data-installation
 >
