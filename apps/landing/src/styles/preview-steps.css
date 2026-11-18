@@ -1,0 +1,43 @@
+/* What each autoplay step acts out inside its raised row. */
+.reading-preview {
+  --wave-fill-start: 700ms;
+  --wave-fill-step: 170ms;
+}
+/* Read aloud: the wave starts grey and fills with blue bar by bar, in reading direction, as if the sample plays. */
+.preview-panel .voice-wave rect {
+  --order: var(--i);
+  fill: var(--color-control-border);
+  transition: fill var(--duration) ease;
+}
+:root[dir='rtl'] .preview-panel .voice-wave rect {
+  --order: calc(12 - var(--i));
+}
+.reading-preview[data-focus='voice'] .preview-panel .voice-wave rect {
+  fill: var(--color-brand);
+  transition: fill var(--duration) ease
+    calc(var(--wave-fill-start) + var(--order) * var(--wave-fill-step));
+}
+/* The play button is tapped as the step begins. */
+.reading-preview[data-focus='voice'] .preview-panel .voice-play {
+  border-color: var(--color-card-active-border);
+  background: var(--color-selected);
+  animation: preview-tap var(--preview-enter) var(--preview-ease) 250ms both;
+}
+/* Without motion there is no step to act out, so the wave simply shows in blue. */
+:root[data-reduce-motion='true'] .preview-panel .voice-wave rect {
+  fill: var(--color-brand);
+}
+@media (prefers-reduced-motion: reduce) {
+  .preview-panel .voice-wave rect {
+    fill: var(--color-brand);
+  }
+}
+@keyframes preview-tap {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  45% {
+    transform: scale(0.94);
+  }
+}

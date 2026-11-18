@@ -5,6 +5,7 @@ import ReadAloudCard from './read-aloud-card.astro';
 import SignLanguageCard from './sign-language-card.astro';
 import '../../styles/product-preview.css';
 import '../../styles/preview-layout.css';
+import '../../styles/preview-steps.css';
 import '../../styles/preview-controls.css';
 import '../../styles/preview-motion.css';
 import '../../styles/preview-services.css';
@@ -44,7 +45,7 @@ const features = pricingFeatures(locale);
         />
       </svg>
     </div>
-    <div class="preview-panel" data-animate>
+    <div class="preview-panel" data-animate inert>
       <div class="preview-card sample-card" data-animate>
         <button
           type="button"

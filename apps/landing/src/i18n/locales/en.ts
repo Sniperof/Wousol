@@ -32,7 +32,7 @@ export const en: Messages = {
     textSizeHint: 'Next text size: {next}.',
     title: 'A page that feels right.',
     body: 'Bigger text and wider spacing for comfortable reading',
-    label: 'Interactive reading preferences preview',
+    label: 'Preview of Wosoul features: bigger text, read aloud, and a sign language call',
     voice: enVoice,
     signTitle: 'Live call',
     signBody: 'A sign language interpreter through MetaSign',

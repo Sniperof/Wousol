@@ -1,4 +1,5 @@
 import { setAllPreferences, setPreference, togglePreference, type Preference } from './controls';
+import { setTextSize } from './text-size';
 
 /**
  * One feature at a time: each step turns a single feature on (its row rises and its own animation plays for the
@@ -11,6 +12,8 @@ interface State {
   readonly delay: number;
   readonly hold: number;
   timer: ReturnType<typeof setTimeout> | undefined;
+  /** Cues inside a step, such as flipping the switch before the text grows. */
+  cues: ReturnType<typeof setTimeout>[];
   position: number;
   active: boolean;
   automatic: boolean;
@@ -25,6 +28,14 @@ export interface PreviewPlayer {
 function clearTimer(state: State): void {
   clearTimeout(state.timer);
   state.timer = undefined;
+  clearCues(state);
+}
+function clearCues(state: State): void {
+  for (const pending of state.cues) clearTimeout(pending);
+  state.cues = [];
+}
+function cue(state: State, after: number, run: () => void): void {
+  state.cues.push(setTimeout(run, after));
 }
 function sync(state: State): void {
   state.root.dataset.playing = String(state.automatic && state.active && !state.reduced);
@@ -47,11 +58,26 @@ function reset(state: State, final = false): void {
   state.position = 0;
 }
 function show(state: State, name: Step | undefined): void {
+  clearCues(state);
   clear(state);
   if (!name) return;
-  if (name === 'text') setPreference(state.root, 'text', true);
-  else state.root.dataset[name] = 'true';
-  state.root.dataset.focus = name;
+  const { root, delay } = state;
+  root.dataset.focus = name;
+  if (name === 'text') {
+    // The row rises, the switch flips on, then the text grows in two steps.
+    cue(state, delay, () => {
+      setPreference(root, 'guide', true);
+      setPreference(root, 'text', true);
+    });
+    cue(state, delay * 2.5, () => {
+      setTextSize(root, 150);
+    });
+  } else if (name === 'voice') {
+    // The play button is tapped (in CSS), then the wave starts and fills.
+    cue(state, delay, () => {
+      root.dataset.voice = 'true';
+    });
+  } else root.dataset[name] = 'true';
 }
 /** Even positions show a step, odd positions rest between steps. */
 function advance(state: State): void {
@@ -90,6 +116,7 @@ export function createPreviewPlayer(root: HTMLElement): PreviewPlayer {
     delay: timing(root, '--preview-step-ms', 1200),
     hold: timing(root, '--preview-hold-ms', 2400),
     timer: undefined,
+    cues: [],
     position: 0,
     active: false,
     automatic: !root.dataset.autoplay || root.dataset.autoplay === 'running',
