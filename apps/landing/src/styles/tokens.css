@@ -57,6 +57,7 @@
   --text-hero: clamp(2.5rem, 4.4vw, 3.75rem);
   --text-price: clamp(1.75rem, 3vw, 2.25rem);
   --hero-weight: 600;
+  --weight-regular: 400;
   --hero-tracking: -0.03em;
   --hero-line-height: 1.12;
   --hero-title-width: 20ch;
@@ -133,6 +134,11 @@
 }
 :root:lang(ar) {
   --font-sans: 'Readex Pro', Inter, Tahoma, system-ui, sans-serif;
+  /* Readex Pro runs heavier than Inter, so Arabic sits half a step lighter on its variable axis. */
+  --weight-regular: 350;
+  --weight-medium: 450;
+  --weight-strong: 550;
+  --hero-weight: 550;
   --hero-tracking: normal;
   --hero-line-height: 1.45;
   --line-heading: 1.6;

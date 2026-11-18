@@ -15,6 +15,7 @@ body {
   color: var(--color-text);
   font-family: var(--font-sans);
   font-size: var(--text-md);
+  font-weight: var(--weight-regular);
   line-height: var(--line-height);
   overflow-wrap: anywhere;
 }
