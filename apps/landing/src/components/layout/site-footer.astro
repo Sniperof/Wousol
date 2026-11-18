@@ -18,7 +18,7 @@ const other = otherLocale(locale);
   <div class="footer-content container">
     <div class="footer-top">
       <div class="footer-brand">
-        <Brand locale={locale} tone="white" />
+        <Brand locale={locale} />
         <p>
           <BrandText text={messages.footer.about} locale={locale} />
         </p>
@@ -44,7 +44,9 @@ const other = otherLocale(locale);
         <DemoLink locale={locale} label={messages.nav.liveDemo} plain />
       </nav>
     </div>
-    <div class="footer-bottom">
+  </div>
+  <div class="footer-strip">
+    <div class="footer-bottom container">
       <span class="byline">
         <BrandText text={messages.footer.byline} locale={locale} />
         <span aria-hidden="true">·</span>
@@ -61,18 +63,16 @@ const other = otherLocale(locale);
   </div>
 </footer>
 <style>
+  /* A light top with blue text, a rule above it, and the primary-blue strip closing the page below. */
   .footer {
-    --brand-word-color: var(--color-brand-text);
-    --color-text: var(--color-brand-text);
-    --color-link: var(--color-brand-text);
-    --color-focus: var(--color-brand-text);
-    color: var(--color-brand-text);
-    background: var(--color-brand);
+    --brand-word-color: var(--color-brand);
+    --color-text: var(--color-brand);
+    --color-link: var(--color-brand);
+    color: var(--color-brand);
+    border-block-start: var(--border-width) solid var(--color-card-border);
   }
   .footer-content {
-    display: grid;
-    gap: var(--space-8);
-    padding-block: var(--space-12) var(--space-24);
+    padding-block: var(--space-12) var(--space-10);
   }
   .footer-top {
     display: flex;
@@ -88,21 +88,18 @@ const other = otherLocale(locale);
   .footer-brand p {
     max-inline-size: 36ch;
     margin: 0;
-    color: var(--color-footer-muted);
   }
   .footer-brand .contact {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     gap: 0 var(--space-2);
-    color: var(--color-brand-text);
   }
   .footer-brand .badge {
     justify-self: start;
     padding: var(--space-1) var(--space-3);
-    border: var(--border-width) solid var(--color-footer-rule);
+    border: var(--border-width) solid var(--color-card-active-border);
     border-radius: var(--radius-full);
-    color: var(--color-brand-text);
     font-size: var(--text-sm);
   }
   nav {
@@ -111,7 +108,7 @@ const other = otherLocale(locale);
     gap: var(--space-2) var(--space-6);
   }
   .footer :global(a) {
-    color: var(--color-brand-text);
+    color: currentColor;
     text-decoration: none;
   }
   .footer :global(a:hover) {
@@ -120,14 +117,21 @@ const other = otherLocale(locale);
   [data-pricing-nav][hidden] {
     display: none;
   }
+  .footer-strip {
+    --brand-word-color: var(--color-brand-text);
+    --color-text: var(--color-brand-text);
+    --color-link: var(--color-brand-text);
+    --color-focus: var(--color-brand-text);
+    color: var(--color-brand-text);
+    background: var(--color-brand);
+  }
   .footer-bottom {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
     gap: var(--space-3) var(--space-8);
-    padding-block-start: var(--space-6);
-    border-block-start: var(--border-width) solid var(--color-footer-rule);
+    padding-block: var(--space-6) var(--space-24);
     font-size: var(--text-sm);
   }
   .byline {
