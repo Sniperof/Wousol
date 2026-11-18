@@ -1,50 +1,44 @@
-/* Sign language: the copy beside a live call scene, with the two ways to sign listed under the call. */
-.sign-layout {
-  --sign-call-height: 13rem;
+/*
+ * Sign language as one split card: a brand-blue feature side (the live call in a glass frame, floating glass icon
+ * tiles, the title and a white button) and a white side listing the two ways to sign.
+ */
+.sign-card {
+  --sign-call-height: 11rem;
   display: grid;
-  gap: var(--space-10);
-  align-items: center;
-}
-.sign-copy-column h2 {
-  margin-block-end: var(--space-4);
-}
-.sign-intro {
-  margin: 0;
-  color: var(--color-marketing-muted);
-  font-size: var(--text-lg);
-}
-.sign-partner {
-  display: inline-flex;
-  margin: var(--space-5) 0 var(--space-6);
-  padding: var(--space-1) var(--space-3);
-  border: var(--border-width) solid var(--color-card-border);
-  border-radius: var(--radius-full);
-  background: var(--color-surface);
-  color: var(--color-hero-ink);
-  font-size: var(--text-sm);
-  font-weight: var(--weight-strong);
-}
-.sign-copy-column .button {
-  display: flex;
-  inline-size: fit-content;
-}
-.sign-scene {
-  display: grid;
-  gap: var(--space-4);
-  min-inline-size: 0;
-}
-.sign-call {
-  padding: var(--space-3);
+  overflow: hidden;
   border: var(--border-width) solid var(--color-card-border);
   border-radius: var(--radius-lg);
   background: var(--color-surface);
   box-shadow: var(--shadow-product);
 }
+.sign-feature {
+  --color-focus: var(--color-brand-text);
+  --brand-word-color: var(--color-brand-text);
+  display: grid;
+  justify-items: center;
+  padding: var(--space-10) var(--space-8);
+  background: linear-gradient(160deg, var(--color-brand), var(--color-brand-pressed));
+  color: var(--color-brand-text);
+  text-align: center;
+}
+.sign-visual {
+  position: relative;
+  inline-size: min(100%, 24rem);
+  margin-block-end: var(--space-8);
+}
+.sign-call {
+  padding: var(--space-2);
+  border: var(--border-width) solid var(--color-glass-rule);
+  border-radius: var(--radius-lg);
+  background: var(--color-glass);
+  backdrop-filter: blur(var(--preview-glass-blur));
+  -webkit-backdrop-filter: blur(var(--preview-glass-blur));
+}
 .sign-call-bar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: var(--space-1) var(--space-2) var(--space-3);
+  padding: var(--space-1) var(--space-2) var(--space-2);
 }
 .sign-call-dots {
   display: flex;
@@ -54,13 +48,12 @@
   inline-size: var(--space-2);
   block-size: var(--space-2);
   border-radius: var(--radius-full);
-  background: var(--color-card-border);
+  background: var(--color-glass-rule);
 }
 .sign-live {
   display: inline-flex;
   align-items: center;
   gap: var(--space-2);
-  color: var(--color-hero-ink);
   font-size: var(--text-sm);
   font-weight: var(--weight-strong);
 }
@@ -69,9 +62,8 @@
   inline-size: var(--space-2);
   block-size: var(--space-2);
   border-radius: var(--radius-full);
-  background: var(--color-danger);
+  background: var(--color-brand-text);
 }
-/* The call fills the window's width at a capped height; the drawing sits centred on the soft call background. */
 .sign-call .interpreter-preview {
   inline-size: 100%;
   background: var(--color-hero-surface);
@@ -82,32 +74,29 @@
 .sign-call .call-frame {
   stroke: none;
 }
-.sign-ways {
-  display: grid;
+/* Two glass tiles float over the call's lower corner, as in a product shot. */
+.sign-tiles {
+  position: absolute;
+  inset-block-end: calc(-1 * var(--space-6));
+  inset-inline-start: calc(-1 * var(--space-4));
+  display: flex;
   gap: var(--space-3);
-  margin: 0;
-  padding: 0;
-  list-style: none;
 }
-.sign-ways li {
-  display: grid;
-  grid-template-columns: auto minmax(0, 1fr);
-  gap: var(--space-4);
-  align-items: start;
-  padding: var(--space-4);
-  border: var(--border-width) solid var(--color-card-border);
-  border-radius: var(--radius-lg);
-  background: var(--color-surface);
-}
+.sign-tile,
 .sign-way-icon {
   display: grid;
   place-items: center;
-  inline-size: var(--space-10);
-  block-size: var(--space-10);
+  inline-size: var(--space-12);
+  block-size: var(--space-12);
   border-radius: var(--radius);
-  background: var(--color-selected);
-  color: var(--color-brand);
 }
+.sign-tile {
+  border: var(--border-width) solid var(--color-glass-rule);
+  background: var(--color-glass);
+  backdrop-filter: blur(var(--preview-glass-blur));
+  -webkit-backdrop-filter: blur(var(--preview-glass-blur));
+}
+.sign-tile svg,
 .sign-way-icon svg {
   inline-size: var(--icon-size);
   block-size: var(--icon-size);
@@ -115,18 +104,36 @@
   stroke-width: 2;
   stroke-linejoin: round;
 }
-.sign-ways h3 {
-  margin: 0 0 var(--space-1);
-  font-size: var(--text-md);
-}
-.sign-ways p {
-  margin: 0;
-  color: var(--color-marketing-muted);
+.sign-eyebrow {
+  margin: var(--space-4) 0 var(--space-3);
   font-size: var(--text-sm);
+  font-weight: var(--weight-strong);
 }
-@media (min-width: 64rem) {
-  .sign-layout {
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
-    gap: var(--space-16);
-  }
+/* Tracking suits Latin capitals only; spacing Arabic letters breaks their joins. */
+:root:lang(en) .sign-eyebrow {
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.sign-feature h2 {
+  max-inline-size: 18ch;
+  margin-block: 0 var(--space-4);
+}
+.sign-intro {
+  max-inline-size: 34rem;
+  margin: 0 0 var(--space-8);
+  color: var(--color-on-brand-muted);
+}
+.sign-feature .sign-cta {
+  gap: var(--space-4);
+  border-color: var(--color-brand-text);
+  background: var(--color-brand-text);
+  color: var(--color-brand);
+  --brand-word-color: var(--color-brand);
+}
+.sign-feature .sign-cta:hover {
+  background: var(--color-selected);
+  color: var(--color-brand);
+}
+:root[dir='ltr'] .sign-cta-arrow {
+  transform: scaleX(-1);
 }

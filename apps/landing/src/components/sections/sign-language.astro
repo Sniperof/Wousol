@@ -4,6 +4,7 @@ import InterpreterPreview from '../ui/interpreter-preview.astro';
 import BrandText from '../ui/brand-text.astro';
 import '../../styles/sign-call.css';
 import '../../styles/sign-call-motion.css';
+import '../../styles/sign-ways.css';
 interface Props {
   readonly locale: Locale;
 }
@@ -11,37 +12,55 @@ const { locale } = Astro.props;
 const messages = messagesFor(locale);
 const words = messages.sign;
 const [call, videos] = words.cards;
+const icons = {
+  call: 'M3 7h11a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2H3Zm13 3 5-3v10l-5-3',
+  videos: 'M3 5h18v14H3Zm7 4v6l5-3Z',
+};
 const ways = [
-  { card: call, icon: 'M3 7h11a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2H3Zm13 3 5-3v10l-5-3' },
-  { card: videos, icon: 'M3 5h18v14H3Zm7 4v6l5-3Z' },
+  { card: call, icon: icons.call },
+  { card: videos, icon: icons.videos },
 ];
 ---
 
 <section id="sign-language" class="section band sign" aria-labelledby="sign-language-title">
-  <div class="container sign-layout">
-    <div class="sign-copy-column">
-      <h2 id="sign-language-title">
-        <BrandText text={words.title} locale={locale} />
-      </h2>
-      <p class="sign-intro">
-        <BrandText text={words.intro} locale={locale} />
-      </p>
-      <p class="sign-partner">{words.partner}</p>
-      <a class="button secondary" href="#request-demo" data-request-kind="demo">
-        {messages.nav.contact}
-      </a>
-    </div>
-    <div class="sign-scene">
-      <div class="sign-call" aria-hidden="true">
-        <div class="sign-call-bar">
-          <span class="sign-call-dots">
-            <span></span>
-            <span></span>
-            <span></span>
-          </span>
-          <span class="sign-live">{words.live}</span>
+  <div class="container">
+    <div class="sign-card">
+      <div class="sign-feature">
+        <div class="sign-visual" aria-hidden="true">
+          <div class="sign-call">
+            <div class="sign-call-bar">
+              <span class="sign-call-dots">
+                <span></span>
+                <span></span>
+                <span></span>
+              </span>
+              <span class="sign-live">{words.live}</span>
+            </div>
+            <InterpreterPreview />
+          </div>
+          <div class="sign-tiles">
+            {[icons.call, icons.videos].map((path) => (
+              <span class="sign-tile">
+                <svg viewBox="0 0 24 24" fill="none" focusable="false">
+                  <path d={path} />
+                </svg>
+              </span>
+            ))}
+          </div>
         </div>
-        <InterpreterPreview />
+        <p class="sign-eyebrow">{words.partner}</p>
+        <h2 id="sign-language-title">
+          <BrandText text={words.title} locale={locale} />
+        </h2>
+        <p class="sign-intro">
+          <BrandText text={words.intro} locale={locale} />
+        </p>
+        <a class="button sign-cta" href="#request-demo" data-request-kind="demo">
+          {messages.nav.contact}
+          <span class="sign-cta-arrow" aria-hidden="true">
+            ←
+          </span>
+        </a>
       </div>
       <ul class="sign-ways" role="list">
         {ways.map(

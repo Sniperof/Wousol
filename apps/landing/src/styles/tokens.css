@@ -50,6 +50,10 @@
   --text-hero: clamp(2rem, 2.9vw, 2.625rem);
   /* Section titles sit clearly below the hero title. */
   --text-display: 2.25rem;
+  /* Glass on the brand blue: frosted panels, their edges, and softer white text. */
+  --color-glass: rgb(255 255 255 / 0.16);
+  --color-glass-rule: rgb(255 255 255 / 0.32);
+  --color-on-brand-muted: rgb(255 255 255 / 0.88);
   --color-card-tint: color-mix(in srgb, var(--color-hero-surface) 60%, var(--color-surface));
   --text-price: clamp(1.75rem, 3vw, 2.25rem);
   --hero-weight: 600;
