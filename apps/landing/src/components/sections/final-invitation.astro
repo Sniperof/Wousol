@@ -20,13 +20,13 @@ const messages = messagesFor(locale);
   <h2 id="final-title">
     <BrandText text={messages.final.title} locale={locale} />
   </h2>
-  <p>
-    <BrandText text={messages.final.body} locale={locale} />
-  </p>
   <button type="button" class="button open-form" data-needs-dialog data-request-kind="demo" hidden>
     {messages.nav.contact}
   </button>
   <EnquiryForm locale={locale} />
+  <p class="reply-line">
+    <BrandText text={messages.final.reply} locale={locale} />
+  </p>
   <p class="email-line">
     {messages.final.email}
     <span data-demo-email>
@@ -61,6 +61,10 @@ const messages = messagesFor(locale);
   }
   .open-form[hidden] {
     display: none;
+  }
+  .reply-line {
+    margin-block-end: var(--space-2);
+    font-size: var(--text-sm);
   }
   .email-line {
     display: flex;

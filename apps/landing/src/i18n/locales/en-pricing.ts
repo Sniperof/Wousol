@@ -1,7 +1,6 @@
 export const enPricing = {
   title: 'One more step toward access',
-  intro:
-    'This step ends with a plan that fits each website. The Wosoul team replies within one business day to activate your subscription.',
+  intro: 'A bigger subscription opens your website to a wider audience.',
   monthly: 'Monthly',
   yearly: 'Yearly',
   period: 'Billing period',

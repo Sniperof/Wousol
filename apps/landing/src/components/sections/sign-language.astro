@@ -1,7 +1,6 @@
 ---
 import { messagesFor, type Locale } from '../../i18n';
 import InfoSection from '../ui/info-section.astro';
-import BrandText from '../ui/brand-text.astro';
 interface Props {
   readonly locale: Locale;
 }
@@ -19,9 +18,6 @@ const words = messages.sign;
   band
   split="start"
 >
-  <p>
-    <BrandText text={words.note} locale={locale} />
-  </p>
   <a class="button secondary" href="#request-demo" data-request-kind="demo">
     {messages.nav.contact}
   </a>

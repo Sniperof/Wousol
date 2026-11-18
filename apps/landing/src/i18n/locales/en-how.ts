@@ -3,7 +3,7 @@ import type { Messages } from '../messages';
 export const enInstallation: Messages['installation'] = {
   title: 'From request to access',
   intro:
-    "No changes to your design or your code. Wosoul works on top of your website as it is, and the page goes back to how it was when it's turned off.",
+    "Your website stays as designed. Wosoul works on top of it and puts the page back when it's turned off.",
   request: {
     title: 'Send a request',
     body: 'Send a request and the Wosoul team gets in touch within one business day.',
@@ -28,7 +28,7 @@ export const enInstallation: Messages['installation'] = {
 export const enDashboard: Messages['dashboard'] = {
   title: 'Access to every detail, from one dashboard',
   intro:
-    'The dashboard brings your plan, websites, usage, and sign language together in one place. The Wosoul team sends your access along with your site key and line of code.',
+    'Everything about Wosoul in one place. Your access arrives with your site key from the Wosoul team.',
   cards: [
     {
       title: 'Plan and websites',

@@ -55,7 +55,6 @@ export interface Messages {
     readonly title: string;
     readonly intro: string;
     readonly cards: readonly Group[];
-    readonly note: string;
   };
   readonly benefits: {
     readonly title: string;
@@ -81,7 +80,7 @@ export interface Messages {
   };
   readonly final: {
     readonly title: string;
-    readonly body: string;
+    readonly reply: string;
     readonly email: string;
     readonly subject: string;
   };

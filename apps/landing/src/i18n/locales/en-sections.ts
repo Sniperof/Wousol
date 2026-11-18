@@ -3,7 +3,7 @@ import type { Messages } from '../messages';
 export const enVisit: Messages['visit'] = {
   title: 'No visit is complete without the right access',
   intro:
-    "Opening a page isn't the end of the road. A visitor opens the Wosoul menu and turns on what they need. The page changes right away, and goes back to how it was when they turn it off.",
+    'What suits one visitor may not suit another. So Wosoul lets each visitor adjust the page to what they need: text, colors, sound, navigation, and sign language.',
   cards: [
     {
       title: 'Bigger, clearer text',
@@ -48,7 +48,6 @@ export const enSign: Messages['sign'] = {
       body: 'A video explains the page in sign language and jumps to the section it covers.',
     },
   ],
-  note: "Calls are free for Deaf and hard of hearing visitors and available during working hours. They're provided by MetaSign and paid for by the site owner as part of the plan.",
 };
 
 export const enBenefits: Messages['benefits'] = {

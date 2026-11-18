@@ -25,7 +25,7 @@ export const en: Messages = {
   },
   hero: {
     title: 'With Wosoul, your website is closer to everyone',
-    lede: 'Wosoul is a widget dedicated to digital accessibility. It makes websites and online services easier for everyone to use, including people with disabilities and older adults. Because what suits one visitor may not suit another, each visitor can adjust text, colors, sound, and navigation, or reach a sign language interpreter. Its features follow needs described in WCAG 2.2.',
+    lede: 'Wosoul is a widget dedicated to digital accessibility. It makes websites and online services easier for everyone to use, including people with disabilities and older adults.',
   },
   preview: {
     textSize: 'Bigger text',
@@ -44,7 +44,7 @@ export const en: Messages = {
   dashboard: enDashboard,
   final: {
     title: 'Your journey with Wosoul starts here',
-    body: 'The Wosoul team gets to know your needs and your websites, and replies within one business day.',
+    reply: 'The Wosoul team replies within one business day.',
     email: 'Email:',
     subject: 'Contact request about Wosoul',
   },
