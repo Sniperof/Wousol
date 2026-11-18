@@ -42,8 +42,8 @@ const titleLines = messages.hero.title.split('\n');
     align-items: center;
     gap: var(--space-12);
     max-inline-size: var(--hero-max);
-    inline-size: 100%;
-    padding-block: var(--space-10);
+    /* Sized by its content with fixed space around it, whatever the screen height. */
+    padding-block: var(--space-12) var(--space-16);
   }
   .copy {
     min-inline-size: 0;
