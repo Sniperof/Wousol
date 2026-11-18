@@ -38,6 +38,19 @@
 .price-card {
   scroll-snap-align: start;
 }
+/* On phones the plans stack, so every plan is in view without a sideways scroll. */
+@media (max-width: 39.9375rem) {
+  .pricing-scroll {
+    overflow-x: visible;
+  }
+  .pricing-grid,
+  .pricing-grid[data-count] {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: none;
+    grid-auto-flow: row;
+    min-inline-size: 0;
+  }
+}
 @supports not (grid-template-rows: subgrid) {
   .price-card.aligned-card {
     grid-template-rows: auto auto auto 1fr auto;

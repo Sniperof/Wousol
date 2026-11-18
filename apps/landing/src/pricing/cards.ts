@@ -63,9 +63,7 @@ function offerOf(
   const words = pricingWords(locale);
   const offer = element('div', '', 'plan-offer');
   if (plan.priceHidden) {
-    const dash = element('p', '—', 'price');
-    dash.setAttribute('aria-hidden', 'true');
-    offer.append(dash, element('p', words.priceOnRequest, 'price-note'));
+    offer.append(element('p', words.priceOnRequest, 'price price-on-request'));
     return offer;
   }
   offer.append(

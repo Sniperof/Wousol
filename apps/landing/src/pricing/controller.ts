@@ -44,7 +44,8 @@ export function startPricing(root: HTMLElement): void {
       const available = data.plans.length > 0;
       root.dataset.pricingState = available ? 'ready' : 'empty';
       if (available) renderCards(cards, data, locale, period);
-      billing.hidden = !available;
+      // Monthly and yearly only differ in price, so the switch goes when every price is on request.
+      billing.hidden = !available || data.plans.every((plan) => plan.priceHidden);
       root.hidden = !available;
       updatePricingLinks(root.ownerDocument, available);
     } catch {
