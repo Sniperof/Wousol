@@ -27,12 +27,14 @@ function sync(state: State): void {
 }
 function stop(state: State): void {
   state.automatic = false;
+  delete state.root.dataset.focus;
   clearTimer(state);
   sync(state);
 }
 function reset(state: State, final = false): void {
   setAllPreferences(state.root, final);
   state.root.dataset.voice = String(final);
+  delete state.root.dataset.focus;
   state.step = final ? steps.length : 0;
 }
 function advance(state: State): void {
@@ -41,6 +43,8 @@ function advance(state: State): void {
   if (name) {
     if (name === 'voice') state.root.dataset.voice = 'true';
     else setPreference(state.root, name, true);
+    // The step just shown is the one the art brings forward; the others rest.
+    state.root.dataset.focus = name;
     state.step += 1;
   } else reset(state);
   schedule(state);

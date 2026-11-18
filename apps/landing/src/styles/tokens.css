@@ -63,7 +63,8 @@
   --hero-title-width: 20ch;
   --preview-stage-min: 22rem;
   --preview-panel-width: 26rem;
-  --preview-launcher-size: 4.5rem;
+  --preview-rings-size: 40rem;
+  --preview-focus-scale: 1.04;
   --preview-orb-compact: 6rem;
   --preview-rings-compact: 25rem;
   --hero-art-size: 40rem;
