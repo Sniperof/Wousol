@@ -31,19 +31,6 @@
   -webkit-backdrop-filter: blur(var(--preview-glass-blur));
   box-shadow: var(--shadow-product);
 }
-.panel-head {
-  display: flex;
-  align-items: center;
-  gap: var(--space-2);
-  margin: 0;
-  padding: var(--space-2) var(--space-3) var(--space-3);
-  color: var(--color-hero-ink);
-  font-weight: var(--weight-strong);
-}
-.panel-head img {
-  inline-size: var(--icon-size);
-  block-size: var(--icon-size);
-}
 .preview-panel .preview-card,
 .reading-preview .preview-panel .preview-card {
   border: 0;
@@ -58,12 +45,36 @@
     box-shadow var(--preview-enter) var(--preview-ease),
     background-color var(--preview-enter) var(--preview-ease);
 }
+/* The sample box is sized for its largest text on two lines, so growing the text never grows the panel. */
+.preview-panel .reading-sample {
+  display: grid;
+  align-content: center;
+  min-block-size: calc(var(--preview-sample-150) * var(--line-height) * 2 + var(--space-2) * 2);
+}
+/* Wave and play button share a row, so the panel stays about as tall as the copy beside it. */
+.preview-panel .voice-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  column-gap: var(--space-4);
+}
+.preview-panel .voice-title,
+.preview-panel .voice-status {
+  grid-column: 1 / -1;
+}
+.preview-panel .voice-card .button {
+  inline-size: auto;
+  padding-inline: var(--space-4);
+}
 /* The read-aloud status keeps its line even when empty, so a message never pushes the panel taller. */
 .preview-panel .voice-status,
 .preview-panel .voice-status:empty {
   display: block;
   min-block-size: calc(var(--text-sm) * var(--line-height));
   margin-block: var(--space-2) 0;
+}
+.preview-panel .preview-card:first-child {
+  border-block-start-color: transparent;
 }
 .reading-preview[data-focus='text'] .preview-panel .sample-card,
 .reading-preview[data-focus='voice'] .preview-panel .voice-card,

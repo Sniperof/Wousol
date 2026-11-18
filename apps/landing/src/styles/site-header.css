@@ -6,7 +6,8 @@
   align-items: center;
   flex-wrap: wrap;
   gap: var(--space-3);
-  max-inline-size: calc(var(--content-max) + var(--space-16));
+  /* The bar's outer edge lines up with the hero's text column. */
+  max-inline-size: calc(var(--hero-max) - var(--space-16));
   margin-block-start: var(--space-3);
   padding-block: var(--space-2);
   border: var(--border-width) solid var(--color-card-border);

@@ -28,7 +28,6 @@ export interface Messages {
   };
   readonly preview: {
     readonly textSize: string;
-    readonly panelTitle: string;
     readonly textSizeHint: string;
     readonly label: string;
     readonly title: string;

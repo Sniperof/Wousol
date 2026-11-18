@@ -1,5 +1,4 @@
 ---
-import blueLogo from '@dap/design-tokens/brand/blue.webp?url';
 import { messagesFor, type Locale } from '../../i18n';
 import { pricingFeatures } from '../../i18n/pricing';
 import ReadAloudCard from './read-aloud-card.astro';
@@ -46,10 +45,6 @@ const features = pricingFeatures(locale);
       </svg>
     </div>
     <div class="preview-panel" data-animate>
-      <p class="panel-head">
-        <img src={blueLogo} alt="" width="512" height="512" />
-        {words.panelTitle}
-      </p>
       <div class="preview-card sample-card" data-animate>
         <button
           type="button"
