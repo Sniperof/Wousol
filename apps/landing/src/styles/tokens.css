@@ -50,6 +50,7 @@
   --text-hero: clamp(2rem, 2.9vw, 2.625rem);
   /* Section titles sit clearly below the hero title. */
   --text-display: 2.25rem;
+  --text-stat: clamp(3rem, 6vw, 4.5rem);
   --color-card-tint: color-mix(in srgb, var(--color-hero-surface) 60%, var(--color-surface));
   --text-price: clamp(1.75rem, 3vw, 2.25rem);
   --hero-weight: 600;

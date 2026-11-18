@@ -54,6 +54,8 @@ export const arSign: Messages['sign'] = {
 
 export const arBenefits: Messages['benefits'] = {
   title: 'من إمكانية الوصول تبدأ فرص أكبر',
+  stat: '1.3 مليار',
+  statCaption: 'واحد من كل ستة أشخاص في العالم يعيش مع إعاقة',
   cards: [
     {
       title: 'زوّار أكثر يكملون الزيارة',

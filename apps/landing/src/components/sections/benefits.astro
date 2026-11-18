@@ -1,13 +1,60 @@
 ---
 import { messagesFor, type Locale } from '../../i18n';
-import InfoSection from '../ui/info-section.astro';
+import BrandText from '../ui/brand-text.astro';
+import '../../styles/card-grid.css';
+import '../../styles/benefits.css';
 interface Props {
   readonly locale: Locale;
 }
 const { locale } = Astro.props;
 const words = messagesFor(locale).benefits;
+const [lead, ...rest] = words.cards;
+/** Icons for the three cards after the figure: everyone, the standard, a commitment. */
+const icons = [
+  'M9 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm-6 9c0-3.3 2.7-6 6-6s6 2.7 6 6m1-14.5a3 3 0 0 1 0 5.5m2 3c2 .7 3 2.8 3 6',
+  'M10 6h10M10 12h10M10 18h10M4 6l1 1 2-2M4 12l1 1 2-2M4 18l1 1 2-2',
+  'M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10Z',
+];
 ---
 
-<InfoSection id="benefits" locale={locale} title={words.title} cards={words.cards}>
-  <p>{words.source}</p>
-</InfoSection>
+<section id="benefits" class="section container" aria-labelledby="benefits-title">
+  <div class="section-heading">
+    <h2 id="benefits-title">
+      <BrandText text={words.title} locale={locale} />
+    </h2>
+  </div>
+  {lead && (
+    <article class="benefit-stat">
+      <div class="benefit-figure">
+        <p class="benefit-number">{words.stat}</p>
+        <p class="benefit-caption">{words.statCaption}</p>
+        <p class="benefit-source">{words.source}</p>
+      </div>
+      <div class="benefit-lead">
+        <h3>
+          <BrandText text={lead.title} locale={locale} />
+        </h3>
+        <p>
+          <BrandText text={lead.body} locale={locale} />
+        </p>
+      </div>
+    </article>
+  )}
+  <ul class="benefit-cards" role="list">
+    {rest.map((card, index) => (
+      <li>
+        <span class="benefit-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" focusable="false">
+            <path d={icons[index] ?? ''} />
+          </svg>
+        </span>
+        <h3>
+          <BrandText text={card.title} locale={locale} />
+        </h3>
+        <p>
+          <BrandText text={card.body} locale={locale} />
+        </p>
+      </li>
+    ))}
+  </ul>
+</section>

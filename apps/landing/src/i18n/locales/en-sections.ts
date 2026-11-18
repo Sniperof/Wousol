@@ -54,6 +54,8 @@ export const enSign: Messages['sign'] = {
 
 export const enBenefits: Messages['benefits'] = {
   title: 'Bigger opportunities start with accessibility',
+  stat: '1.3 billion',
+  statCaption: 'One in six people worldwide lives with a disability',
   cards: [
     {
       title: 'More visitors finish what they came for',

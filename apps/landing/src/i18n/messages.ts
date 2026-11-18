@@ -64,6 +64,9 @@ export interface Messages {
     readonly title: string;
     readonly cards: readonly Group[];
     readonly source: string;
+    /** The first card's figure, set large: the number and what it counts. */
+    readonly stat: string;
+    readonly statCaption: string;
   };
   readonly installation: {
     readonly title: string;
