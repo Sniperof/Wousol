@@ -9,7 +9,14 @@
 }
 :root {
   --font-sans: Inter, system-ui, -apple-system, 'Segoe UI', sans-serif;
-  --color-brand: #0048ff;
+  --color-brand: #0047ff;
+  /* The navy ink leads; the brand blue is kept for actions and the brand name. */
+  --color-text: var(--color-hero-ink);
+  --color-text-muted: var(--color-marketing-muted);
+  --radius-sm: 0.75rem;
+  --radius: 1rem;
+  --radius-lg: 1.25rem;
+  --header-offset: 6rem;
   --color-link: var(--color-brand);
   --color-focus: var(--color-brand);
   --color-hero-surface: #f4f7ff;
@@ -20,12 +27,12 @@
   --color-ring-fill: rgb(0 72 255 / 0.035);
   --color-ring-stroke: rgb(0 72 255 / 0.22);
   --color-orb-end: #3475ff;
-  --color-card-border: #dce3f0;
+  --color-card-border: #e3e8f2;
   --color-card-active-border: #7b9cff;
-  --shadow-product: 0 16px 40px rgb(20 33 61 / 0.08);
-  --shadow-product-active: 0 18px 44px rgb(0 72 255 / 0.12);
-  --shadow-hero-cta: 0 8px 24px rgb(0 72 255 / 0.16);
-  --shadow-card: 0 10px 34px rgb(33 59 126 / 0.08);
+  --shadow-product: 0 8px 24px rgb(20 33 61 / 0.05);
+  --shadow-product-active: 0 8px 24px rgb(0 72 255 / 0.1);
+  --shadow-hero-cta: none;
+  --shadow-card: none;
   --shadow-dialog: 0 24px 64px rgb(20 33 61 / 0.28);
   --color-scrim: rgb(20 33 61 / 0.52);
   --preview-glass-blur: 10px;
@@ -38,12 +45,14 @@
   --paper-reading-soft: #e5f4f1;
   --paper-navigation-ink: #b45d4d;
   --paper-navigation-soft: #faece7;
-  --text-hero: clamp(2.75rem, 5.3vw, 4.75rem);
+  --paper-contrast-ink: #3d4f9e;
+  --paper-contrast-soft: #e8ecfa;
+  --text-hero: clamp(2.5rem, 4.4vw, 3.75rem);
   --text-price: clamp(1.75rem, 3vw, 2.25rem);
-  --hero-weight: 700;
-  --hero-tracking: -0.045em;
-  --hero-line-height: 1.08;
-  --hero-title-width: 18ch;
+  --hero-weight: 600;
+  --hero-tracking: -0.03em;
+  --hero-line-height: 1.12;
+  --hero-title-width: 20ch;
   --hero-curve: 50% 3rem;
   --preview-stage-min: 22rem;
   --preview-orb-size: 8.5rem;
@@ -59,9 +68,9 @@
   --solution-menu-width: 15rem;
   --solution-card-min: 18rem;
   --benefit-card-min: 14rem;
-  --button-height: 2.75rem;
+  --button-height: 3rem;
   --button-padding-block: var(--space-2);
-  --button-padding-inline: var(--space-5);
+  --button-padding-inline: var(--space-6);
   --color-visitor-skin: #f2be9f;
   --color-visitor-skin-shadow: #d9937b;
   --installation-visitor-height: 11rem;

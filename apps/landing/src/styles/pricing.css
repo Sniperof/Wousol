@@ -62,6 +62,8 @@
   margin-block-start: var(--space-2);
 }
 .plan-action {
+  /* Holds the hidden plan name inside the card, so it cannot widen the scrolling plan list. */
+  position: relative;
   display: grid;
   min-block-size: var(--target-min);
 }

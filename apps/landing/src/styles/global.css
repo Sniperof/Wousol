@@ -6,9 +6,16 @@
 *::after {
   box-sizing: border-box;
 }
+html {
+  scroll-padding-block-start: var(--header-offset);
+}
 body {
   margin: 0;
-  background: var(--color-bg);
+  /* The hero's soft surface starts behind the floating header. */
+  background:
+    linear-gradient(var(--color-hero-surface), var(--color-hero-surface)) top / 100%
+      var(--header-offset) no-repeat,
+    var(--color-bg);
   color: var(--color-text);
   font-family: var(--font-sans);
   font-size: var(--text-md);

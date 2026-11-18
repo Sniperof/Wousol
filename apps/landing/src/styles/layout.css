@@ -6,6 +6,12 @@
 .section {
   padding-block: var(--space-16);
 }
+/* A full-width soft band behind a section, even when the section itself is the narrow container. */
+.band {
+  background: var(--color-hero-surface);
+  box-shadow: 0 0 0 100vmax var(--color-hero-surface);
+  clip-path: inset(0 -100vmax);
+}
 .skip-link {
   position: absolute;
   inset-block-start: var(--space-2);

@@ -1,12 +1,26 @@
 .site-header {
-  position: relative;
-  z-index: 2;
+  position: sticky;
+  inset-block-start: var(--space-3);
+  z-index: 3;
   display: flex;
   align-items: center;
   flex-wrap: wrap;
   gap: var(--space-3);
   max-inline-size: calc(var(--content-max) + var(--space-16));
-  padding-block: var(--space-3);
+  margin-block-start: var(--space-3);
+  padding-block: var(--space-2);
+  border: var(--border-width) solid var(--color-card-border);
+  border-radius: var(--radius-lg);
+  background: var(--color-preview-paper);
+  backdrop-filter: blur(var(--preview-glass-blur));
+  -webkit-backdrop-filter: blur(var(--preview-glass-blur));
+}
+/* The floating bar sits inside the page gutter, so it keeps its own inner space. */
+@media (min-width: 48rem) {
+  .site-header {
+    inline-size: calc(100% - var(--space-8) * 2);
+    padding-inline: var(--space-4);
+  }
 }
 /* The name in the navigation bar is in the page's text colour, not the brand blue it has in prose (spec 079). */
 .site-header .brand {

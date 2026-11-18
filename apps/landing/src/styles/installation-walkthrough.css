@@ -1,5 +1,7 @@
 [data-installation] .installation-snippet {
   padding: var(--installation-frame-padding);
+  background: var(--color-surface);
+  border: var(--border-width) solid var(--color-card-border);
 }
 .installation-step-select {
   display: block;

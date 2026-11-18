@@ -10,6 +10,10 @@
   --paper-ink: var(--paper-reading-ink);
   --paper-soft: var(--paper-reading-soft);
 }
+[data-character='contrast'] .character-prop {
+  --paper-ink: var(--paper-contrast-ink);
+  --paper-soft: var(--paper-contrast-soft);
+}
 [data-character='navigation'] .character-prop {
   --paper-ink: var(--paper-navigation-ink);
   --paper-soft: var(--paper-navigation-soft);
