@@ -4,6 +4,7 @@ import EnquiryForm from './enquiry-form.astro';
 import { demoSalesEmail } from '../../config/contact';
 import { enquiryHref } from '../../pricing/enquiry';
 import BrandText from '../ui/brand-text.astro';
+import '../../styles/invitation.css';
 interface Props {
   readonly locale: Locale;
 }
@@ -17,62 +18,30 @@ const messages = messagesFor(locale);
   aria-labelledby="final-title"
   data-demo-contact
 >
-  <h2 id="final-title">
-    <BrandText text={messages.final.title} locale={locale} />
-  </h2>
-  <button type="button" class="button open-form" data-needs-dialog data-request-kind="demo" hidden>
-    {messages.nav.contact}
-  </button>
-  <EnquiryForm locale={locale} />
-  <p class="reply-line">
-    <BrandText text={messages.final.reply} locale={locale} />
-  </p>
-  <p class="email-line">
-    {messages.final.email}
-    <span data-demo-email>
-      <a href={enquiryHref(demoSalesEmail, messages.final.subject)} dir="ltr">
-        {demoSalesEmail}
-      </a>
-    </span>
-  </p>
+  <div class="invitation-card">
+    <h2 id="final-title">
+      <BrandText text={messages.final.title} locale={locale} />
+    </h2>
+    <button
+      type="button"
+      class="button open-form"
+      data-needs-dialog
+      data-request-kind="demo"
+      hidden
+    >
+      {messages.nav.contact}
+    </button>
+    <EnquiryForm locale={locale} />
+    <p class="reply-line">
+      <BrandText text={messages.final.reply} locale={locale} />
+    </p>
+    <p class="email-line">
+      {messages.final.email}
+      <span data-demo-email>
+        <a href={enquiryHref(demoSalesEmail, messages.final.subject)} dir="ltr">
+          {demoSalesEmail}
+        </a>
+      </span>
+    </p>
+  </div>
 </section>
-<style>
-  .invitation {
-    text-align: center;
-  }
-  h2 {
-    max-inline-size: 24ch;
-    margin-inline: auto;
-  }
-  p {
-    margin: 0 auto var(--space-8);
-    color: var(--color-marketing-muted);
-  }
-  .open-form {
-    display: inline-flex;
-    align-items: center;
-    min-block-size: var(--target-min);
-    margin-block-end: var(--space-6);
-    padding-inline: var(--space-10);
-    font: inherit;
-    font-weight: var(--weight-strong);
-    box-shadow: var(--shadow-hero-cta);
-    cursor: pointer;
-  }
-  .open-form[hidden] {
-    display: none;
-  }
-  .reply-line {
-    margin-block-end: var(--space-2);
-    font-size: var(--text-sm);
-  }
-  .email-line {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
-    gap: var(--space-2);
-    margin-block-end: 0;
-    font-size: var(--text-sm);
-  }
-</style>

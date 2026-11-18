@@ -1,0 +1,97 @@
+/*
+ * The closing card: navy with brand-blue glows, as in How it works, and the hero's faint braille dots, so the page
+ * ends on the same signature it opens with. It sits inside the content width, clear of the blue footer below.
+ */
+.invitation-card {
+  --color-focus: var(--color-dark-ink);
+  --brand-word-color: var(--color-dark-accent);
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  padding: var(--space-16) var(--space-6);
+  border-radius: var(--radius-lg);
+  background:
+    radial-gradient(36rem 22rem at 100% 0%, var(--color-dark-glow), transparent 70%),
+    radial-gradient(30rem 20rem at 0% 100%, var(--color-dark-glow-soft), transparent 70%),
+    var(--color-dark-surface);
+  color: var(--color-dark-ink);
+  text-align: center;
+}
+.invitation-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--color-invitation-braille);
+  pointer-events: none;
+  -webkit-mask-image:
+    var(--braille), radial-gradient(40rem 18rem at 50% 50%, black 10%, transparent 70%);
+  mask-image: var(--braille), radial-gradient(40rem 18rem at 50% 50%, black 10%, transparent 70%);
+  -webkit-mask-size:
+    var(--braille-size),
+    100% 100%;
+  mask-size:
+    var(--braille-size),
+    100% 100%;
+  -webkit-mask-repeat: repeat, no-repeat;
+  mask-repeat: repeat, no-repeat;
+  -webkit-mask-composite: source-in;
+  mask-composite: intersect;
+}
+.invitation-card h2 {
+  max-inline-size: 24ch;
+  margin: 0 auto var(--space-8);
+  color: var(--color-dark-ink);
+  font-size: var(--text-hero);
+  text-wrap: balance;
+}
+:root:lang(ar) .invitation-card h2 {
+  font-size: var(--text-hero-ar);
+}
+.invitation-card .open-form {
+  display: inline-flex;
+  align-items: center;
+  min-block-size: var(--target-min);
+  margin-block-end: var(--space-8);
+  padding-inline: var(--space-12);
+  border-color: var(--color-dark-ink);
+  background: var(--color-dark-ink);
+  color: var(--color-brand);
+  font: inherit;
+  font-size: var(--text-lg);
+  font-weight: var(--weight-strong);
+  cursor: pointer;
+}
+.invitation-card .open-form:not(:disabled):hover {
+  background: var(--color-selected);
+  color: var(--color-brand);
+}
+.invitation-card .open-form[hidden] {
+  display: none;
+}
+.invitation-card p {
+  margin: 0 auto;
+  color: var(--color-dark-muted);
+  font-size: var(--text-md);
+}
+.invitation-card .reply-line {
+  margin-block-end: var(--space-2);
+}
+.invitation-card .email-line {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+}
+.invitation-card .email-line a {
+  color: var(--color-dark-accent);
+  font-weight: var(--weight-strong);
+}
+/* The request dialog opens from inside the card: it keeps the light page's colours, not the card's. */
+.invitation-card dialog {
+  --color-focus: var(--color-brand);
+  --brand-word-color: var(--color-brand);
+  color: var(--color-text);
+  text-align: start;
+}

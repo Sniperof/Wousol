@@ -1,6 +1,6 @@
 /* How it works on the dark navy band. Only the copy column turns light-on-dark; the preview keeps its own light page. */
-[data-installation] {
-  /* The dark band: a deeper shade of the navy ink, with light text and a lighter blue for the brand name. */
+:root {
+  /* The dark band, also used by the closing card: a deeper shade of the navy ink, with light text and a lighter blue for the brand name. */
   --color-dark-surface: #0b1633;
   --color-dark-raised: #1a2850;
   --color-dark-ink: #ffffff;
@@ -8,6 +8,7 @@
   --color-dark-rule: rgb(255 255 255 / 0.16);
   --color-dark-accent: #9db7ff;
   --color-dark-glow: rgb(0 71 255 / 0.55);
+  --color-invitation-braille: rgb(157 183 255 / 0.22);
   --color-dark-glow-soft: rgb(52 117 255 / 0.3);
 }
 [data-installation].dark-band {
