@@ -1,0 +1,6 @@
+.brand-word {
+  color: var(--brand-word-color, var(--color-brand));
+}
+.button:not(.secondary) {
+  --brand-word-color: var(--color-brand-text);
+}

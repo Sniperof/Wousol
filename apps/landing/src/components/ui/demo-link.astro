@@ -1,0 +1,21 @@
+---
+import type { Locale } from '../../i18n';
+import BrandText from './brand-text.astro';
+interface Props {
+  readonly locale: Locale;
+  readonly label: string;
+  readonly secondary?: boolean;
+  readonly feature?: 'sign-language' | 'sign-videos';
+}
+const { locale, label, secondary = false, feature } = Astro.props;
+const base = (
+  import.meta.env.PUBLIC_DEMO_URL || (import.meta.env.DEV ? 'http://localhost:5173' : '/demo')
+).replace(/\/+$/, '');
+const home = `${base}/${locale === 'ar' ? 'ar/' : ''}`;
+const href = feature ? `${home}feature.html?f=${feature}` : home;
+---
+
+<a class:list={['button', { secondary }]} href={href}>
+  <BrandText text={label} locale={locale} />
+  <span aria-hidden="true">↗</span>
+</a>

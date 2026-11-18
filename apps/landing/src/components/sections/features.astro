@@ -1,0 +1,50 @@
+---
+import { messagesFor, type Locale } from '../../i18n';
+import { featureScenes } from '../../character/scenes';
+import Character from '../ui/character.astro';
+import BrandText from '../ui/brand-text.astro';
+import '../../styles/card-grid.css';
+import '../../styles/visitor-cards.css';
+import '../../styles/visitor-sample.css';
+interface Props {
+  readonly locale: Locale;
+}
+const { locale } = Astro.props;
+const words = messagesFor(locale).features;
+---
+
+<section id="features" class="section container" aria-labelledby="features-title">
+  <div class="section-heading">
+    <h2 id="features-title">
+      <BrandText text={words.title} locale={locale} />
+    </h2>
+    <p>
+      <BrandText text={words.intro} locale={locale} />
+    </p>
+  </div>
+  <ul class="card-grid visitor-grid benefit-grid" role="list">
+    {words.groups.map((group, index) => (
+      <li id={featureScenes[index]} class="visitor-card aligned-card">
+        <Character scene={featureScenes[index] ?? featureScenes[0]} />
+        <h3>
+          <BrandText text={group.title} locale={locale} />
+        </h3>
+        <div class="visitor-description">
+          <p>
+            <BrandText text={group.body} locale={locale} />
+          </p>
+        </div>
+      </li>
+    ))}
+  </ul>
+</section>
+<style>
+  .section {
+    padding-block-start: calc(var(--space-16) * var(--features-top-space-scale));
+  }
+  @media (max-width: 47.9375rem) {
+    .section {
+      padding-block-start: calc(var(--space-12) * var(--features-top-space-scale));
+    }
+  }
+</style>

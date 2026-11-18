@@ -1,0 +1,84 @@
+/* The request form (components/sections/enquiry-form.astro), shown in a dialog (dialog.css). Everything sits under .enquiry. */
+.enquiry {
+  text-align: start;
+}
+.enquiry .enquiry-form,
+.enquiry .thanks {
+  display: grid;
+  gap: var(--space-4);
+}
+.enquiry .enquiry-form {
+  grid-template-columns: repeat(auto-fit, minmax(min(14rem, 100%), 1fr));
+}
+.enquiry h3 {
+  grid-column: 1 / -1;
+  margin: 0;
+  padding-inline-end: var(--target-min);
+}
+.enquiry .wide {
+  grid-column: 1 / -1;
+}
+.enquiry .field {
+  min-inline-size: 0;
+  display: grid;
+  gap: var(--space-2);
+  align-content: start;
+}
+.enquiry label {
+  font-weight: var(--weight-strong);
+  font-size: var(--text-sm);
+}
+.enquiry input,
+.enquiry select,
+.enquiry textarea {
+  inline-size: 100%;
+  min-block-size: var(--target-min);
+  padding: var(--space-3) var(--space-4);
+  border: var(--border-width) solid var(--color-control-border);
+  border-radius: var(--radius-sm);
+  background: var(--color-surface);
+  color: var(--color-text);
+  font: inherit;
+}
+.enquiry /* WebKit ignores min-block-size on a native select; block-size works in all three engines and still grows with text. */
+select {
+  block-size: max(var(--target-min), 2.75em);
+}
+.enquiry textarea {
+  resize: vertical;
+}
+.enquiry [data-choice-summary] {
+  text-align: start;
+}
+.enquiry [aria-invalid='true'] {
+  border-color: var(--color-danger);
+}
+.enquiry .problem {
+  margin: 0;
+  color: var(--color-danger);
+  font-size: var(--text-sm);
+}
+.enquiry .status {
+  margin: 0;
+  min-block-size: 0;
+  color: var(--color-danger);
+}
+.enquiry .button[aria-disabled='true'] {
+  opacity: 0.7;
+  cursor: progress;
+}
+.enquiry .trap {
+  position: absolute;
+  inset-inline-start: -10000px;
+  inline-size: 1px;
+  block-size: 1px;
+  overflow: hidden;
+}
+.enquiry [hidden] {
+  display: none !important;
+}
+.enquiry .thanks-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}

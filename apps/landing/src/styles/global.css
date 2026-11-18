@@ -1,0 +1,93 @@
+@import './tokens.css';
+@import './layout.css';
+@import './brand-text.css';
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  font-size: var(--text-md);
+  line-height: var(--line-height);
+  overflow-wrap: anywhere;
+}
+h1,
+h2,
+h3 {
+  font-weight: var(--weight-strong);
+  line-height: var(--line-heading);
+  overflow-wrap: anywhere;
+}
+h1 {
+  font-size: var(--text-hero);
+  margin-block: var(--space-4) var(--space-6);
+}
+h2 {
+  font-size: var(--text-display);
+  margin-block: 0 var(--space-6);
+}
+h3 {
+  font-size: var(--text-lg);
+  margin-block: var(--space-4) var(--space-3);
+}
+p {
+  max-inline-size: var(--reading-max);
+}
+a {
+  color: var(--color-link);
+  text-underline-offset: var(--space-1);
+}
+a:not(.skip-link) {
+  min-block-size: var(--target-min);
+  min-inline-size: var(--target-min);
+  display: inline-flex;
+  align-items: center;
+}
+:focus-visible {
+  outline: var(--focus-ring) solid var(--color-focus);
+  outline-offset: var(--focus-offset);
+}
+.eyebrow {
+  font-size: var(--text-sm);
+  font-weight: var(--weight-strong);
+  color: var(--color-link);
+}
+a.button,
+button.button {
+  min-block-size: var(--button-height);
+  min-inline-size: var(--button-height);
+}
+.button {
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  padding: var(--button-padding-block) var(--button-padding-inline);
+  border: var(--border-width) solid var(--color-control-border);
+  border-radius: var(--radius-sm);
+  background: var(--color-brand);
+  color: var(--color-brand-text);
+  font-size: var(--text-md);
+  font-weight: var(--weight-strong);
+  text-decoration: none;
+  overflow-wrap: anywhere;
+}
+.button:not(.secondary):not(:disabled):hover {
+  background: var(--color-brand-hover);
+  color: var(--color-brand-text);
+}
+.button:not(.secondary):not(:disabled):active {
+  background: var(--color-brand-pressed);
+}
+.secondary {
+  background: var(--color-surface);
+  color: var(--color-link);
+}
+.secondary:hover,
+.secondary:active {
+  background: var(--color-selected);
+  color: var(--color-link);
+}

@@ -1,0 +1,96 @@
+---
+import { personaFor, type CharacterScene } from '../../character/scenes';
+import CharacterHead from './character-head.astro';
+import CharacterProp from './character-prop.astro';
+import '../../styles/character.css';
+import '../../styles/character-paper.css';
+import '../../styles/character-motion.css';
+interface Props {
+  readonly scene: CharacterScene;
+}
+const { scene } = Astro.props;
+const persona = personaFor(scene);
+---
+
+<div
+  class="character-scene"
+  data-character={scene}
+  data-gender={persona.gender}
+  data-style={persona.style}
+  role="img"
+  aria-hidden="true"
+>
+  <svg viewBox="0 0 240 160" fill="none" focusable="false">
+    <circle class="character-backdrop" cx="122" cy="80" r="68" />
+    <circle class="character-orbit" cx="82" cy="82" r="52" />
+    <ellipse class="character-shadow" cx="76" cy="144" rx="40" ry="5" data-character-shadow />
+    <CharacterProp scene={scene} />
+    <g data-character-body>
+      {persona.style === 'blazer' ? (
+        <path class="character-trousers" d="M53 112h46l5 18H48l5-18Zm13 18v7m20-7v7" />
+      ) : (
+        <g>
+          <path class="character-trousers" d="M57 112h38l-3 24H60l-3-24Z" />
+          <path class="character-trouser-crease" d="M76 116v20" />
+        </g>
+      )}
+      <path class="character-shoe" d="M55 136h15v6H52c0-3 1-6 3-6Zm27 0h15c2 0 3 3 3 6H82v-6Z" />
+      <g data-character-back-arm>
+        <path class="character-limb-back" d="M48 75c-11 6-15 16-12 26" />
+        <circle class="character-skin" cx="36" cy="103" r="4.5" />
+      </g>
+      {persona.style === 'blazer' ? (
+        <g>
+          <path class="character-fill" d="M45 114V82c0-15 12-25 31-25s31 10 31 25v32H45Z" />
+          <path class="character-shirt-inner" d="M64 58h24l-7 21H71l-7-21Z" />
+          <path class="character-collar" d="m61 59 10 20m20-20-10 20" />
+          <circle class="character-badge" cx="76" cy="95" r="10" />
+          <g class="character-emblem">
+            <circle cx="76" cy="89" r="2" />
+            <path d="m69 93 7 2 7-2m-7 2v5m-4 4 4-4 4 4" />
+          </g>
+        </g>
+      ) : persona.style === 'turtleneck' ? (
+        <g>
+          <path class="character-soft-top" d="M45 114V82c0-15 12-25 31-25s31 10 31 25v32H45Z" />
+          <path class="character-dark-top" d="M62 58h28l-6 22H68l-6-22Z" />
+          <path class="character-collar" d="m59 60 9 20m25-20-9 20M76 80v34" />
+          <circle class="character-badge" cx="89" cy="92" r="8" />
+        </g>
+      ) : persona.style === 'cardigan' ? (
+        <g>
+          <path class="character-soft-top" d="M42 114V80c0-16 13-24 34-24s34 8 34 24v34H42Z" />
+          <path class="character-shirt-inner" d="M63 57h26l-8 23H71l-8-23Z" />
+          <path class="character-dark-top" d="M74 60h4l1 17-3 4-3-4 1-17Z" />
+          <path class="character-collar" d="M76 80v34" />
+          <circle class="character-badge" cx="91" cy="88" r="8" />
+        </g>
+      ) : (
+        <g>
+          <path class="character-fill" d="M42 114V80c0-16 13-24 34-24s34 8 34 24v34H42Z" />
+          <path class="character-collar" d="M61 58q15 8 30 0M76 62v52m-18-16 8-10m28 10-8-10" />
+          <circle class="character-badge" cx="62" cy="82" r="8" />
+        </g>
+      )}
+      <CharacterHead persona={persona} />
+      <g data-character-arm>
+        <path class="character-limb" d="m98 74 13 10 12-10" />
+        <g data-character-hand>
+          <path
+            class="character-hand"
+            d="m119 75 5-8c1-2 3-2 4 0l-1 4 7-4c2-1 3 1 2 3l-6 4 4-1c2 0 2 2 1 3l-5 3c-3 2-7 1-11-4Z"
+          />
+          <circle class="character-touch-ring" cx="136" cy="68" r="4" data-character-spark />
+        </g>
+      </g>
+    </g>
+  </svg>
+</div>
+<script>
+  import { startCharacterScenes } from '../../character/controller';
+  let dispose = startCharacterScenes(document);
+  window.addEventListener('pagehide', () => dispose());
+  window.addEventListener('pageshow', (event) => {
+    if (event.persisted) dispose = startCharacterScenes(document);
+  });
+</script>

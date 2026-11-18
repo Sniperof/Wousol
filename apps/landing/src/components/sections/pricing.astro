@@ -1,0 +1,69 @@
+---
+import type { Locale } from '../../i18n';
+import { pricingWords } from '../../i18n/pricing';
+import BrandText from '../ui/brand-text.astro';
+import '../../styles/pricing.css';
+import '../../styles/pricing-layout.css';
+import '../../styles/card-grid.css';
+import '../../styles/pricing-controls.css';
+import '../../styles/pricing-features.css';
+import '../../styles/dialog.css';
+interface Props {
+  readonly locale: Locale;
+}
+const { locale } = Astro.props;
+const words = pricingWords(locale);
+---
+
+<section
+  id="pricing"
+  class="section container pricing"
+  aria-labelledby="pricing-title"
+  data-pricing
+  data-pricing-state="loading"
+  data-locale={locale}
+  hidden
+>
+  <div class="pricing-heading">
+    <h2 id="pricing-title">
+      <BrandText text={words.title} locale={locale} />
+    </h2>
+    <p>
+      <BrandText text={words.intro} locale={locale} />
+    </p>
+  </div>
+  <fieldset class="billing-toggle" data-pricing-period hidden>
+    <legend class="visually-hidden">{words.period}</legend>
+    <label>
+      <input type="radio" name="period" value="monthly" checked />
+      <span>{words.monthly}</span>
+    </label>
+    <label>
+      <input type="radio" name="period" value="yearly" />
+      <span>{words.yearly}</span>
+    </label>
+  </fieldset>
+  <div class="pricing-scroll" role="region" aria-label={words.compare} tabindex="0">
+    <div class="pricing-grid" data-pricing-cards></div>
+  </div>
+  <dialog
+    id="plan-features-dialog"
+    class="modal-dialog feature-dialog"
+    data-feature-dialog
+    aria-labelledby="plan-features-title"
+  >
+    <button type="button" class="dialog-close" data-close aria-label={words.closeFeatures}>
+      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+        <path d="M6 6l12 12M18 6L6 18" />
+      </svg>
+    </button>
+    <div class="dialog-body">
+      <h3 id="plan-features-title" tabindex="-1" data-feature-title></h3>
+      <div class="plan-features" data-feature-content></div>
+    </div>
+  </dialog>
+</section>
+<script>
+  import { startPricing } from '../../pricing/controller';
+  document.querySelectorAll<HTMLElement>('[data-pricing]').forEach(startPricing);
+</script>

@@ -1,0 +1,7 @@
+.visitor-description {
+  min-inline-size: 0;
+}
+.visitor-description > p {
+  margin-block: 0;
+  overflow-wrap: anywhere;
+}

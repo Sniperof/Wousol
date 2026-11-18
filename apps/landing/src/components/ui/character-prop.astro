@@ -1,0 +1,56 @@
+---
+import type { CharacterScene } from '../../character/scenes';
+interface Props {
+  readonly scene: CharacterScene;
+}
+const { scene } = Astro.props;
+---
+
+<g class="character-prop">
+  <rect class="prop-soft" x="142" y="34" width="74" height="88" rx="12" />
+  <rect class="prop-paper" x="134" y="42" width="78" height="88" rx="12" />
+  <circle class="prop-muted" cx="145" cy="51" r="2" />
+  <circle class="prop-soft" cx="152" cy="51" r="2" />
+  {scene === 'sign-language' ? (
+    <g>
+      <rect class="prop-focus" x="187" y="60" width="17" height="21" rx="4" />
+      <circle class="prop-muted" cx="195.5" cy="67" r="3" />
+      <path class="prop-ink" d="M191 77c0-6 9-6 9 0" />
+      <circle class="character-skin" cx="166" cy="75" r="9" />
+      <path class="character-fill" d="M148 112v-11c0-10 8-16 18-16s18 6 18 16v11Z" />
+      <g data-character-action>
+        <path class="prop-ink" d="m151 103 5-10m25 10-5-10" />
+        <path class="character-hand" d="m154 94-2-8 3-2 4 6 3-6 3 1-2 8-5 5Z" />
+        <path class="character-hand" d="m178 94 3-7-3-2-4 5-2-7-3 1 1 9 5 5Z" />
+      </g>
+      <path class="prop-line" d="M153 120h39" />
+    </g>
+  ) : scene === 'read-aloud' ? (
+    <g>
+      <path class="prop-line" d="M149 64h47m-47 12h30" />
+      <circle class="prop-focus" cx="174" cy="104" r="20" />
+      <g data-character-action>
+        <path class="character-fill" d="M158 100h6l9-8v24l-9-8h-6Z" />
+        <path class="prop-ink" d="M179 99q5 5 0 10m5-15q10 10 0 20" />
+      </g>
+    </g>
+  ) : scene === 'reading' ? (
+    <g>
+      <path class="prop-ink" d="m146 87 9-25 9 25m-15-8h12m10 8 6-17 6 17m-10-6h8" />
+      <path class="prop-line" d="M149 101h47m-47 16h47" />
+      <g data-character-action>
+        <circle class="character-fill" cx="162" cy="101" r="5" />
+        <circle class="prop-focus" cx="174" cy="117" r="10" />
+        <path class="prop-ink" d="m169 117 4 4 7-8" />
+      </g>
+    </g>
+  ) : (
+    <g>
+      <rect class="prop-focus" x="147" y="59" width="52" height="20" rx="5" />
+      <path class="prop-line" d="M151 93h44m-44 14h25" />
+      <circle class="prop-focus" cx="158" cy="117" r="8" />
+      <path class="character-fill" d="M158 109a8 8 0 0 1 0 16Z" />
+      <path class="prop-cursor" d="m179 82 1 29 8-9 12-2Z" data-character-action />
+    </g>
+  )}
+</g>

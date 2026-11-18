@@ -1,0 +1,46 @@
+.plan-features {
+  margin: 0;
+  padding-block-start: var(--space-4);
+  border-block-start: var(--border-width) solid var(--plan-rule);
+}
+.plan-features ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+.plan-features li {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-2);
+  margin-block: var(--space-2);
+}
+.plan-features li::before {
+  content: '✓';
+  flex: none;
+  color: var(--plan-feature);
+  font-weight: var(--hero-weight);
+}
+.plan-features-button {
+  min-block-size: var(--target-min);
+  min-inline-size: var(--target-min);
+  padding: var(--space-3) 0;
+  border: 0;
+  background: transparent;
+  color: var(--plan-feature);
+  font: inherit;
+  font-size: var(--text-sm);
+  font-weight: var(--weight-strong);
+  text-align: start;
+  cursor: pointer;
+}
+.plan-features-button:hover {
+  text-decoration: underline;
+}
+.feature-dialog {
+  --plan-rule: var(--color-border);
+  --plan-feature: var(--color-brand);
+}
+.feature-dialog h3 {
+  padding-inline-end: var(--space-8);
+  margin-block: 0 var(--space-4);
+}

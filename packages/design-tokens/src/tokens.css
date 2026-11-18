@@ -1,0 +1,83 @@
+@import './fonts.css';
+:root {
+  color-scheme: light;
+  --color-brand: #0047ff;
+  --color-brand-hover: #003ddb;
+  --color-brand-pressed: #0033b8;
+  --color-selected: #ebf0ff;
+  --color-brand-text: #ffffff;
+  --color-bg: #ffffff;
+  --color-surface: #ffffff;
+  --color-surface-subtle: #f5f5f7;
+  --color-text: #1d1d1f;
+  --color-text-muted: #636366;
+  --color-accent: var(--color-brand);
+  --color-accent-text: #ffffff;
+  --color-link: var(--color-brand);
+  --color-border: #e5e5ea;
+  --color-control-border: #86868b;
+  --color-focus: var(--color-brand);
+  --color-danger: #b3261e;
+  --color-success: #1d6b36;
+  --color-warning: #8a4b00;
+  --color-backdrop: rgb(29 29 31 / 0.4);
+  --color-hero-start: #f5f5f7;
+  --color-hero-end: #ebf0ff;
+  --color-ink: #1d1d1f;
+  --color-on-ink: #ffffff;
+  --shadow-floating: 0 12px 40px rgb(29 29 31 / 0.08);
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-24: 6rem;
+  --font-sans: 'IBM Plex Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-arabic: 'IBM Plex Sans Arabic', 'IBM Plex Sans', Tahoma, sans-serif;
+  --font-reading: Georgia, 'Times New Roman', serif;
+  --font-mono: ui-monospace, SFMono-Regular, Consolas, monospace;
+  --text-sm: 0.875rem;
+  --text-md: 1rem;
+  --text-lg: 1.25rem;
+  --text-xl: 2rem;
+  --text-section: 1.5rem;
+  --text-display: 2.5rem;
+  --text-hero: clamp(2.25rem, 5vw, 4rem);
+  --line-height: 1.6;
+  --line-heading: 1.2;
+  --weight-medium: 500;
+  --weight-strong: 600;
+  --radius-sm: 0.5rem;
+  --radius: 0.75rem;
+  --radius-lg: 1rem;
+  --radius-full: 999px;
+  --focus-ring: 3px;
+  --focus-offset: 3px;
+  --border-width: 1px;
+  --target-min: 48px;
+  --content-max: 75rem;
+  --reading-max: 65ch;
+  --form-max: 36rem;
+  --dialog-max: 32rem;
+  --sidebar-width: 15rem;
+  --header-height: 5rem;
+  --icon-size: 1.5rem;
+  --brand-size: 2.5rem;
+  --duration: 160ms;
+  --shadow-popup: 0 0.5rem 1.5rem rgb(0 0 0 / 0.14);
+}
+:root:lang(ar) {
+  --font-sans: var(--font-arabic);
+  --line-height: 1.75;
+  --line-heading: 1.4;
+}
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --duration: 0ms;
+  }
+}

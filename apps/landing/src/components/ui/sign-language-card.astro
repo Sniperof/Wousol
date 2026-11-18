@@ -1,0 +1,17 @@
+---
+import { messagesFor, type Locale } from '../../i18n';
+import InterpreterPreview from './interpreter-preview.astro';
+interface Props {
+  readonly locale: Locale;
+}
+const { locale } = Astro.props;
+const words = messagesFor(locale);
+---
+
+<aside class="sign-service preview-card" data-animate aria-labelledby="sign-service-title">
+  <InterpreterPreview />
+  <div class="sign-copy">
+    <h2 id="sign-service-title">{words.preview.signTitle}</h2>
+    <p>{words.preview.signBody}</p>
+  </div>
+</aside>

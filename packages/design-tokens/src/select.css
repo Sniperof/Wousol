@@ -1,0 +1,46 @@
+/*
+ * The select popup (spec 052). Where the browser lets a page style a select's open list (a progressive enhancement: the
+ * others keep their own list, which is the native, accessible one), a select that carries `data-picker` opens a white
+ * card of rounded rows on the page's surface, the checked row in the selection tint. The closed box stays the app's.
+ * --picker-option-height is each row's height; an app sets it to its own field height.
+ */
+@supports (appearance: base-select) {
+  select[data-picker],
+  select[data-picker]::picker(select) {
+    appearance: base-select;
+  }
+
+  /* A customizable select is a flex box whose items stretch, so without this its text rides at the top of the field. */
+  select[data-picker] {
+    align-items: center;
+  }
+
+  select[data-picker]::picker(select) {
+    box-sizing: border-box;
+    padding: var(--space-1);
+    border: var(--border-width) solid var(--color-border);
+    border-radius: var(--radius);
+    background: var(--color-surface);
+    box-shadow: var(--shadow-popup);
+  }
+
+  select[data-picker] option {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    min-block-size: var(--picker-option-height, var(--target-min));
+    padding-inline: var(--space-3);
+    border-radius: var(--radius-sm);
+    background: var(--color-surface);
+    color: var(--color-text);
+  }
+
+  select[data-picker] option:hover,
+  select[data-picker] option:focus-visible {
+    background: var(--color-surface-subtle);
+  }
+
+  select[data-picker] option:checked {
+    background: var(--color-selected);
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "name": "@dap/landing",
+  "version": "0.1.0",
+  "private": true,
+  "description": "DAP product site, in English and Arabic.",
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview --port 4322",
+    "typecheck": "astro check",
+    "test:e2e": "playwright test",
+    "art:visitor": "node scripts/laptop-visitor/export.mjs && node scripts/laptop-visitor/poster.mjs",
+    "api:generate": "openapi-ts --no-log-file",
+    "api:check": "node scripts/check-api-client.mjs"
+  },
+  "dependencies": {
+    "@dap/design-tokens": "0.1.0",
+    "astro": "7.4.2",
+    "lottie-web": "5.13.0"
+  },
+  "devDependencies": {
+    "@astrojs/check": "0.9.12",
+    "@axe-core/playwright": "4.14.0",
+    "@hey-api/openapi-ts": "0.99.0",
+    "@playwright/test": "1.64.1",
+    "typescript": "6.0.3"
+  }
+}

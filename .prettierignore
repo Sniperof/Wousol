@@ -1,0 +1,17 @@
+package-lock.json
+.local/
+dist/
+release/
+coverage/
+playwright-report/
+test-results/
+.astro/
+bin/
+obj/
+TestResults/
+# Generated from the API contract (ADR 0008); `npm run api:check` compares them byte for byte.
+apps/backend/openapi/
+apps/frontend/src/shared/api/generated/
+apps/landing/src/api/generated/
+# Raw measurements from the SDK performance harness, kept byte for byte.
+docs/reviews/2026-11-sdk-performance/results/

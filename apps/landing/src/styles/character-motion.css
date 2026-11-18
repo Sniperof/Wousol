@@ -1,0 +1,170 @@
+[data-character-head],
+[data-character-eyes],
+[data-character-arm],
+[data-character-hand],
+[data-character-back-arm],
+[data-character-shadow],
+[data-character-spark] {
+  transform-box: view-box;
+}
+[data-character-head] {
+  transform-origin: var(--character-head-origin);
+}
+[data-character-eyes] {
+  transform-origin: var(--character-eyes-origin);
+}
+[data-character-arm] {
+  transform-origin: var(--character-arm-origin);
+}
+[data-character-hand] {
+  transform-origin: var(--character-hand-origin);
+}
+[data-character-back-arm] {
+  transform-origin: var(--character-back-arm-origin);
+}
+[data-character-shadow] {
+  transform-origin: var(--character-shadow-origin);
+}
+[data-character-spark] {
+  transform-origin: var(--character-spark-origin);
+}
+[data-character-action] {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+.character-scene[data-started='true'] :where([data-character-body]) {
+  animation: character-greet var(--character-duration) var(--character-ease) infinite;
+}
+.character-scene[data-started='true'] :where([data-character-head]) {
+  animation: character-head-tilt var(--character-duration) var(--character-ease) infinite;
+}
+.character-scene[data-started='true'] :where([data-character-eyes]) {
+  animation: character-blink var(--character-duration) var(--character-ease) infinite;
+}
+.character-scene[data-started='true'] :where([data-character-arm]) {
+  animation: character-reach var(--character-duration) var(--character-ease) infinite;
+}
+.character-scene[data-started='true'] :where([data-character-hand]) {
+  animation: character-wave var(--character-duration) var(--character-ease) infinite;
+}
+.character-scene[data-started='true'] :where([data-character-back-arm]) {
+  animation: character-counter-swing var(--character-duration) var(--character-ease) infinite;
+}
+.character-scene[data-started='true'] :where([data-character-spark]) {
+  animation: character-sparkle var(--character-duration) var(--character-ease) infinite;
+}
+.character-scene[data-started='true'] :where([data-character-shadow]) {
+  animation: character-shadow-pulse var(--character-duration) var(--character-ease) infinite;
+}
+.character-scene[data-started='true'] :where([data-character-action]) {
+  animation: character-adjust var(--character-duration) var(--character-ease) infinite;
+}
+.character-scene:not([data-playing='true']) * {
+  animation-play-state: paused;
+}
+@keyframes character-greet {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  45% {
+    transform: translateY(calc(-1 * var(--character-lift)));
+  }
+  75% {
+    transform: translateY(var(--character-settle));
+  }
+}
+@keyframes character-head-tilt {
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+  30% {
+    transform: rotate(calc(-1 * var(--character-head-tilt)));
+  }
+  65% {
+    transform: rotate(var(--character-head-tilt));
+  }
+}
+@keyframes character-blink {
+  0%,
+  44%,
+  52%,
+  100% {
+    transform: scaleY(1);
+  }
+  48% {
+    transform: scaleY(var(--character-blink-scale));
+  }
+}
+@keyframes character-reach {
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+  40%,
+  65% {
+    transform: rotate(calc(-1 * var(--character-reach)));
+  }
+}
+@keyframes character-wave {
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+  35% {
+    transform: rotate(calc(-1 * var(--character-wave)));
+  }
+  55% {
+    transform: rotate(var(--character-wave));
+  }
+  75% {
+    transform: rotate(calc(-0.5 * var(--character-wave)));
+  }
+}
+@keyframes character-counter-swing {
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+  45% {
+    transform: rotate(var(--character-back-arm-swing));
+  }
+}
+@keyframes character-sparkle {
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(calc(-1 * var(--character-spark-lift)))
+      scale(var(--character-spark-scale));
+  }
+}
+@keyframes character-shadow-pulse {
+  0%,
+  100% {
+    transform: scaleX(1);
+  }
+  45% {
+    transform: scaleX(var(--character-shadow-scale));
+  }
+}
+@keyframes character-adjust {
+  0%,
+  100% {
+    transform: translateX(0) scale(1);
+  }
+  40%,
+  65% {
+    transform: translateX(var(--character-nudge)) scale(var(--character-action-scale));
+  }
+}
+:root[data-reduce-motion='true'] .character-scene * {
+  animation: none !important;
+}
+@media (prefers-reduced-motion: reduce) {
+  .character-scene * {
+    animation: none !important;
+  }
+}

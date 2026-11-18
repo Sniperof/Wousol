@@ -1,0 +1,32 @@
+{
+  "name": "wosoul-landing-handoff",
+  "private": true,
+  "description": "Designer handoff: the Wosoul product site (landing), runnable without the backend.",
+  "type": "module",
+  "workspaces": [
+    "packages/design-tokens",
+    "apps/landing"
+  ],
+  "engines": {
+    "node": "^22.23.4 || ^24.0.0 || >=26.0.0"
+  },
+  "scripts": {
+    "dev": "npm exec -w @dap/landing -- astro dev --config astro.designer.config.mjs",
+    "build": "npm run build -w @dap/landing",
+    "typecheck": "npm run typecheck -w @dap/landing",
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "check": "npm run format:check && npm run typecheck && npm run lint && npm run build"
+  },
+  "devDependencies": {
+    "@eslint/js": "10.0.1",
+    "@types/node": "26.6.5",
+    "eslint": "10.13.0",
+    "globals": "17.13.0",
+    "prettier": "3.9.10",
+    "prettier-plugin-astro": "1.1.2",
+    "typescript": "6.0.3",
+    "typescript-eslint": "8.72.0"
+  }
+}

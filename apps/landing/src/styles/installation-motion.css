@@ -1,0 +1,78 @@
+[data-installation][data-ready='true'][data-active='true'] .installation-scene {
+  transition:
+    opacity var(--installation-exit) var(--installation-ease),
+    transform var(--installation-exit) var(--installation-ease),
+    visibility 0s var(--installation-exit);
+}
+[data-installation][data-ready='true'][data-active='true']
+  .installation-scene[data-current='true'] {
+  transition-duration: var(--installation-enter), var(--installation-enter), 0s;
+  transition-delay: 0s;
+}
+[data-installation][data-active='true'] [data-current='true'] .installation-preferences {
+  animation: installation-appear var(--installation-enter) var(--installation-ease) both;
+}
+[data-installation][data-active='true'] [data-current='true'] .installation-preferences {
+  animation-delay: var(--installation-stagger);
+}
+[data-installation][data-active='true'] [data-current='true'] .installation-reading {
+  animation: installation-grow var(--installation-enter) var(--installation-ease) both;
+}
+[data-installation][data-active='true'] [data-current='true'] .installation-reading-guide {
+  animation: installation-guide var(--installation-enter) var(--installation-ease) both;
+  animation-delay: var(--installation-stagger);
+}
+[data-installation][data-active='true'] [data-current='true'] .installation-code-value {
+  animation: installation-highlight var(--installation-enter) var(--installation-ease) both;
+}
+[data-installation][data-active='true']
+  [data-current='true']
+  .installation-code-value
+  + .installation-code-value {
+  animation-delay: var(--installation-stagger);
+}
+@keyframes installation-appear {
+  from {
+    opacity: 0;
+    transform: translateY(var(--space-3)) scale(var(--installation-start-scale));
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes installation-grow {
+  from {
+    transform: scale(var(--installation-reading-start-scale));
+  }
+  to {
+    transform: none;
+  }
+}
+@keyframes installation-guide {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+@keyframes installation-highlight {
+  from {
+    background-color: transparent;
+  }
+  to {
+    background-color: var(--color-selected);
+  }
+}
+[data-installation][data-reduced='true'] *,
+:root[data-reduce-motion='true'] [data-installation] * {
+  animation: none !important;
+  transition: none !important;
+}
+@media (prefers-reduced-motion: reduce) {
+  [data-installation] * {
+    animation: none !important;
+    transition: none !important;
+  }
+}

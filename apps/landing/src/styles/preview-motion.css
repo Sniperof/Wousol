@@ -1,0 +1,63 @@
+.reading-preview[data-entered='true'] .preview-stage > .preview-card {
+  animation: preview-arrive var(--preview-enter) var(--preview-ease) var(--preview-delay, 0ms) both;
+}
+.reading-preview[data-autoplay='stopped'] .preview-stage > .preview-card {
+  animation: none;
+}
+.reading-preview[data-voice='true'] .voice-wave rect {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: voice-wave var(--preview-wave-duration) ease-in-out infinite alternate;
+}
+.voice-wave rect:nth-child(even) {
+  animation-delay: var(--preview-stagger);
+}
+.reading-preview .sample-card {
+  --preview-delay: var(--preview-stagger);
+}
+.reading-preview .voice-card {
+  --preview-delay: calc(var(--preview-stagger) * 2);
+}
+.reading-preview .sign-service {
+  --preview-delay: calc(var(--preview-stagger) * 3);
+}
+.reading-preview:not([data-playing='true']) [data-animate] {
+  animation-play-state: paused;
+}
+.reading-preview[data-speaking='true'] .voice-wave rect {
+  animation-play-state: running;
+}
+@keyframes preview-arrive {
+  from {
+    opacity: 0.88;
+    transform: translateY(var(--space-4));
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes voice-wave {
+  from {
+    transform: scaleY(var(--preview-wave-min));
+  }
+  to {
+    transform: scaleY(1);
+  }
+}
+:root[data-reduce-motion='true'] .reading-preview [data-animate] {
+  animation: none !important;
+}
+:root[data-reduce-motion='true'] .reading-preview *,
+:root[data-reduce-motion='true'] .reading-preview *::after {
+  transition: none !important;
+}
+@media (prefers-reduced-motion: reduce) {
+  .reading-preview [data-animate] {
+    animation: none !important;
+  }
+  .reading-preview *,
+  .reading-preview *::after {
+    transition: none !important;
+  }
+}

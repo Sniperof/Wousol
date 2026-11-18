@@ -1,0 +1,53 @@
+.interpreter-preview {
+  flex: none;
+  inline-size: var(--interpreter-preview-width);
+  max-inline-size: 100%;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+.interpreter-preview svg {
+  display: block;
+  inline-size: 100%;
+  block-size: auto;
+}
+.call-frame,
+.remote-frame {
+  fill: var(--color-hero-surface);
+  stroke: var(--color-card-border);
+}
+.call-grid,
+.frame-detail {
+  stroke: var(--color-card-border);
+  stroke-width: 2;
+  stroke-linecap: round;
+}
+.person-shadow {
+  fill: var(--color-card-border);
+}
+.interpreter-shirt {
+  fill: var(--color-brand);
+}
+.interpreter-face,
+.interpreter-hand,
+.remote-face {
+  fill: var(--color-surface);
+  stroke: var(--color-hero-ink);
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.interpreter-hair,
+.remote-shirt {
+  fill: var(--color-hero-ink);
+}
+.face-detail {
+  stroke: var(--color-hero-ink);
+  stroke-width: 1.5;
+  stroke-linecap: round;
+}
+.arm-sleeve {
+  stroke: var(--color-orb-end);
+  stroke-width: 14;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}

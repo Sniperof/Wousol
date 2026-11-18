@@ -1,0 +1,107 @@
+---
+import { messagesFor, type Locale } from '../../i18n';
+import DemoLink from '../ui/demo-link.astro';
+import ProductPreview from '../ui/product-preview.astro';
+import BrandText from '../ui/brand-text.astro';
+interface Props {
+  readonly locale: Locale;
+}
+const { locale } = Astro.props;
+const messages = messagesFor(locale);
+const [title, emphasis] = messages.hero.title.split('\n');
+---
+
+<div class="hero-surface">
+  <section class="hero container" aria-labelledby="hero-title">
+    <div class="copy">
+      <h1 id="hero-title">
+        <BrandText text={title ?? ''} locale={locale} />{' '}
+        <span class="headline-line">
+          <BrandText text={emphasis ?? ''} locale={locale} />
+        </span>
+      </h1>
+      <p class="lede">
+        <BrandText text={messages.hero.lede} locale={locale} />
+      </p>
+      <div class="actions">
+        <DemoLink locale={locale} label={messages.nav.demo} />
+        <a class="button secondary" href="#request-demo" data-request-kind="demo">
+          {messages.nav.requestDemo}
+        </a>
+      </div>
+    </div>
+    <ProductPreview locale={locale} />
+  </section>
+</div>
+<style>
+  .hero-surface {
+    color: var(--color-hero-ink);
+    background: var(--color-hero-surface);
+    border-end-start-radius: var(--hero-curve);
+    border-end-end-radius: var(--hero-curve);
+    overflow-x: clip;
+  }
+  .hero {
+    display: grid;
+    grid-template-columns: 0.9fr 1.2fr;
+    align-items: center;
+    gap: var(--space-8);
+    max-inline-size: calc(var(--content-max) + var(--space-16));
+    padding-block: var(--space-16) var(--space-24);
+  }
+  .copy {
+    min-inline-size: 0;
+    max-inline-size: var(--hero-copy);
+    align-self: start;
+  }
+  h1 {
+    max-inline-size: var(--hero-title-width);
+    font-weight: var(--hero-weight);
+    line-height: var(--hero-line-height);
+    letter-spacing: var(--hero-tracking);
+    text-wrap: balance;
+  }
+  .headline-line {
+    display: block;
+  }
+  :global(html:lang(ar)) h1 {
+    max-inline-size: 100%;
+    font-size: var(--text-hero-ar);
+    text-wrap: wrap;
+  }
+  :global(html:lang(ar)) .headline-line {
+    font-size: var(--hero-secondary-size);
+  }
+  .lede {
+    font-size: var(--text-lg);
+    font-weight: var(--weight-medium);
+    color: var(--color-marketing-muted);
+  }
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    margin-block-start: var(--space-8);
+  }
+  .hero :global(.button:not(.secondary)) {
+    border-color: var(--color-brand);
+    box-shadow: var(--shadow-hero-cta);
+  }
+  @media (max-width: 63.9375rem) {
+    .hero {
+      grid-template-columns: 1fr;
+      gap: var(--space-10);
+    }
+    .copy {
+      max-inline-size: var(--reading-max);
+    }
+  }
+  @media (max-width: 39.9375rem) {
+    .hero {
+      padding-block: var(--space-10) var(--space-16);
+    }
+    .actions :global(.button) {
+      flex: 1 1 auto;
+    }
+  }
+</style>

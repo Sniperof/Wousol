@@ -1,0 +1,91 @@
+---
+import { messagesFor, type Locale } from '../../i18n';
+import DemoLink from '../ui/demo-link.astro';
+import EnquiryForm from './enquiry-form.astro';
+import { enquiryWords } from '../../i18n/enquiry';
+import { demoSalesEmail } from '../../config/contact';
+import { enquiryHref } from '../../pricing/enquiry';
+import BrandText from '../ui/brand-text.astro';
+interface Props {
+  readonly locale: Locale;
+}
+const { locale } = Astro.props;
+const messages = messagesFor(locale);
+const words = enquiryWords(locale);
+---
+
+<section
+  id="request-demo"
+  class="section container invitation"
+  aria-labelledby="final-title"
+  data-demo-contact
+>
+  <span class="eyebrow">{messages.nav.requestDemo}</span>
+  <h2 id="final-title">
+    <BrandText text={messages.final.title} locale={locale} />
+  </h2>
+  <p>
+    <BrandText text={messages.final.body} locale={locale} />
+  </p>
+  <button type="button" class="button open-form" data-needs-dialog data-request-kind="demo" hidden>
+    {messages.nav.requestDemo}
+  </button>
+  <EnquiryForm locale={locale} />
+  <p class="alternative">{words.alternative}</p>
+  <div class="invitation-actions">
+    <span data-demo-email>
+      <a class="button secondary" href={enquiryHref(demoSalesEmail, messages.final.subject)}>
+        {messages.final.contact}
+      </a>
+    </span>
+    <DemoLink locale={locale} label={messages.nav.demo} secondary />
+  </div>
+</section>
+<style>
+  .invitation {
+    text-align: center;
+  }
+  .eyebrow {
+    display: block;
+    margin-block-end: var(--space-4);
+  }
+  h2 {
+    max-inline-size: 24ch;
+    margin-inline: auto;
+  }
+  p {
+    margin: 0 auto var(--space-8);
+    color: var(--color-marketing-muted);
+  }
+  .open-form {
+    display: inline-flex;
+    align-items: center;
+    min-block-size: var(--target-min);
+    margin-block-end: var(--space-10);
+    padding-inline: var(--space-10);
+    font: inherit;
+    font-weight: var(--weight-strong);
+    box-shadow: var(--shadow-hero-cta);
+    cursor: pointer;
+  }
+  .open-form[hidden] {
+    display: none;
+  }
+  .alternative {
+    max-inline-size: 28rem;
+    margin-block-end: var(--space-4);
+    padding-block-start: var(--space-6);
+    border-block-start: var(--border-width) solid var(--color-card-border);
+    font-size: var(--text-sm);
+  }
+  .invitation-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-3);
+  }
+  [data-demo-email]:empty {
+    display: none;
+  }
+</style>

@@ -1,0 +1,72 @@
+[data-installation] .installation-snippet {
+  padding: var(--installation-frame-padding);
+}
+.installation-step-select {
+  display: block;
+  min-block-size: var(--button-height);
+  min-inline-size: var(--button-height);
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  text-align: start;
+  overflow-wrap: anywhere;
+}
+[data-installation][data-ready='true'] .installation-step-select {
+  cursor: pointer;
+  transition: color var(--duration) var(--installation-ease);
+}
+[data-installation][data-ready='true'] .step-number {
+  transition:
+    background-color var(--duration) var(--installation-ease),
+    color var(--duration) var(--installation-ease);
+}
+[data-installation][data-ready='true'] .installation-step[data-current='true'] .step-number {
+  background: var(--color-brand);
+  color: var(--color-brand-text);
+}
+[data-installation][data-ready='true'] .installation-step[data-current='true'] h3,
+.installation-step-select:hover:not(:disabled) {
+  color: var(--color-brand);
+}
+.installation-scenes {
+  display: grid;
+  min-inline-size: 0;
+}
+.installation-scene {
+  grid-area: 1 / 1;
+  display: grid;
+  grid-template-rows: minmax(var(--installation-stage-min), 1fr) auto;
+  min-inline-size: 0;
+  gap: var(--space-4);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(var(--space-2));
+}
+.installation-scene[data-current='true'] {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+}
+.installation-scene .installation-editor {
+  display: flex;
+  flex-direction: column;
+}
+.installation-scene .installation-editor-bar {
+  flex-shrink: 0;
+}
+.installation-scene pre {
+  flex: 1;
+  display: grid;
+  align-content: center;
+}
+.installation-code-value {
+  color: var(--color-brand);
+  background: var(--color-selected);
+  border-radius: var(--radius-sm);
+  box-decoration-break: clone;
+}
+.installation-scene .installation-caption {
+  margin: 0;
+}

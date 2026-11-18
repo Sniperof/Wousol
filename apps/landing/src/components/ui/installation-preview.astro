@@ -1,0 +1,49 @@
+---
+import { messagesFor, type Locale } from '../../i18n';
+import InstallationSite from './installation-site.astro';
+import BrandText from './brand-text.astro';
+interface Props {
+  readonly locale: Locale;
+}
+const { locale } = Astro.props;
+const words = messagesFor(locale).installation;
+const lines = words.snippet.split('\n');
+---
+
+<figure class="installation-snippet" aria-label={words.previewLabel}>
+  <div id="installation-preview" class="installation-scenes">
+    {words.steps.map((step, index) => (
+      <div
+        class="installation-scene"
+        data-installation-scene={index}
+        data-current={String(index === 0)}
+        role="group"
+        aria-labelledby={`installation-step-${String(index)}`}
+        aria-hidden={index !== 0 ? 'true' : undefined}
+        inert={index !== 0}
+      >
+        <div class="installation-editor">
+          <div class="installation-editor-bar" aria-hidden="true">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+          {index === 0 ? (
+            <pre
+              dir="ltr"
+              tabindex="0"
+              aria-describedby="installation-caption"
+            ><code>{lines.map((line, lineIndex) => (
+              <span class:list={{ 'installation-code-value': lineIndex === 1 || lineIndex === 2 }}>{line}{lineIndex < lines.length - 1 ? '\n' : ''}</span>
+            ))}</code></pre>
+          ) : (
+            <InstallationSite locale={locale} />
+          )}
+        </div>
+        <p id={index === 0 ? 'installation-caption' : undefined} class="installation-caption">
+          <BrandText text={index === 0 ? words.caption : step.body} locale={locale} />
+        </p>
+      </div>
+    ))}
+  </div>
+</figure>

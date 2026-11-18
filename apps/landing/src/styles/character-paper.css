@@ -1,0 +1,28 @@
+[data-character='sign-language'] .character-prop {
+  --paper-ink: var(--paper-sign-ink);
+  --paper-soft: var(--paper-sign-soft);
+}
+[data-character='read-aloud'] .character-prop {
+  --paper-ink: var(--paper-voice-ink);
+  --paper-soft: var(--paper-voice-soft);
+}
+[data-character='reading'] .character-prop {
+  --paper-ink: var(--paper-reading-ink);
+  --paper-soft: var(--paper-reading-soft);
+}
+[data-character='navigation'] .character-prop {
+  --paper-ink: var(--paper-navigation-ink);
+  --paper-soft: var(--paper-navigation-soft);
+}
+.character-prop .prop-ink,
+.character-prop .prop-focus {
+  stroke: var(--paper-ink);
+}
+.character-prop .character-fill,
+.character-prop .prop-cursor {
+  fill: var(--paper-ink);
+}
+.character-prop .prop-soft,
+.character-prop .prop-focus {
+  fill: var(--paper-soft);
+}

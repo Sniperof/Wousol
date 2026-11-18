@@ -1,0 +1,45 @@
+.pricing.container {
+  max-inline-size: var(--pricing-section-max);
+}
+.pricing-scroll {
+  overflow-x: auto;
+  scroll-snap-type: x proximity;
+  scroll-padding-inline: var(--space-1);
+  padding: var(--space-1);
+  margin-block-start: var(--space-8);
+}
+.pricing-scroll:focus-visible {
+  outline-color: var(--color-focus);
+}
+.pricing-grid {
+  --card-rows: 5;
+  --pricing-columns: 2;
+  display: grid;
+  grid-template-columns: repeat(var(--pricing-columns), minmax(0, 1fr));
+  grid-template-rows: repeat(var(--card-rows), auto);
+  grid-auto-flow: column;
+  gap: var(--space-4);
+  inline-size: 100%;
+  min-inline-size: calc(
+    var(--pricing-columns) * var(--pricing-card-min) + (var(--pricing-columns) - 1) * var(--space-4)
+  );
+  max-inline-size: calc(
+    var(--pricing-columns) * var(--pricing-card-max) + (var(--pricing-columns) - 1) * var(--space-4)
+  );
+  align-items: stretch;
+  margin-inline: auto;
+}
+.pricing-grid[data-count='3'] {
+  --pricing-columns: 3;
+}
+.pricing-grid[data-count='4'] {
+  --pricing-columns: 4;
+}
+.price-card {
+  scroll-snap-align: start;
+}
+@supports not (grid-template-rows: subgrid) {
+  .price-card.aligned-card {
+    grid-template-rows: auto auto auto 1fr auto;
+  }
+}

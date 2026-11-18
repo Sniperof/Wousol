@@ -1,0 +1,72 @@
+---
+import type { CharacterPersona } from '../../character/scenes';
+interface Props {
+  readonly persona: CharacterPersona;
+}
+const { persona } = Astro.props;
+---
+
+<g data-character-head>
+  {persona.style === 'blazer' && (
+    <path class="character-hair" d="M51 30c-6 14-4 28 3 36h44c7-8 9-22 3-36H51Z" />
+  )}
+  {persona.style === 'turtleneck' && (
+    <g class="character-hair">
+      <circle cx="76" cy="9" r="8.5" />
+      <path d="M90 12c11 3 16 14 13 28-4-4-9-7-15-9V12Z" />
+    </g>
+  )}
+  <path class="character-skin" d="M69 51h14v12c-4 4-10 4-14 0V51Z" />
+  <circle class="character-skin" cx="57" cy="37" r="3.5" />
+  <circle class="character-skin" cx="95" cy="37" r="3.5" />
+  {persona.style === 'turtleneck' && (
+    <g class="character-earring">
+      <circle cx="56" cy="42" r="2.2" />
+      <circle cx="96" cy="42" r="2.2" />
+    </g>
+  )}
+  <ellipse class="character-skin" cx="76" cy="33" rx="18.5" ry="21" />
+  {persona.style === 'bomber' && (
+    <path class="character-hair" d="M57 38c1 12 8 19 19 19s18-7 19-19c-4 5-11 7-19 7s-15-2-19-7Z" />
+  )}
+  {persona.style === 'blazer' ? (
+    <g>
+      <path
+        class="character-hair"
+        d="M56 34c-3-15 6-25 20-25s23 10 20 25c-4-9-11-13-22-12-7 1-13 5-18 12Z"
+      />
+      <path class="character-headband" d="M58 23q18-9 36 0" />
+    </g>
+  ) : persona.style === 'turtleneck' ? (
+    <path
+      class="character-hair"
+      d="M56 33c-2-14 7-23 20-23s22 9 20 23c-5-8-13-11-20-11s-15 3-20 11Z"
+    />
+  ) : persona.style === 'cardigan' ? (
+    <path
+      class="character-hair"
+      d="M56 32c-3-15 5-23 20-23 15 0 24 8 20 23l-5-11c-9 5-18 4-25 2l-4 9Z"
+    />
+  ) : (
+    <path
+      class="character-hair"
+      d="M55 32c-2-16 7-25 21-25s23 9 21 25l-5-12c-8 4-24 4-32 0l-5 12Z"
+    />
+  )}
+  <g class="character-face">
+    <path d="M64 28q4-2 7 0m10 0q4-2 7 0M71 43q5 4.5 10 0" />
+    <g data-character-eyes>
+      <circle class="character-eye" cx="68" cy="33" r="1.8" />
+      <circle class="character-eye" cx="84" cy="33" r="1.8" />
+    </g>
+    <circle class="character-cheek" cx="63" cy="38" r="2.6" />
+    <circle class="character-cheek" cx="89" cy="38" r="2.6" />
+    {persona.style === 'cardigan' && (
+      <g class="character-glasses">
+        <circle cx="68" cy="33" r="5.5" />
+        <circle cx="84" cy="33" r="5.5" />
+        <path d="M73.5 33h5" />
+      </g>
+    )}
+  </g>
+</g>

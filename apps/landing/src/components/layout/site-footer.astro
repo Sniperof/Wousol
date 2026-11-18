@@ -1,0 +1,116 @@
+---
+import { homePathOf, messagesFor, otherLocale, type Locale } from '../../i18n';
+import { pricingWords } from '../../i18n/pricing';
+import Brand from '../ui/brand.astro';
+import BrandText from '../ui/brand-text.astro';
+interface Props {
+  readonly locale: Locale;
+}
+const { locale } = Astro.props;
+const messages = messagesFor(locale);
+const other = otherLocale(locale);
+---
+
+<footer class="footer">
+  <div class="footer-content container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <Brand locale={locale} tone="white" />
+        <p>
+          <BrandText text={messages.meta.description} locale={locale} />
+        </p>
+      </div>
+      <nav aria-label={messages.footer.navLabel}>
+        <a href="#features">{messages.nav.features}</a>
+        <a href="#sign-language">{messages.nav.signLanguage}</a>
+        <a href="#installation">{messages.nav.installation}</a>
+        <a href="#pricing" data-pricing-nav hidden>
+          {pricingWords(locale).nav}
+        </a>
+        <a href="#request-demo" data-request-kind="demo">
+          {messages.nav.requestDemo}
+        </a>
+      </nav>
+    </div>
+    <div class="footer-bottom">
+      <span class="byline">
+        <BrandText text={messages.footer.byline} locale={locale} />
+        <span aria-hidden="true">·</span>
+        <a href={homePathOf(other)} lang={other} hreflang={other}>
+          {messagesFor(other).languageName}
+        </a>
+      </span>
+      <p>
+        <BrandText text={messages.footer.note} locale={locale} />
+      </p>
+    </div>
+  </div>
+</footer>
+<style>
+  .footer {
+    --brand-word-color: var(--color-brand-text);
+    --color-text: var(--color-brand-text);
+    --color-link: var(--color-brand-text);
+    --color-focus: var(--color-brand-text);
+    color: var(--color-brand-text);
+    background: var(--color-brand);
+  }
+  .footer-content {
+    display: grid;
+    gap: var(--space-8);
+    padding-block: var(--space-12) var(--space-8);
+  }
+  .footer-top {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: var(--space-8);
+  }
+  .footer-brand {
+    display: grid;
+    gap: var(--space-3);
+  }
+  .footer-brand p {
+    max-inline-size: 36ch;
+    margin: 0;
+    color: var(--color-footer-muted);
+  }
+  nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2) var(--space-6);
+  }
+  a {
+    color: var(--color-brand-text);
+    text-decoration: none;
+  }
+  a:hover {
+    text-decoration: underline;
+  }
+  [data-pricing-nav][hidden] {
+    display: none;
+  }
+  .footer-bottom {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--space-3) var(--space-8);
+    padding-block-start: var(--space-6);
+    border-block-start: var(--border-width) solid var(--color-footer-rule);
+    font-size: var(--text-sm);
+  }
+  .byline {
+    display: inline-flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    font-weight: var(--weight-strong);
+  }
+  .footer-bottom p {
+    max-inline-size: 52ch;
+    margin: 0;
+    color: var(--color-footer-muted);
+  }
+</style>

@@ -1,0 +1,21 @@
+---
+import type { Locale } from '../../i18n';
+import { brandParts } from '../../brand/text';
+interface Props {
+  readonly text: string;
+  readonly locale: Locale;
+}
+const { text, locale } = Astro.props;
+---
+
+<span class="brand-text">
+  {brandParts(text, locale).map((part) =>
+    part.isBrand ? (
+      <span class="brand-word" dir="auto">
+        {part.text}
+      </span>
+    ) : (
+      part.text
+    ),
+  )}
+</span>

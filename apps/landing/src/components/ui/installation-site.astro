@@ -1,0 +1,50 @@
+---
+import blueLogo from '@dap/design-tokens/brand/blue.webp?url';
+import { messagesFor, type Locale } from '../../i18n';
+import { pricingFeatures } from '../../i18n/pricing';
+import LaptopVisitor from './laptop-visitor.astro';
+interface Props {
+  readonly locale: Locale;
+}
+const { locale } = Astro.props;
+const words = messagesFor(locale);
+const features = pricingFeatures(locale);
+---
+
+<div class="installation-website" aria-hidden="true">
+  <div class="installation-site-nav">
+    <span class="installation-site-name">
+      <img src={blueLogo} alt="" width="512" height="512" />
+      {words.siteName}
+    </span>
+    <svg class="installation-comfort" viewBox="0 0 24 24" fill="none" focusable="false">
+      <circle cx="12" cy="12" r="10" />
+      <path d="m7.5 12 3 3 6-6" />
+    </svg>
+  </div>
+  <div class="installation-site-content">
+    <div class="installation-reading">
+      <div class="installation-site-title">{words.preview.title}</div>
+      <p>{words.preview.body}</p>
+      <div class="installation-reading-guide"></div>
+    </div>
+    <div class="installation-visitor">
+      <LaptopVisitor />
+      <div class="installation-preferences">
+        <strong>{words.installation.preferencesTitle}</strong>
+        <div class="installation-setting">
+          <span>{features['text-size']}</span>
+          <span class="installation-size-options">
+            <span>−</span>
+            <b>Aa</b>
+            <span>+</span>
+          </span>
+        </div>
+        <div class="installation-setting">
+          <span>{features['reading-guide']}</span>
+          <span class="installation-demo-switch"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

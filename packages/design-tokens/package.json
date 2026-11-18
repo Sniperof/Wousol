@@ -1,0 +1,13 @@
+{
+  "name": "@dap/design-tokens",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Build-time visual foundations for DAP websites; never imported by the SDK.",
+  "exports": {
+    "./tokens.css": "./src/tokens.css",
+    "./select.css": "./src/select.css",
+    "./fonts.css": "./src/fonts.css",
+    "./brand/blue.webp": "./assets/brand/blue.webp",
+    "./brand/white.svg": "./assets/brand/white.svg"
+  }
+}

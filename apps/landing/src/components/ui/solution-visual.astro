@@ -1,0 +1,56 @@
+---
+import { messagesFor, type Locale } from '../../i18n';
+import type { SolutionKind } from '../../i18n/messages';
+import '../../styles/solution-visual.css';
+interface Props {
+  readonly locale: Locale;
+  readonly kind: SolutionKind;
+}
+const { locale, kind } = Astro.props;
+const label = messagesFor(locale).solutions.illustrations[kind];
+---
+
+<div class:list={['solution-visual', `visual-${kind}`]} role="img" aria-hidden="true">
+  <svg viewBox="0 0 240 160" fill="none" focusable="false">
+    <rect class="visual-paper" x="24" y="16" width="192" height="128" rx="16" />
+    <path class="visual-rule" d="M24 44H216" />
+    <g class="visual-dots">
+      <circle cx="40" cy="30" r="3" />
+      <circle cx="51" cy="30" r="3" />
+      <circle cx="62" cy="30" r="3" />
+    </g>
+    {kind === 'widget' ? (
+      <g>
+        {[65, 91, 117].map((y, index) => (
+          <g>
+            <path class="visual-rule" d={`M44 ${String(y)}H116`} />
+            <rect class="visual-soft" x="151" y={y - 7} width="40" height="14" rx="7" />
+            <circle class="visual-accent" cx={index === 1 ? 159 : 183} cy={y} r="5" />
+          </g>
+        ))}
+      </g>
+    ) : kind === 'services' ? (
+      <g>
+        <path class="visual-rule" d="M44 82H196M44 122H196" />
+        <rect class="visual-soft" x="54" y="98" width="22" height="24" rx="5" />
+        <rect class="visual-soft" x="92" y="84" width="22" height="38" rx="5" />
+        <rect class="visual-soft" x="130" y="72" width="22" height="50" rx="5" />
+        <rect class="visual-accent" x="168" y="58" width="22" height="64" rx="5" />
+        <path class="visual-code" d="M65 88 103 74 141 64 179 50" />
+        <g class="visual-accent">
+          <circle cx="65" cy="88" r="4" />
+          <circle cx="103" cy="74" r="4" />
+          <circle cx="141" cy="64" r="4" />
+          <circle cx="179" cy="50" r="4" />
+        </g>
+      </g>
+    ) : (
+      <g>
+        <path class="visual-code" d="m68 72-18 16 18 16m32-32 18 16-18 16M89 65l-11 46" />
+        <circle class="visual-soft" cx="164" cy="89" r="25" />
+        <path class="visual-code" d="m153 89 8 8 15-17" />
+      </g>
+    )}
+  </svg>
+  <span>{label}</span>
+</div>

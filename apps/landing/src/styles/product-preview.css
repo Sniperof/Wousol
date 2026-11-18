@@ -1,0 +1,138 @@
+.reading-preview {
+  --preview-step-ms: 1200;
+  --preview-hold-ms: 2400;
+  --preview-enter: 360ms;
+  --preview-stagger: 80ms;
+  --preview-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --preview-breathe: 1350ms;
+  --preview-breathe-min: 0.76;
+  --preview-breathe-max: 1;
+  --preview-wave-duration: 1200ms;
+  --preview-wave-min: 0.65;
+  --preview-sample-size: 0.72rem;
+  --preview-sample-125: calc(var(--preview-sample-size) * 1.25);
+  --preview-sample-150: calc(var(--preview-sample-size) * 1.5);
+  --preview-guide-light: var(--color-selected);
+  --preview-switch-width: 2.5rem;
+  --preview-switch-height: 1.5rem;
+  --preview-thumb-size: 1rem;
+  --preview-switch-shift: 1rem;
+  --preview-inline-direction: 1;
+  inline-size: 100%;
+  max-inline-size: var(--hero-art-size);
+  margin: 0 auto;
+  isolation: isolate;
+  container: reading-preview / inline-size;
+}
+:root:lang(ar) .reading-preview {
+  --preview-inline-direction: -1;
+}
+.preview-stage {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--space-4);
+  align-items: center;
+}
+.accessibility-orbit {
+  position: relative;
+  display: grid;
+  place-items: center;
+  justify-self: center;
+  inline-size: var(--preview-orb-compact);
+  max-inline-size: 100%;
+  aspect-ratio: 1;
+  margin-block: var(--space-8);
+  color: var(--color-brand-text);
+}
+.orbit-symbol {
+  position: relative;
+  z-index: 1;
+  inline-size: 100%;
+  block-size: auto;
+  padding: var(--space-8);
+  border-radius: var(--radius-full);
+  background: linear-gradient(145deg, var(--color-orb-end), var(--color-brand));
+}
+.accessibility-orbit .orbit-rings {
+  position: absolute;
+  inline-size: var(--preview-rings-compact);
+  max-inline-size: none;
+  block-size: auto;
+  overflow: visible;
+  fill: var(--color-ring-fill);
+  stroke: var(--color-ring-stroke);
+  stroke-width: 1;
+  pointer-events: none;
+}
+.orbit-rings circle {
+  transform-box: view-box;
+  transform-origin: center;
+  opacity: 0;
+  transform: scale(var(--preview-breathe-min));
+  transition:
+    opacity var(--preview-breathe) ease-in-out,
+    transform var(--preview-breathe) ease-in-out;
+}
+.reading-preview:not([data-ready='true']) .orbit-rings circle,
+.reading-preview[data-text='true'] .orbit-rings circle:nth-child(1),
+.reading-preview[data-voice='true'] .orbit-rings circle:nth-child(2),
+.reading-preview[data-speaking='true'] .orbit-rings circle:nth-child(2),
+.reading-preview[data-guide='true'] .orbit-rings circle:nth-child(3) {
+  opacity: 1;
+  transform: scale(var(--preview-breathe-max));
+}
+.preview-card {
+  position: relative;
+  z-index: 2;
+  min-inline-size: 0;
+  padding: var(--space-3);
+  border: var(--border-width) solid var(--color-card-border);
+  border-radius: var(--radius-lg);
+  background: var(--color-preview-glass);
+  backdrop-filter: blur(var(--preview-glass-blur));
+  -webkit-backdrop-filter: blur(var(--preview-glass-blur));
+  color: var(--color-hero-ink);
+  box-shadow: var(--shadow-product);
+}
+.reading-preview[data-text='true'] .sample-card,
+.reading-preview[data-voice='true'] .voice-card,
+.reading-preview[data-speaking='true'] .voice-card,
+.reading-preview[data-guide='true'] .sign-service {
+  border-color: var(--color-card-active-border);
+  box-shadow: var(--shadow-product-active);
+}
+/* Keep the original layered composition only when its content has room to breathe. */
+@container reading-preview (min-width: 27rem) {
+  .preview-stage {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    grid-template-rows: auto auto auto;
+    gap: var(--space-3);
+    min-block-size: var(--preview-stage-min);
+  }
+  .sample-card {
+    grid-area: 1 / 5 / 2 / 11;
+    align-self: start;
+    margin-inline-start: var(--space-4);
+  }
+  .voice-card {
+    grid-area: 2 / 7 / 3 / -1;
+    align-self: start;
+    margin-inline-start: var(--space-4);
+  }
+  .sign-service {
+    grid-area: 3 / 4 / 4 / 12;
+  }
+  .accessibility-orbit {
+    grid-area: 1 / 2 / 3 / 6;
+    justify-self: start;
+    inline-size: min(100%, var(--preview-orb-size));
+    margin-block: var(--space-8) 0;
+  }
+  .orbit-symbol {
+    padding: var(--space-8);
+  }
+  .accessibility-orbit .orbit-rings {
+    inline-size: var(--preview-rings-size);
+  }
+}

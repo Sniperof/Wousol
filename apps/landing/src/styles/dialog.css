@@ -1,0 +1,90 @@
+/*
+ * A native <dialog> opened with showModal(), so the browser supplies the focus trap, Esc, the
+ * inert page behind it, and the top layer. It is a centred card from the tablet width up and a bottom sheet below it.
+ * It only fades and slides in (opacity and transform, both off the main thread); closing is immediate.
+ */
+:root[data-dialog-open] {
+  overflow: hidden;
+}
+.modal-dialog {
+  inline-size: min(var(--form-max), calc(100% - var(--space-8)));
+  max-block-size: min(calc(100dvh - var(--space-8)), 48rem);
+  padding: 0;
+  overflow: hidden;
+  border: var(--border-width) solid var(--color-card-border);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+  color: var(--color-text);
+  box-shadow: var(--shadow-dialog);
+}
+.modal-dialog[open] {
+  display: flex;
+  flex-direction: column;
+  animation: dialog-in var(--duration) ease-out;
+}
+.modal-dialog::backdrop {
+  background: var(--color-scrim);
+}
+.modal-dialog[open]::backdrop {
+  animation: dialog-fade var(--duration) ease-out;
+}
+.modal-dialog .dialog-body {
+  flex: 1 1 auto;
+  min-block-size: 0;
+  padding: var(--space-6);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+.modal-dialog .dialog-close {
+  position: absolute;
+  inset-block-start: var(--space-2);
+  inset-inline-end: var(--space-2);
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  inline-size: var(--button-height);
+  block-size: var(--button-height);
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius-full);
+  background: transparent;
+  color: var(--color-text);
+  cursor: pointer;
+}
+.modal-dialog .dialog-close:hover {
+  background: var(--color-surface-subtle);
+}
+.modal-dialog .dialog-close svg {
+  inline-size: var(--space-6);
+  block-size: var(--space-6);
+  fill: none;
+  stroke: currentcolor;
+  stroke-width: 2;
+  stroke-linecap: round;
+}
+@media (max-width: 47.9375rem) {
+  .modal-dialog {
+    inline-size: 100%;
+    max-inline-size: 100%;
+    max-block-size: calc(100dvh - var(--space-8));
+    margin-block: auto 0;
+    margin-inline: 0;
+    border-end-start-radius: 0;
+    border-end-end-radius: 0;
+  }
+  .modal-dialog .dialog-body {
+    padding: var(--space-5);
+    padding-block-end: max(var(--space-5), env(safe-area-inset-bottom));
+  }
+}
+@keyframes dialog-in {
+  from {
+    opacity: 0;
+    transform: translateY(var(--space-4));
+  }
+}
+@keyframes dialog-fade {
+  from {
+    opacity: 0;
+  }
+}

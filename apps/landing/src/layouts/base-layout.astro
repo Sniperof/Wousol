@@ -1,0 +1,69 @@
+---
+import '../styles/global.css';
+import { directionOf, homePathOf, messagesFor, otherLocale, type Locale } from '../i18n';
+import { enPricingFeatures } from '../i18n/locales/en-pricing';
+import SiteHeader from '../components/layout/site-header.astro';
+import SiteFooter from '../components/layout/site-footer.astro';
+interface Props {
+  readonly locale: Locale;
+}
+const { locale } = Astro.props;
+const messages = messagesFor(locale);
+const other = otherLocale(locale);
+const liveKey =
+  import.meta.env.PUBLIC_SITE_KEY || (import.meta.env.DEV ? 'dap_1mxwpnky53dnag75ram9448tkz' : '');
+const siteKey = liveKey || 'dap_dem00000000000000000000000';
+const features = Object.keys(enPricingFeatures);
+---
+
+<!doctype html>
+<html lang={locale} dir={directionOf(locale)}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={messages.meta.description} />
+    <link rel="icon" href="/favicon.png?v=2" type="image/png" sizes="32x32" />
+    <link rel="canonical" href={homePathOf(locale)} />
+    <link rel="alternate" hreflang={locale} href={homePathOf(locale)} />
+    <link rel="alternate" hreflang="x-default" href="/" />
+    <link rel="alternate" hreflang={other} href={homePathOf(other)} />
+    <title>{messages.meta.title}</title>
+    {liveKey ? (
+      <script is:inline>
+        try {
+          window.localStorage.removeItem('dap:site');
+        } catch {
+          // Storage may be disabled; the widget then asks the licence check directly.
+        }
+      </script>
+    ) : (
+      <script is:inline define:vars={{ siteKey, features }}>
+        try {
+          window.localStorage.setItem(
+            'dap:site',
+            JSON.stringify({
+              version: 1,
+              key: siteKey,
+              enabled: true,
+              features,
+              checkedAt: Date.now(),
+            }),
+          );
+        } catch {
+          // Storage may be disabled; the widget then needs the licence check, which this site does not answer (ADR 0019).
+        }
+      </script>
+    )}
+    <script is:inline src="/sdk/dap.js" data-site-key={siteKey} defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">
+      {messages.skipToContent}
+    </a>
+    <SiteHeader locale={locale} />
+    <main id="main" tabindex="-1">
+      <slot />
+    </main>
+    <SiteFooter locale={locale} />
+  </body>
+</html>

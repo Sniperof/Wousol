@@ -1,0 +1,128 @@
+.character-scene {
+  display: grid;
+  place-items: center;
+  block-size: var(--character-art-height);
+  inline-size: 100%;
+}
+.character-scene > svg {
+  display: block;
+  inline-size: 100%;
+  block-size: 100%;
+  max-inline-size: var(--character-art-width);
+}
+.character-backdrop,
+.prop-soft {
+  fill: var(--color-selected);
+}
+.character-orbit,
+.character-touch-ring {
+  fill: var(--color-ring-fill);
+  stroke: var(--color-ring-stroke);
+  stroke-width: var(--illustration-stroke);
+}
+.character-shadow {
+  fill: var(--color-card-border);
+}
+.character-fill {
+  fill: var(--color-brand);
+}
+.character-shirt-inner {
+  fill: var(--color-hero-surface);
+}
+.character-trousers,
+.character-soft-top,
+.character-earring {
+  fill: var(--color-orb-end);
+}
+.character-trouser-crease,
+.character-collar {
+  stroke: var(--character-visor-shine);
+  stroke-width: var(--illustration-stroke);
+  stroke-linecap: round;
+}
+.character-headband {
+  fill: none;
+  stroke: var(--color-orb-end);
+  stroke-width: var(--illustration-line);
+  stroke-linecap: round;
+}
+.character-hair,
+.character-shoe,
+.character-eye,
+.character-dark-top {
+  fill: var(--color-hero-ink);
+}
+.character-skin,
+.character-hand {
+  fill: var(--color-surface);
+  stroke: var(--color-hero-ink);
+  stroke-width: var(--illustration-stroke);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.character-badge {
+  fill: var(--character-badge-fill);
+}
+.character-cheek {
+  fill: var(--character-cheek-fill);
+  stroke: none;
+}
+.character-limb {
+  stroke: var(--color-brand);
+  stroke-width: var(--character-limb-width);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.character-limb-back {
+  stroke: var(--color-orb-end);
+  stroke-width: var(--character-limb-width);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.character-face path,
+.character-glasses {
+  fill: none;
+  stroke: var(--color-hero-ink);
+  stroke-width: var(--illustration-stroke);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.character-emblem {
+  fill: var(--color-brand-text);
+  stroke: var(--color-brand-text);
+  stroke-width: var(--illustration-stroke);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.character-emblem path {
+  fill: none;
+}
+.prop-paper {
+  fill: var(--color-surface);
+  stroke: var(--color-card-border);
+  stroke-width: var(--illustration-stroke);
+}
+.prop-muted {
+  fill: var(--color-marketing-muted);
+}
+.prop-line {
+  stroke: var(--color-card-border);
+  stroke-width: var(--illustration-line);
+  stroke-linecap: round;
+}
+.prop-ink,
+.prop-focus {
+  stroke: var(--color-brand);
+  stroke-width: var(--illustration-stroke);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.prop-focus {
+  fill: var(--color-selected);
+}
+.prop-cursor {
+  fill: var(--color-brand);
+  stroke: var(--color-surface);
+  stroke-width: var(--illustration-stroke);
+  stroke-linejoin: round;
+}

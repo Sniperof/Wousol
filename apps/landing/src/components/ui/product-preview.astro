@@ -1,0 +1,95 @@
+---
+import { messagesFor, type Locale } from '../../i18n';
+import { pricingFeatures } from '../../i18n/pricing';
+import ReadAloudCard from './read-aloud-card.astro';
+import SignLanguageCard from './sign-language-card.astro';
+import '../../styles/product-preview.css';
+import '../../styles/preview-controls.css';
+import '../../styles/preview-motion.css';
+import '../../styles/preview-services.css';
+interface Props {
+  readonly locale: Locale;
+}
+const { locale } = Astro.props;
+const words = messagesFor(locale).preview;
+const features = pricingFeatures(locale);
+---
+
+<figure
+  class="reading-preview"
+  data-reading-preview
+  data-locale={locale}
+  data-text="false"
+  data-text-size="100"
+  data-voice="false"
+  data-guide="false"
+  aria-label={words.label}
+>
+  <div class="preview-stage">
+    <div class="accessibility-orbit" role="img" aria-hidden="true">
+      <svg class="orbit-rings" viewBox="0 0 600 600" data-animate>
+        <circle cx="300" cy="300" r="155" />
+        <circle cx="300" cy="300" r="215" />
+        <circle cx="300" cy="300" r="275" />
+      </svg>
+      <svg class="orbit-symbol" viewBox="0 0 96 104" fill="none">
+        <circle cx="48" cy="15" r="9" fill="currentColor" />
+        <path
+          d="M17 35 48 42 79 35M48 42v24M29 94l19-28 19 28"
+          stroke="currentColor"
+          stroke-width="11"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </svg>
+    </div>
+    <div class="preview-card sample-card" data-animate>
+      <button
+        type="button"
+        class="preview-control"
+        data-preference="text"
+        aria-controls="hero-reading-sample"
+        aria-describedby="hero-text-size-hint"
+        disabled
+      >
+        <span class="preference-icon" aria-hidden="true">
+          Aa
+        </span>{' '}
+        <span>{features['text-size']}</span>{' '}
+        <span class="preview-percentage" data-text-size-value>
+          {new Intl.NumberFormat(locale, { style: 'percent' }).format(1)}
+        </span>
+      </button>
+      <span id="hero-text-size-hint" class="visually-hidden" data-text-size-hint></span>
+      <button
+        type="button"
+        class="preview-control"
+        data-preference="guide"
+        aria-pressed="false"
+        aria-controls="hero-reading-sample"
+        disabled
+      >
+        <span class="preference-icon" aria-hidden="true">
+          ≡
+        </span>
+        <span>{features['reading-guide']}</span>
+        <span class="preview-switch" aria-hidden="true"></span>
+      </button>
+      <div class="reading-sample" id="hero-reading-sample">
+        <p class="sample-copy">{words.body}</p>
+      </div>
+    </div>
+    <ReadAloudCard locale={locale} />
+    <SignLanguageCard locale={locale} />
+  </div>
+</figure>
+<script>
+  import { startReadingPreview } from '../../preview/controller';
+  document.querySelectorAll<HTMLElement>('[data-reading-preview]').forEach((root) => {
+    let dispose = startReadingPreview(root);
+    window.addEventListener('pagehide', () => dispose());
+    window.addEventListener('pageshow', (event) => {
+      if (event.persisted) dispose = startReadingPreview(root);
+    });
+  });
+</script>

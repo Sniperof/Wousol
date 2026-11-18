@@ -1,0 +1,57 @@
+.billing-toggle {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  inline-size: fit-content;
+  margin: var(--space-8) auto;
+  padding: var(--space-1);
+  border: var(--border-width) solid var(--color-border);
+  border-radius: var(--radius-full);
+  background: var(--color-surface-subtle);
+}
+.billing-toggle label {
+  position: relative;
+  display: flex;
+}
+.billing-toggle input {
+  position: absolute;
+  inset: 0;
+  inline-size: 100%;
+  block-size: 100%;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+.billing-toggle span {
+  display: inline-flex;
+  align-items: center;
+  min-block-size: var(--button-height);
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-full);
+  cursor: pointer;
+}
+.billing-toggle input:checked + span {
+  color: var(--color-brand-text);
+  background: var(--color-brand);
+}
+.billing-toggle input:focus-visible + span {
+  outline: var(--focus-ring) solid var(--color-focus);
+  outline-offset: var(--focus-offset);
+}
+[hidden] {
+  display: none !important;
+}
+button {
+  font: inherit;
+  cursor: pointer;
+  min-block-size: var(--button-height);
+  min-inline-size: var(--button-height);
+}
+.visually-hidden {
+  position: absolute;
+  inline-size: 1px;
+  block-size: 1px;
+  clip-path: inset(50%);
+  overflow: hidden;
+  white-space: nowrap;
+}

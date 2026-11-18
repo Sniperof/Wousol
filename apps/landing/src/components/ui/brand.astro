@@ -1,0 +1,32 @@
+---
+import blueLogo from '@dap/design-tokens/brand/blue.webp?url';
+import whiteLogo from '@dap/design-tokens/brand/white.svg?url';
+import { homePathOf, messagesFor, type Locale } from '../../i18n';
+import BrandText from './brand-text.astro';
+interface Props {
+  readonly locale: Locale;
+  readonly tone?: 'blue' | 'white';
+}
+const { locale, tone = 'blue' } = Astro.props;
+---
+
+<a class="brand" href={homePathOf(locale)}>
+  <img class="mark" src={tone === 'white' ? whiteLogo : blueLogo} alt="" width="512" height="512" />
+  <BrandText text={messagesFor(locale).siteName} locale={locale} />
+</a>
+<style>
+  .brand {
+    gap: var(--space-3);
+    color: var(--color-text);
+    font-weight: var(--weight-strong);
+    font-size: var(--text-section);
+    text-decoration: none;
+  }
+  .mark {
+    display: block;
+    flex-shrink: 0;
+    inline-size: var(--brand-size);
+    block-size: var(--brand-size);
+    object-fit: contain;
+  }
+</style>

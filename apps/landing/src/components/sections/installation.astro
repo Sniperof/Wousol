@@ -1,0 +1,69 @@
+---
+import { messagesFor, type Locale } from '../../i18n';
+import InstallationPreview from '../ui/installation-preview.astro';
+import BrandText from '../ui/brand-text.astro';
+import '../../styles/visitor-cards.css';
+import '../../styles/installation-walkthrough.css';
+import '../../styles/installation-site.css';
+import '../../styles/installation-motion.css';
+interface Props {
+  readonly locale: Locale;
+}
+const { locale } = Astro.props;
+const words = messagesFor(locale).installation;
+const numberFormat = new Intl.NumberFormat(locale);
+---
+
+<section
+  id="installation"
+  class="section container"
+  aria-labelledby="installation-title"
+  data-installation
+>
+  <div class="installation-layout">
+    <div class="installation-copy">
+      <h2 id="installation-title">
+        <BrandText text={words.title} locale={locale} />
+      </h2>
+      <p class="installation-intro">
+        <BrandText text={words.intro} locale={locale} />
+      </p>
+      <ol class="visitor-grid installation-steps" role="list">
+        {words.steps.map((step, index) => (
+          <li class="installation-step" data-current={String(index === 0)}>
+            <span class="step-number" aria-hidden="true">
+              {numberFormat.format(index + 1)}
+            </span>
+            <h3>
+              <button
+                id={`installation-step-${String(index)}`}
+                type="button"
+                class="installation-step-select"
+                data-installation-step={index}
+                aria-current={index === 0 ? 'step' : undefined}
+                aria-controls="installation-preview"
+                disabled
+              >
+                <BrandText text={step.title} locale={locale} />
+              </button>
+            </h3>
+            <p>
+              <BrandText text={step.body} locale={locale} />
+            </p>
+          </li>
+        ))}
+      </ol>
+    </div>
+    <InstallationPreview locale={locale} />
+  </div>
+</section>
+<script>
+  import { startInstallation } from '../../installation/controller';
+  document.querySelectorAll<HTMLElement>('[data-installation]').forEach((root) => {
+    let dispose = startInstallation(root);
+    window.addEventListener('pagehide', () => dispose());
+    window.addEventListener('pageshow', (event) => {
+      if (event.persisted) dispose = startInstallation(root);
+    });
+  });
+</script>

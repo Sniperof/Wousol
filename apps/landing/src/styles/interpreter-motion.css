@@ -1,0 +1,98 @@
+.gesture-arm,
+.gesture-hand,
+.interpreter-head {
+  transform-box: view-box;
+}
+.gesture-first {
+  transform-origin: 45px 76px;
+}
+.gesture-second {
+  transform-origin: 103px 76px;
+}
+.gesture-first .gesture-hand {
+  transform-origin: 69px 82px;
+}
+.gesture-second .gesture-hand {
+  transform-origin: 80px 82px;
+}
+.interpreter-head {
+  transform-origin: 74px 54px;
+}
+.reading-preview[data-entered='true'] .gesture-first {
+  animation: interpreter-first-arm var(--interpreter-gesture-duration) ease-in-out infinite;
+}
+.reading-preview[data-entered='true'] .gesture-second {
+  animation: interpreter-second-arm var(--interpreter-gesture-duration) ease-in-out infinite;
+}
+.reading-preview[data-entered='true'] .gesture-hand {
+  animation: interpreter-wrist var(--interpreter-gesture-duration) ease-in-out infinite;
+}
+.reading-preview[data-entered='true'] .gesture-second .gesture-hand {
+  animation-delay: calc(var(--interpreter-gesture-duration) / -2);
+  animation-direction: reverse;
+}
+.reading-preview[data-entered='true'] .interpreter-head {
+  animation: interpreter-nod var(--interpreter-gesture-duration) ease-in-out infinite;
+}
+.reading-preview:not([data-playing='true']) .interpreter-preview [data-animate],
+.reading-preview[data-playing='true']:not([data-guide='true']) .interpreter-preview [data-animate] {
+  animation-play-state: paused;
+}
+@keyframes interpreter-first-arm {
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+  20%,
+  65% {
+    transform: rotate(calc(var(--interpreter-arm-rest) * -1));
+  }
+  40% {
+    transform: rotate(var(--interpreter-arm-angle));
+  }
+  82% {
+    transform: rotate(var(--interpreter-arm-rest));
+  }
+}
+@keyframes interpreter-second-arm {
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+  20% {
+    transform: rotate(var(--interpreter-arm-rest));
+  }
+  45% {
+    transform: rotate(calc(var(--interpreter-arm-rest) * -1));
+  }
+  65% {
+    transform: rotate(calc(var(--interpreter-arm-angle) * -1));
+  }
+  82% {
+    transform: rotate(var(--interpreter-arm-rest));
+  }
+}
+@keyframes interpreter-wrist {
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+  30% {
+    transform: rotate(var(--interpreter-wrist-angle));
+  }
+  65% {
+    transform: rotate(calc(var(--interpreter-wrist-angle) * -1));
+  }
+}
+@keyframes interpreter-nod {
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(var(--interpreter-head-angle));
+  }
+  60% {
+    transform: rotate(calc(var(--interpreter-head-angle) * -1));
+  }
+}

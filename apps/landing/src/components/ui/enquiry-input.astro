@@ -1,0 +1,22 @@
+---
+import type { TextField } from '../../enquiry/text-fields';
+
+interface Props {
+  readonly field: TextField;
+}
+const { field } = Astro.props;
+---
+
+<div class="field">
+  <label for={`enquiry-${field.name}`}>{field.label}</label>
+  <input
+    id={`enquiry-${field.name}`}
+    name={field.name}
+    type={field.type}
+    autocomplete={field.autocomplete}
+    dir={field.dir}
+    required={field.required}
+    data-field={field.name}
+  />
+  <p class="problem" id={`enquiry-${field.name}-problem`} data-problem={field.name} hidden></p>
+</div>
