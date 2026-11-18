@@ -98,9 +98,16 @@
 @container reading-preview (min-width: 27rem) {
   .preview-stage {
     grid-template-columns: minmax(0, 1fr);
-    inline-size: min(100%, var(--preview-panel-width));
+    inline-size: min(100% - var(--space-12), var(--preview-panel-width));
     min-block-size: var(--preview-stage-min);
-    margin-inline: auto;
+    margin-inline: var(--space-12) auto;
+  }
+  /* The rows are tighter here, and the Arabic sample fits its largest size on one line. */
+  .preview-panel .preview-card {
+    padding-block: var(--space-2);
+  }
+  :root:lang(ar) .preview-panel .reading-sample {
+    min-block-size: calc(var(--preview-sample-150) * var(--line-height) + var(--space-2) * 2);
   }
   .accessibility-orbit .orbit-rings {
     inline-size: var(--preview-rings-size);

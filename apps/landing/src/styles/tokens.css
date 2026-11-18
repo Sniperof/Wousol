@@ -54,15 +54,15 @@
   --paper-navigation-soft: #faece7;
   --paper-contrast-ink: #3d4f9e;
   --paper-contrast-soft: #e8ecfa;
-  --text-hero: clamp(2.5rem, 4.4vw, 3.75rem);
+  --text-hero: clamp(2.75rem, 4.4vw, 3.75rem);
   --text-price: clamp(1.75rem, 3vw, 2.25rem);
   --hero-weight: 600;
   --weight-regular: 400;
   --hero-tracking: -0.03em;
   --hero-line-height: 1.12;
-  --hero-title-width: 20ch;
+  --hero-title-width: 100%;
   --preview-stage-min: 22rem;
-  --preview-panel-width: 30rem;
+  --preview-panel-width: 32rem;
   --preview-rings-size: 40rem;
   --preview-focus-scale: 1.02;
   --preview-orb-compact: 6rem;
@@ -128,11 +128,12 @@
   --interpreter-arm-rest: 6deg;
   --interpreter-wrist-angle: 10deg;
   --interpreter-head-angle: 2deg;
-  --text-hero-ar: clamp(2.25rem, 4.5vw, 3.5rem);
+  --text-hero-ar: clamp(2.5rem, 4.8vw, 4rem);
   --color-footer-muted: rgb(255 255 255 / 0.88);
   --color-footer-rule: rgb(255 255 255 / 0.24);
 }
 :root:lang(ar) {
+  --hero-copy: 32rem;
   --font-sans: 'Readex Pro', Inter, Tahoma, system-ui, sans-serif;
   /* Readex Pro runs heavier than Inter, so Arabic sits half a step lighter on its variable axis. */
   --weight-regular: 350;

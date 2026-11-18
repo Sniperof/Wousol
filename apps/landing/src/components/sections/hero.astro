@@ -33,7 +33,7 @@ const messages = messagesFor(locale);
 <style>
   .hero {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    grid-template-columns: minmax(0, var(--hero-copy)) minmax(0, 1fr);
     align-items: center;
     gap: var(--space-12);
     max-inline-size: var(--hero-max);
@@ -53,12 +53,11 @@ const messages = messagesFor(locale);
   :global(html:lang(ar)) h1 {
     max-inline-size: 100%;
     font-size: var(--text-hero-ar);
-    text-wrap: wrap;
   }
-  /* Lighter than the title, so the title leads and the long description reads as support. */
+  /* Large enough to hold its own beside the art, while the title still leads. */
   .lede {
-    margin-block-start: var(--space-8);
-    font-size: var(--text-md);
+    margin-block-start: var(--space-6);
+    font-size: var(--text-lg);
     color: var(--color-marketing-muted);
   }
   .actions {
@@ -66,6 +65,12 @@ const messages = messagesFor(locale);
     flex-wrap: wrap;
     gap: var(--space-3);
     margin-block-start: var(--space-8);
+  }
+  /* Side by side, the art sits against the copy rather than centred in its wider column. */
+  @media (min-width: 64rem) {
+    .hero :global(.reading-preview) {
+      margin-inline: 0 auto;
+    }
   }
   .hero :global(.button:not(.secondary)) {
     border-color: var(--color-brand);
