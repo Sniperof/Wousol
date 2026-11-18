@@ -36,6 +36,8 @@ export const enVisit: Messages['visit'] = {
 
 export const enSign: Messages['sign'] = {
   title: 'Sign language, built into your website',
+  live: 'Live',
+  partner: 'Through MetaSign',
   intro:
     "For many Deaf people, sign language is their first language, and written text doesn't always replace it. So Wosoul adds two ways to communicate in sign language, through MetaSign.",
   cards: [

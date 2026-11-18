@@ -1,24 +1,70 @@
 ---
 import { messagesFor, type Locale } from '../../i18n';
-import InfoSection from '../ui/info-section.astro';
+import InterpreterPreview from '../ui/interpreter-preview.astro';
+import BrandText from '../ui/brand-text.astro';
+import '../../styles/sign-call.css';
+import '../../styles/sign-call-motion.css';
 interface Props {
   readonly locale: Locale;
 }
 const { locale } = Astro.props;
 const messages = messagesFor(locale);
 const words = messages.sign;
+const [call, videos] = words.cards;
+const ways = [
+  { card: call, icon: 'M3 7h11a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2H3Zm13 3 5-3v10l-5-3' },
+  { card: videos, icon: 'M3 5h18v14H3Zm7 4v6l5-3Z' },
+];
 ---
 
-<InfoSection
-  id="sign-language"
-  locale={locale}
-  title={words.title}
-  intro={words.intro}
-  cards={words.cards}
-  band
-  split="start"
->
-  <a class="button secondary" href="#request-demo" data-request-kind="demo">
-    {messages.nav.contact}
-  </a>
-</InfoSection>
+<section id="sign-language" class="section band sign" aria-labelledby="sign-language-title">
+  <div class="container sign-layout">
+    <div class="sign-copy-column">
+      <h2 id="sign-language-title">
+        <BrandText text={words.title} locale={locale} />
+      </h2>
+      <p class="sign-intro">
+        <BrandText text={words.intro} locale={locale} />
+      </p>
+      <p class="sign-partner">{words.partner}</p>
+      <a class="button secondary" href="#request-demo" data-request-kind="demo">
+        {messages.nav.contact}
+      </a>
+    </div>
+    <div class="sign-scene">
+      <div class="sign-call" aria-hidden="true">
+        <div class="sign-call-bar">
+          <span class="sign-call-dots">
+            <span></span>
+            <span></span>
+            <span></span>
+          </span>
+          <span class="sign-live">{words.live}</span>
+        </div>
+        <InterpreterPreview />
+      </div>
+      <ul class="sign-ways" role="list">
+        {ways.map(
+          ({ card, icon }) =>
+            card && (
+              <li>
+                <span class="sign-way-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" focusable="false">
+                    <path d={icon} />
+                  </svg>
+                </span>
+                <div>
+                  <h3>
+                    <BrandText text={card.title} locale={locale} />
+                  </h3>
+                  <p>
+                    <BrandText text={card.body} locale={locale} />
+                  </p>
+                </div>
+              </li>
+            ),
+        )}
+      </ul>
+    </div>
+  </div>
+</section>

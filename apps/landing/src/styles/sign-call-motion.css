@@ -1,0 +1,25 @@
+/* The interpreter signs here on its own, outside the hero's preview player. */
+.sign-call .gesture-first {
+  animation: interpreter-first-arm var(--interpreter-gesture-duration) ease-in-out infinite;
+}
+.sign-call .gesture-second {
+  animation: interpreter-second-arm var(--interpreter-gesture-duration) ease-in-out infinite;
+}
+.sign-call .gesture-hand {
+  animation: interpreter-wrist var(--interpreter-gesture-duration) ease-in-out infinite;
+}
+.sign-call .gesture-second .gesture-hand {
+  animation-delay: calc(var(--interpreter-gesture-duration) / -2);
+  animation-direction: reverse;
+}
+.sign-call .interpreter-head {
+  animation: interpreter-nod var(--interpreter-gesture-duration) ease-in-out infinite;
+}
+:root[data-reduce-motion='true'] .sign-call * {
+  animation: none !important;
+}
+@media (prefers-reduced-motion: reduce) {
+  .sign-call * {
+    animation: none !important;
+  }
+}

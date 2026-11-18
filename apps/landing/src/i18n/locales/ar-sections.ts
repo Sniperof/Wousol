@@ -36,6 +36,8 @@ export const arVisit: Messages['visit'] = {
 
 export const arSign: Messages['sign'] = {
   title: 'لغة الإشارة جزء من الموقع',
+  live: 'مباشر',
+  partner: 'عبر MetaSign',
   intro:
     'لغة الإشارة هي اللغة الأولى لكثير من الصم، والنص المكتوب لا يغني عنها دائمًا. لذلك يضيف وصول إلى الموقع طريقتين للتواصل بها، عبر MetaSign.',
   cards: [
