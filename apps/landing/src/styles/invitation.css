@@ -1,12 +1,13 @@
 /*
- * The closing call on the page's own background: the hero's blue glows on both outer sides, fading before the band
- * ends so no edge shows, the faint braille dots over the deeper one,
- * and the title, button and reply lines centred between them.
+ * The closing call on the page's own background. The braille dots carry the hero's gradient themselves: two fields of
+ * dots on the outer sides, coloured deep blue at the heart of each and fading through the mist to nothing, so the dots
+ * are the glow. The title, button and reply lines sit centred between them.
  */
 .invitation {
   --glow-end: 100%;
   --glow-start: 0%;
-  --dots-at: 88% 50%;
+  --field-end: 38rem 12rem;
+  --field-start: 32rem 11rem;
   position: relative;
   isolation: isolate;
   padding-block: var(--space-24);
@@ -15,10 +16,15 @@
 :root[dir='rtl'] .invitation {
   --glow-end: 0%;
   --glow-start: 100%;
-  --dots-at: 12% 50%;
 }
-.invitation::before,
-.invitation::after {
+/* On a phone the fields shrink to the edges, so no strong dot sits behind the text. */
+@media (max-width: 47.9375rem) {
+  .invitation {
+    --field-end: 9rem 14rem;
+    --field-start: 7rem 12rem;
+  }
+}
+.invitation::before {
   content: '';
   position: absolute;
   inset-block: 0;
@@ -26,33 +32,25 @@
   z-index: -1;
   inline-size: 100vw;
   translate: -50%;
+  background:
+    radial-gradient(
+      var(--field-end) at var(--glow-end) 50%,
+      var(--color-brand) 30%,
+      var(--hero-glow-deep) 55%,
+      transparent 82%
+    ),
+    radial-gradient(
+      var(--field-start) at var(--glow-start) 50%,
+      var(--color-brand) 15%,
+      var(--hero-glow-mist) 50%,
+      transparent 78%
+    );
+  -webkit-mask: var(--braille) 0 50% / var(--braille-size) repeat;
+  mask: var(--braille) 0 50% / var(--braille-size) repeat;
   pointer-events: none;
 }
-:root[dir='rtl'] .invitation::before,
-:root[dir='rtl'] .invitation::after {
+:root[dir='rtl'] .invitation::before {
   translate: 50%;
-}
-.invitation::before {
-  background:
-    radial-gradient(30rem 12rem at var(--glow-end) 50%, var(--hero-glow-deep), transparent 70%),
-    radial-gradient(30rem 12rem at var(--glow-start) 50%, var(--hero-glow-mist), transparent 70%);
-}
-.invitation::after {
-  background: var(--hero-braille-ink);
-  -webkit-mask-image:
-    var(--braille), radial-gradient(26rem 12rem at var(--dots-at), black 15%, transparent 70%);
-  mask-image:
-    var(--braille), radial-gradient(26rem 12rem at var(--dots-at), black 15%, transparent 70%);
-  -webkit-mask-size:
-    var(--braille-size),
-    100% 100%;
-  mask-size:
-    var(--braille-size),
-    100% 100%;
-  -webkit-mask-repeat: repeat, no-repeat;
-  mask-repeat: repeat, no-repeat;
-  -webkit-mask-composite: source-in;
-  mask-composite: intersect;
 }
 .invitation h2 {
   max-inline-size: 24ch;
