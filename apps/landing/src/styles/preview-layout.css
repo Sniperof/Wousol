@@ -1,0 +1,50 @@
+/*
+ * With room to breathe: three cards of one width on the side next to the copy, stepping in and out by one column,
+ * and the symbol on the outer side, centred on the cards with its rings around it.
+ */
+@container reading-preview (min-width: 27rem) {
+  .preview-stage {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    grid-template-rows: auto auto auto;
+    row-gap: var(--space-4);
+    column-gap: var(--space-3);
+    min-block-size: var(--preview-stage-min);
+  }
+  .sample-card {
+    grid-area: 1 / 1 / 2 / 8;
+  }
+  .voice-card {
+    grid-area: 2 / 2 / 3 / 9;
+  }
+  .sign-service {
+    grid-area: 3 / 1 / 4 / 8;
+  }
+  .accessibility-orbit {
+    grid-area: 1 / 9 / 4 / -1;
+    align-self: center;
+    justify-self: center;
+    inline-size: min(100%, var(--preview-orb-size));
+    margin-block: 0;
+  }
+  .orbit-symbol {
+    padding: var(--space-8);
+  }
+  .accessibility-orbit .orbit-rings {
+    inline-size: var(--preview-rings-size);
+  }
+}
+/* A narrower art column: the cards take one more column so each still sits on one line. */
+@container reading-preview (min-width: 27rem) and (max-width: 35rem) {
+  .sample-card {
+    grid-area: 1 / 1 / 2 / 9;
+  }
+  .voice-card {
+    grid-area: 2 / 2 / 3 / 10;
+  }
+  .sign-service {
+    grid-area: 3 / 1 / 4 / 9;
+  }
+  .accessibility-orbit {
+    grid-area: 1 / 10 / 4 / -1;
+  }
+}

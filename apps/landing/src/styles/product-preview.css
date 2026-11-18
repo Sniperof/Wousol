@@ -102,37 +102,3 @@
   border-color: var(--color-card-active-border);
   box-shadow: var(--shadow-product-active);
 }
-/* Keep the original layered composition only when its content has room to breathe. */
-@container reading-preview (min-width: 27rem) {
-  .preview-stage {
-    grid-template-columns: repeat(12, minmax(0, 1fr));
-    grid-template-rows: auto auto auto;
-    gap: var(--space-3);
-    min-block-size: var(--preview-stage-min);
-  }
-  .sample-card {
-    grid-area: 1 / 5 / 2 / 11;
-    align-self: start;
-    margin-inline-start: var(--space-4);
-  }
-  .voice-card {
-    grid-area: 2 / 7 / 3 / -1;
-    align-self: start;
-    margin-inline-start: var(--space-4);
-  }
-  .sign-service {
-    grid-area: 3 / 4 / 4 / 12;
-  }
-  .accessibility-orbit {
-    grid-area: 1 / 2 / 3 / 6;
-    justify-self: start;
-    inline-size: min(100%, var(--preview-orb-size));
-    margin-block: var(--space-8) 0;
-  }
-  .orbit-symbol {
-    padding: var(--space-8);
-  }
-  .accessibility-orbit .orbit-rings {
-    inline-size: var(--preview-rings-size);
-  }
-}

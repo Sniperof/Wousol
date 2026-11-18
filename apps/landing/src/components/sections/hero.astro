@@ -33,16 +33,15 @@ const messages = messagesFor(locale);
 <style>
   .hero {
     display: grid;
-    grid-template-columns: 0.9fr 1.2fr;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
     align-items: center;
-    gap: var(--space-8);
+    gap: var(--space-12);
     max-inline-size: calc(var(--content-max) + var(--space-16));
     padding-block: var(--space-16) var(--space-24);
   }
   .copy {
     min-inline-size: 0;
     max-inline-size: var(--hero-copy);
-    align-self: start;
   }
   h1 {
     max-inline-size: var(--hero-title-width);
@@ -56,9 +55,10 @@ const messages = messagesFor(locale);
     font-size: var(--text-hero-ar);
     text-wrap: wrap;
   }
+  /* Lighter than the title, so the title leads and the long description reads as support. */
   .lede {
-    font-size: var(--text-lg);
-    font-weight: var(--weight-medium);
+    margin-block-start: var(--space-8);
+    font-size: var(--text-md);
     color: var(--color-marketing-muted);
   }
   .actions {

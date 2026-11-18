@@ -62,12 +62,12 @@
   --hero-line-height: 1.12;
   --hero-title-width: 20ch;
   --preview-stage-min: 22rem;
-  --preview-orb-size: 8.5rem;
+  --preview-orb-size: 7.5rem;
   --preview-rings-size: 28rem;
   --preview-orb-compact: 9.5rem;
   --preview-rings-compact: 25rem;
   --hero-art-size: 40rem;
-  --hero-copy: 36rem;
+  --hero-copy: 34rem;
   --pricing-card-min: min(14rem, calc(100vw - var(--space-8) - var(--space-2)));
   --pricing-card-max: 18rem;
   --pricing-section-max: 88rem;
@@ -121,8 +121,8 @@
   --character-shadow-origin: 76px 144px;
   --character-spark-origin: 136px 68px;
   --character-blink-scale: 0.12;
-  --sign-copy-min: 12rem;
-  --interpreter-preview-width: 8.5rem;
+  --sign-copy-min: 9rem;
+  --interpreter-preview-width: 7rem;
   --interpreter-gesture-duration: 3200ms;
   --interpreter-arm-angle: 16deg;
   --interpreter-arm-rest: 6deg;
