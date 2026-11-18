@@ -29,6 +29,7 @@ export const en: Messages = {
   },
   preview: {
     textSize: 'Bigger text',
+    panelTitle: 'The Wosoul menu',
     textSizeHint: 'Next text size: {next}.',
     title: 'A page that feels right.',
     body: 'Bigger text and wider spacing for comfortable reading',

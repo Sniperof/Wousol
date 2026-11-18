@@ -29,6 +29,7 @@ export const ar: Messages = {
   },
   preview: {
     textSize: 'تكبير النص',
+    panelTitle: 'قائمة وصول',
     textSizeHint: 'حجم النص التالي: {next}.',
     title: 'صفحة تناسبك.',
     body: 'نص أكبر وتباعد أوسع لقراءة مريحة',

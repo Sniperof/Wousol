@@ -62,9 +62,9 @@
   --hero-line-height: 1.12;
   --hero-title-width: 20ch;
   --preview-stage-min: 22rem;
-  --preview-orb-size: 7.5rem;
-  --preview-rings-size: 28rem;
-  --preview-orb-compact: 9.5rem;
+  --preview-panel-width: 26rem;
+  --preview-launcher-size: 4.5rem;
+  --preview-orb-compact: 6rem;
   --preview-rings-compact: 25rem;
   --hero-art-size: 40rem;
   --hero-copy: 34rem;

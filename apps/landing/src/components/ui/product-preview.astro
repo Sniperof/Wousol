@@ -1,4 +1,5 @@
 ---
+import blueLogo from '@dap/design-tokens/brand/blue.webp?url';
 import { messagesFor, type Locale } from '../../i18n';
 import { pricingFeatures } from '../../i18n/pricing';
 import ReadAloudCard from './read-aloud-card.astro';
@@ -44,44 +45,50 @@ const features = pricingFeatures(locale);
         />
       </svg>
     </div>
-    <div class="preview-card sample-card" data-animate>
-      <button
-        type="button"
-        class="preview-control"
-        data-preference="text"
-        aria-controls="hero-reading-sample"
-        aria-describedby="hero-text-size-hint"
-        disabled
-      >
-        <span class="preference-icon" aria-hidden="true">
-          Aa
-        </span>{' '}
-        <span>{words.textSize}</span>{' '}
-        <span class="preview-percentage" data-text-size-value>
-          {new Intl.NumberFormat(locale, { style: 'percent' }).format(1)}
-        </span>
-      </button>
-      <span id="hero-text-size-hint" class="visually-hidden" data-text-size-hint></span>
-      <button
-        type="button"
-        class="preview-control"
-        data-preference="guide"
-        aria-pressed="false"
-        aria-controls="hero-reading-sample"
-        disabled
-      >
-        <span class="preference-icon" aria-hidden="true">
-          ≡
-        </span>
-        <span>{features['reading-guide']}</span>
-        <span class="preview-switch" aria-hidden="true"></span>
-      </button>
-      <div class="reading-sample" id="hero-reading-sample">
-        <p class="sample-copy">{words.body}</p>
+    <div class="preview-panel" data-animate>
+      <p class="panel-head">
+        <img src={blueLogo} alt="" width="512" height="512" />
+        {words.panelTitle}
+      </p>
+      <div class="preview-card sample-card" data-animate>
+        <button
+          type="button"
+          class="preview-control"
+          data-preference="text"
+          aria-controls="hero-reading-sample"
+          aria-describedby="hero-text-size-hint"
+          disabled
+        >
+          <span class="preference-icon" aria-hidden="true">
+            Aa
+          </span>{' '}
+          <span>{words.textSize}</span>{' '}
+          <span class="preview-percentage" data-text-size-value>
+            {new Intl.NumberFormat(locale, { style: 'percent' }).format(1)}
+          </span>
+        </button>
+        <span id="hero-text-size-hint" class="visually-hidden" data-text-size-hint></span>
+        <button
+          type="button"
+          class="preview-control"
+          data-preference="guide"
+          aria-pressed="false"
+          aria-controls="hero-reading-sample"
+          disabled
+        >
+          <span class="preference-icon" aria-hidden="true">
+            ≡
+          </span>
+          <span>{features['reading-guide']}</span>
+          <span class="preview-switch" aria-hidden="true"></span>
+        </button>
+        <div class="reading-sample" id="hero-reading-sample">
+          <p class="sample-copy">{words.body}</p>
+        </div>
       </div>
+      <ReadAloudCard locale={locale} />
+      <SignLanguageCard locale={locale} />
     </div>
-    <ReadAloudCard locale={locale} />
-    <SignLanguageCard locale={locale} />
   </div>
 </figure>
 <script>

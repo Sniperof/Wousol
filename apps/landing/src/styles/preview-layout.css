@@ -1,50 +1,81 @@
 /*
- * With room to breathe: three cards of one width on the side next to the copy, stepping in and out by one column,
- * and the symbol on the outer side, centred on the cards with its rings around it.
+ * The hero art as one Wosoul menu: a single panel holding the three features as rows, and the symbol as the
+ * launcher button that opens it, sitting on the panel's outer corner with its rings behind the panel.
  */
+.preview-panel {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  min-inline-size: 0;
+  padding: var(--space-3);
+  border: var(--border-width) solid var(--color-card-border);
+  border-radius: var(--radius-lg);
+  background: var(--color-preview-paper);
+  backdrop-filter: blur(var(--preview-glass-blur));
+  -webkit-backdrop-filter: blur(var(--preview-glass-blur));
+  box-shadow: var(--shadow-product);
+}
+.panel-head {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin: 0;
+  padding: var(--space-2) var(--space-3) var(--space-3);
+  color: var(--color-hero-ink);
+  font-weight: var(--weight-strong);
+}
+.panel-head img {
+  inline-size: var(--icon-size);
+  block-size: var(--icon-size);
+}
+.preview-panel .preview-card {
+  border: 0;
+  border-block-start: var(--border-width) solid var(--color-card-border);
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+.reading-preview[data-text='true'] .preview-panel .sample-card,
+.reading-preview[data-voice='true'] .preview-panel .voice-card,
+.reading-preview[data-speaking='true'] .preview-panel .voice-card,
+.reading-preview[data-guide='true'] .preview-panel .sign-service {
+  border-radius: var(--radius);
+  background: var(--color-selected);
+  box-shadow: none;
+}
+.reading-preview[data-entered='true'] .preview-panel {
+  animation: preview-arrive var(--preview-enter) var(--preview-ease) both;
+}
+.reading-preview[data-autoplay='stopped'] .preview-panel {
+  animation: none;
+}
+.accessibility-orbit .orbit-rings {
+  z-index: 0;
+}
+.accessibility-orbit .orbit-symbol {
+  z-index: 3;
+}
 @container reading-preview (min-width: 27rem) {
   .preview-stage {
-    grid-template-columns: repeat(12, minmax(0, 1fr));
-    grid-template-rows: auto auto auto;
-    row-gap: var(--space-4);
-    column-gap: var(--space-3);
+    grid-template-columns: minmax(0, 1fr);
+    inline-size: min(100%, var(--preview-panel-width));
     min-block-size: var(--preview-stage-min);
+    margin-inline: auto;
   }
-  .sample-card {
-    grid-area: 1 / 1 / 2 / 8;
-  }
-  .voice-card {
-    grid-area: 2 / 2 / 3 / 9;
-  }
-  .sign-service {
-    grid-area: 3 / 1 / 4 / 8;
+  .preview-panel,
+  .accessibility-orbit {
+    grid-area: 1 / 1;
   }
   .accessibility-orbit {
-    grid-area: 1 / 9 / 4 / -1;
-    align-self: center;
-    justify-self: center;
-    inline-size: min(100%, var(--preview-orb-size));
-    margin-block: 0;
+    align-self: end;
+    justify-self: end;
+    inline-size: var(--preview-launcher-size);
+    margin-block-end: calc(-1 * var(--space-6));
+    margin-inline-end: calc(-1 * var(--space-6));
   }
   .orbit-symbol {
-    padding: var(--space-8);
-  }
-  .accessibility-orbit .orbit-rings {
-    inline-size: var(--preview-rings-size);
-  }
-}
-/* A narrower art column: the cards take one more column so each still sits on one line. */
-@container reading-preview (min-width: 27rem) and (max-width: 35rem) {
-  .sample-card {
-    grid-area: 1 / 1 / 2 / 9;
-  }
-  .voice-card {
-    grid-area: 2 / 2 / 3 / 10;
-  }
-  .sign-service {
-    grid-area: 3 / 1 / 4 / 9;
-  }
-  .accessibility-orbit {
-    grid-area: 1 / 10 / 4 / -1;
+    padding: var(--space-4);
   }
 }
