@@ -1,0 +1,64 @@
+/* The sky starts behind the floating header, so the header seems to float on it. */
+.hero-surface {
+  --glow-end: 100%;
+  --glow-start: 0%;
+  --glow-art: 72%;
+  --deep-size: 56rem 38rem;
+  --soft-at: var(--glow-art) 70%;
+  --dots-at: var(--glow-art) 50%;
+  --dots-size: 28rem 20rem;
+  /* The dots are braille: «Wosoul» here, «وصول» on the Arabic page. */
+  --braille: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='16'%3E%3Ccircle cx='3' cy='7' r='1.2'/%3E%3Ccircle cx='7' cy='3' r='1.2'/%3E%3Ccircle cx='7' cy='7' r='1.2'/%3E%3Ccircle cx='7' cy='11' r='1.2'/%3E%3Ccircle cx='13' cy='3' r='1.2'/%3E%3Ccircle cx='13' cy='11' r='1.2'/%3E%3Ccircle cx='17' cy='7' r='1.2'/%3E%3Ccircle cx='23' cy='7' r='1.2'/%3E%3Ccircle cx='23' cy='11' r='1.2'/%3E%3Ccircle cx='27' cy='3' r='1.2'/%3E%3Ccircle cx='33' cy='3' r='1.2'/%3E%3Ccircle cx='33' cy='11' r='1.2'/%3E%3Ccircle cx='37' cy='7' r='1.2'/%3E%3Ccircle cx='43' cy='3' r='1.2'/%3E%3Ccircle cx='43' cy='11' r='1.2'/%3E%3Ccircle cx='47' cy='11' r='1.2'/%3E%3Ccircle cx='53' cy='3' r='1.2'/%3E%3Ccircle cx='53' cy='7' r='1.2'/%3E%3Ccircle cx='53' cy='11' r='1.2'/%3E%3C/svg%3E");
+  --braille-size: 90px 24px;
+  position: relative;
+  isolation: isolate;
+  margin-block-start: calc(-1 * var(--header-offset));
+  padding-block-start: var(--header-offset);
+  color: var(--color-hero-ink);
+  background:
+    radial-gradient(var(--deep-size) at var(--glow-end) 0%, var(--hero-glow-deep), transparent 70%),
+    radial-gradient(34rem 26rem at var(--soft-at), var(--hero-glow-soft), transparent 70%),
+    radial-gradient(30rem 22rem at var(--glow-start) 0%, var(--hero-glow-mist), transparent 70%),
+    linear-gradient(var(--hero-sky-top), var(--color-hero-surface) 60%, var(--color-bg));
+  overflow-x: clip;
+}
+html[dir='rtl'] .hero-surface {
+  --glow-end: 0%;
+  --glow-start: 100%;
+  --glow-art: 28%;
+}
+html:lang(ar) .hero-surface {
+  --braille: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='16'%3E%3Ccircle cx='3' cy='7' r='1.2'/%3E%3Ccircle cx='7' cy='3' r='1.2'/%3E%3Ccircle cx='7' cy='7' r='1.2'/%3E%3Ccircle cx='7' cy='11' r='1.2'/%3E%3Ccircle cx='13' cy='3' r='1.2'/%3E%3Ccircle cx='13' cy='7' r='1.2'/%3E%3Ccircle cx='13' cy='11' r='1.2'/%3E%3Ccircle cx='17' cy='3' r='1.2'/%3E%3Ccircle cx='17' cy='11' r='1.2'/%3E%3Ccircle cx='23' cy='7' r='1.2'/%3E%3Ccircle cx='27' cy='3' r='1.2'/%3E%3Ccircle cx='27' cy='7' r='1.2'/%3E%3Ccircle cx='27' cy='11' r='1.2'/%3E%3Ccircle cx='33' cy='3' r='1.2'/%3E%3Ccircle cx='33' cy='7' r='1.2'/%3E%3Ccircle cx='33' cy='11' r='1.2'/%3E%3C/svg%3E");
+  --braille-size: 60px 24px;
+}
+.hero-surface::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--hero-braille-ink);
+  pointer-events: none;
+  -webkit-mask-image:
+    var(--braille), radial-gradient(var(--dots-size) at var(--dots-at), black 25%, transparent 75%);
+  mask-image:
+    var(--braille), radial-gradient(var(--dots-size) at var(--dots-at), black 25%, transparent 75%);
+  -webkit-mask-size:
+    var(--braille-size),
+    100% 100%;
+  mask-size:
+    var(--braille-size),
+    100% 100%;
+  -webkit-mask-repeat: repeat, no-repeat;
+  mask-repeat: repeat, no-repeat;
+  -webkit-mask-composite: source-in;
+  mask-composite: intersect;
+}
+@media (max-width: 63.9375rem) {
+  /* One column: the glow stays in the top corner and the dots sit behind the art, clear of the text. */
+  .hero-surface {
+    --deep-size: 22rem 14rem;
+    --soft-at: 50% 100%;
+    --dots-at: 50% 88%;
+    --dots-size: 22rem 16rem;
+  }
+}

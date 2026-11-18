@@ -25,6 +25,12 @@
   --color-marketing-muted: #58657c;
   --color-preview-glass: rgb(255 255 255 / 0.64);
   --color-preview-paper: rgb(255 255 255 / 0.9);
+  /* The hero sky: our blues only, deepest in the top corner and fading to the page. */
+  --hero-sky-top: #e9f0ff;
+  --hero-glow-deep: rgb(0 71 255 / 0.55);
+  --hero-glow-soft: rgb(52 117 255 / 0.24);
+  --hero-glow-mist: rgb(126 160 255 / 0.42);
+  --hero-braille-ink: rgb(0 71 255 / 0.22);
   --color-ring-fill: rgb(0 72 255 / 0.035);
   --color-ring-stroke: rgb(0 72 255 / 0.22);
   --color-orb-end: #3475ff;
@@ -54,7 +60,6 @@
   --hero-tracking: -0.03em;
   --hero-line-height: 1.12;
   --hero-title-width: 20ch;
-  --hero-curve: 50% 3rem;
   --preview-stage-min: 22rem;
   --preview-orb-size: 8.5rem;
   --preview-rings-size: 28rem;

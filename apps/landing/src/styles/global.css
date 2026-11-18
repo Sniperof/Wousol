@@ -11,11 +11,7 @@ html {
 }
 body {
   margin: 0;
-  /* The hero's soft surface starts behind the floating header. */
-  background:
-    linear-gradient(var(--color-hero-surface), var(--color-hero-surface)) top / 100%
-      var(--header-offset) no-repeat,
-    var(--color-bg);
+  background: var(--color-bg);
   color: var(--color-text);
   font-family: var(--font-sans);
   font-size: var(--text-md);

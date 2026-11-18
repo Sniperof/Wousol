@@ -3,6 +3,7 @@ import { messagesFor, type Locale } from '../../i18n';
 import DemoLink from '../ui/demo-link.astro';
 import ProductPreview from '../ui/product-preview.astro';
 import BrandText from '../ui/brand-text.astro';
+import '../../styles/hero-sky.css';
 interface Props {
   readonly locale: Locale;
 }
@@ -30,13 +31,6 @@ const messages = messagesFor(locale);
   </section>
 </div>
 <style>
-  .hero-surface {
-    color: var(--color-hero-ink);
-    background: var(--color-hero-surface);
-    border-end-start-radius: var(--hero-curve);
-    border-end-end-radius: var(--hero-curve);
-    overflow-x: clip;
-  }
   .hero {
     display: grid;
     grid-template-columns: 0.9fr 1.2fr;
