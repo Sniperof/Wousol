@@ -102,7 +102,7 @@
     grid-template-columns: minmax(0, 1fr);
     inline-size: min(100% - var(--space-12), var(--preview-panel-width));
     min-block-size: var(--preview-stage-min);
-    margin-inline: var(--space-12) auto;
+    margin-inline: auto 0;
   }
   /* The rows are tighter here, and the Arabic sample fits its largest size on one line. */
   .preview-panel .preview-card {

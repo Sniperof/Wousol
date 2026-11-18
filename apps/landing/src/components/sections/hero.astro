@@ -75,10 +75,10 @@ const titleLines = messages.hero.title.split('\n');
     gap: var(--space-3);
     margin-block-start: var(--space-8);
   }
-  /* Side by side, the art sits against the copy rather than centred in its wider column. */
+  /* Side by side, the art sits on the outer edge, in line with the header bar's edge. */
   @media (min-width: 64rem) {
     .hero :global(.reading-preview) {
-      margin-inline: 0 auto;
+      margin-inline: auto 0;
     }
   }
   .hero :global(.button:not(.secondary)) {
