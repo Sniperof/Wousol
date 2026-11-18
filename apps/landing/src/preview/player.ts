@@ -1,12 +1,17 @@
 import { setAllPreferences, setPreference, togglePreference, type Preference } from './controls';
 
-const steps = ['text', 'voice', 'guide'] as const;
+/**
+ * One feature at a time: each step turns a single feature on (its row rises and its own animation plays for the
+ * hold time), then everything rests for the short delay before the next. Steps never pile up.
+ */
+const steps = ['text', 'voice', 'sign'] as const;
+type Step = (typeof steps)[number];
 interface State {
   readonly root: HTMLElement;
   readonly delay: number;
   readonly hold: number;
   timer: ReturnType<typeof setTimeout> | undefined;
-  step: number;
+  position: number;
   active: boolean;
   automatic: boolean;
   reduced: boolean;
@@ -31,22 +36,29 @@ function stop(state: State): void {
   clearTimer(state);
   sync(state);
 }
-function reset(state: State, final = false): void {
+function clear(state: State, final = false): void {
   setAllPreferences(state.root, final);
   state.root.dataset.voice = String(final);
+  state.root.dataset.sign = String(final);
   delete state.root.dataset.focus;
-  state.step = final ? steps.length : 0;
 }
+function reset(state: State, final = false): void {
+  clear(state, final);
+  state.position = 0;
+}
+function show(state: State, name: Step | undefined): void {
+  clear(state);
+  if (!name) return;
+  if (name === 'text') setPreference(state.root, 'text', true);
+  else state.root.dataset[name] = 'true';
+  state.root.dataset.focus = name;
+}
+/** Even positions show a step, odd positions rest between steps. */
 function advance(state: State): void {
   state.timer = undefined;
-  const name = steps[state.step];
-  if (name) {
-    if (name === 'voice') state.root.dataset.voice = 'true';
-    else setPreference(state.root, name, true);
-    // The step just shown is the one the art brings forward; the others rest.
-    state.root.dataset.focus = name;
-    state.step += 1;
-  } else reset(state);
+  const position = state.position;
+  show(state, position % 2 === 0 ? steps[position / 2] : undefined);
+  state.position = (position + 1) % (steps.length * 2);
   schedule(state);
 }
 function schedule(state: State): void {
@@ -56,7 +68,7 @@ function schedule(state: State): void {
     () => {
       advance(state);
     },
-    state.step === steps.length ? state.hold : state.delay,
+    state.position % 2 === 1 ? state.hold : state.delay,
   );
 }
 function environment(state: State, active: boolean, reduced: boolean): void {
@@ -78,7 +90,7 @@ export function createPreviewPlayer(root: HTMLElement): PreviewPlayer {
     delay: timing(root, '--preview-step-ms', 1200),
     hold: timing(root, '--preview-hold-ms', 2400),
     timer: undefined,
-    step: 0,
+    position: 0,
     active: false,
     automatic: !root.dataset.autoplay || root.dataset.autoplay === 'running',
     reduced: false,

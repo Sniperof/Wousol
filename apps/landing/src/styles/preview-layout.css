@@ -23,7 +23,7 @@
   z-index: 2;
   display: grid;
   min-inline-size: 0;
-  padding: var(--space-3);
+  padding: var(--space-4);
   border: var(--border-width) solid var(--color-card-border);
   border-radius: var(--radius-lg);
   background: var(--color-preview-paper);
@@ -78,7 +78,7 @@
 }
 .reading-preview[data-focus='text'] .preview-panel .sample-card,
 .reading-preview[data-focus='voice'] .preview-panel .voice-card,
-.reading-preview[data-focus='guide'] .preview-panel .sign-service {
+.reading-preview[data-focus='sign'] .preview-panel .sign-service {
   z-index: 3;
   border-block-start-color: transparent;
   background: var(--color-preview-glass);

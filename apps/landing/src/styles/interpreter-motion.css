@@ -35,7 +35,9 @@
   animation: interpreter-nod var(--interpreter-gesture-duration) ease-in-out infinite;
 }
 .reading-preview:not([data-playing='true']) .interpreter-preview [data-animate],
-.reading-preview[data-playing='true']:not([data-guide='true']) .interpreter-preview [data-animate] {
+.reading-preview[data-playing='true']:not([data-guide='true']):not([data-sign='true'])
+  .interpreter-preview
+  [data-animate] {
   animation-play-state: paused;
 }
 @keyframes interpreter-first-arm {
