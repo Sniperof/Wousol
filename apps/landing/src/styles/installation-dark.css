@@ -14,6 +14,7 @@
 [data-installation].dark-band {
   --glow-end: 100%;
   --glow-start: 0%;
+  --dots-at: 72% 50%;
   position: relative;
   isolation: isolate;
   padding-block: var(--space-16);
@@ -43,8 +44,38 @@
 :root[dir='rtl'] [data-installation].dark-band {
   --glow-end: 0%;
   --glow-start: 100%;
+  --dots-at: 28% 50%;
 }
 :root[dir='rtl'] [data-installation].dark-band::before {
+  translate: 50%;
+}
+/* The hero's braille dots, faint, behind the preview side: the dark bands share the page's signature. */
+[data-installation].dark-band::after {
+  content: '';
+  position: absolute;
+  inset-block: 0;
+  inset-inline-start: 50%;
+  z-index: -1;
+  inline-size: 100vw;
+  translate: -50%;
+  background: var(--color-invitation-braille);
+  pointer-events: none;
+  -webkit-mask-image:
+    var(--braille), radial-gradient(34rem 26rem at var(--dots-at), black 15%, transparent 70%);
+  mask-image:
+    var(--braille), radial-gradient(34rem 26rem at var(--dots-at), black 15%, transparent 70%);
+  -webkit-mask-size:
+    var(--braille-size),
+    100% 100%;
+  mask-size:
+    var(--braille-size),
+    100% 100%;
+  -webkit-mask-repeat: repeat, no-repeat;
+  mask-repeat: repeat, no-repeat;
+  -webkit-mask-composite: source-in;
+  mask-composite: intersect;
+}
+:root[dir='rtl'] [data-installation].dark-band::after {
   translate: 50%;
 }
 .dark-band .installation-copy {
