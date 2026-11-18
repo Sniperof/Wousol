@@ -39,7 +39,7 @@
   display: grid;
   place-items: center;
   justify-self: center;
-  inline-size: var(--preview-orb-compact);
+  inline-size: 1px;
   max-inline-size: 100%;
   aspect-ratio: 1;
   margin-block: var(--space-8);

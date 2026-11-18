@@ -1,6 +1,6 @@
 /*
- * The hero art as one Wosoul menu: a single panel holding the three features as rows, with the rings centred behind
- * it. The autoplay brings one feature forward at a time as a floating glass row that rises and settles back; the
+ * The hero art as one Wosoul menu: a single panel holding the three features as rows, with the rings rising from its
+ * lower outer edge (left in Arabic, right in English). The autoplay brings one feature forward at a time as a floating glass row that rises and settles back; the
  * panel itself never changes size.
  */
 .preview-stage > .preview-panel,
@@ -8,9 +8,10 @@
   grid-area: 1 / 1;
 }
 .accessibility-orbit {
-  place-self: center;
+  align-self: end;
+  justify-self: end;
   inline-size: 1px;
-  margin: 0;
+  margin: 0 0 var(--preview-rings-lift);
 }
 .accessibility-orbit .orbit-symbol {
   display: none;
