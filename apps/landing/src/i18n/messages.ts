@@ -23,6 +23,7 @@ export interface Messages {
     readonly label: string;
   };
   readonly hero: {
+    /** A line break splits the lead-in from the promise. */
     readonly title: string;
     readonly lede: string;
   };

@@ -24,7 +24,7 @@ export const en: Messages = {
       'Wosoul is a website accessibility widget: visitors adjust text, colors, sound, and navigation, and reach a sign language interpreter through MetaSign.',
   },
   hero: {
-    title: 'With Wosoul, your website is closer to everyone',
+    title: 'With Wosoul,\nyour website is closer to everyone',
     lede: 'Wosoul is a widget dedicated to digital accessibility. It makes websites and online services easier for everyone to use, including people with disabilities and older adults.',
   },
   preview: {

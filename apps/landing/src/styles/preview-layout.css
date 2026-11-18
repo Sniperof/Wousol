@@ -8,16 +8,20 @@
   grid-area: 1 / 1;
 }
 .accessibility-orbit {
+  --rings-now: var(--preview-rings-compact);
   align-self: end;
   justify-self: end;
   inline-size: 1px;
-  margin: 0 0 var(--preview-rings-lift);
+  /* The outer ring's radius is 275/600 of the rings' width. Pulling the centre in by a third of that radius
+     leaves a third of the circle's diameter outside the card. */
+  margin-block: 0 var(--preview-rings-lift);
+  margin-inline: 0 calc(var(--rings-now) * 275 / 1800);
 }
 .accessibility-orbit .orbit-symbol {
   display: none;
 }
 .accessibility-orbit .orbit-rings {
-  inline-size: var(--preview-rings-compact);
+  inline-size: var(--rings-now);
 }
 .preview-panel {
   position: relative;
@@ -67,12 +71,9 @@
   inline-size: auto;
   padding-inline: var(--space-4);
 }
-/* The read-aloud status keeps its line even when empty, so a message never pushes the panel taller. */
-.preview-panel .voice-status,
-.preview-panel .voice-status:empty {
-  display: block;
-  min-block-size: calc(var(--text-sm) * var(--line-height));
-  margin-block: var(--space-2) 0;
+/* The panel is display-only, so the read-aloud status never speaks; it takes no room. */
+.preview-panel .voice-status {
+  display: none;
 }
 .preview-panel .preview-card:first-child {
   border-block-start-color: transparent;
@@ -110,7 +111,7 @@
   :root:lang(ar) .preview-panel .reading-sample {
     min-block-size: calc(var(--preview-sample-150) * var(--line-height) + var(--space-2) * 2);
   }
-  .accessibility-orbit .orbit-rings {
-    inline-size: var(--preview-rings-size);
+  .accessibility-orbit {
+    --rings-now: var(--preview-rings-size);
   }
 }

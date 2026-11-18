@@ -9,13 +9,18 @@ interface Props {
 }
 const { locale } = Astro.props;
 const messages = messagesFor(locale);
+const titleLines = messages.hero.title.split('\n');
 ---
 
 <div class="hero-surface">
   <section class="hero container" aria-labelledby="hero-title">
     <div class="copy">
       <h1 id="hero-title">
-        <BrandText text={messages.hero.title} locale={locale} />
+        {titleLines.map((line) => (
+          <span class="title-line">
+            <BrandText text={line} locale={locale} />
+          </span>
+        ))}
       </h1>
       <p class="lede">
         <BrandText text={messages.hero.lede} locale={locale} />
@@ -49,6 +54,9 @@ const messages = messagesFor(locale);
     line-height: var(--hero-line-height);
     letter-spacing: var(--hero-tracking);
     text-wrap: balance;
+  }
+  .title-line {
+    display: block;
   }
   :global(html:lang(ar)) h1 {
     max-inline-size: 100%;

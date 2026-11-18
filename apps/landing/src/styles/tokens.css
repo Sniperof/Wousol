@@ -54,7 +54,7 @@
   --paper-navigation-soft: #faece7;
   --paper-contrast-ink: #3d4f9e;
   --paper-contrast-soft: #e8ecfa;
-  --text-hero: clamp(2.75rem, 4.4vw, 3.75rem);
+  --text-hero: clamp(2rem, 2.9vw, 2.625rem);
   --text-price: clamp(1.75rem, 3vw, 2.25rem);
   --hero-weight: 600;
   --weight-regular: 400;
@@ -128,7 +128,7 @@
   --interpreter-arm-rest: 6deg;
   --interpreter-wrist-angle: 10deg;
   --interpreter-head-angle: 2deg;
-  --text-hero-ar: clamp(2.5rem, 4.8vw, 4rem);
+  --text-hero-ar: clamp(2rem, 3.4vw, 3rem);
   --color-footer-muted: rgb(255 255 255 / 0.88);
   --color-footer-rule: rgb(255 255 255 / 0.24);
 }
