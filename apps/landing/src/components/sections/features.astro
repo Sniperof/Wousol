@@ -35,7 +35,14 @@ const lastCard = words.cards.length - 1;
             <BrandText text={card.body} locale={locale} />
           </p>
           <p class="need-helps">{card.helps}</p>
-          {index === lastCard && <a href="#sign-language">{words.signLink}</a>}
+          {index === lastCard && (
+            <a class="need-link" href="#sign-language">
+              {words.signLink}
+              <span class="need-arrow" aria-hidden="true">
+                ←
+              </span>
+            </a>
+          )}
         </div>
       </li>
     ))}
@@ -48,9 +55,70 @@ const lastCard = words.cards.length - 1;
   .need-grid {
     --card-min: var(--solution-card-min);
   }
+  .need-grid > li {
+    padding: var(--space-5);
+    background: var(--color-card-tint);
+  }
+  /* The description fills its row, so who it helps and the link always sit at the bottom of the card. */
+  .visitor-description {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    block-size: 100%;
+  }
   .need-helps {
-    margin-block-start: var(--space-3);
+    align-self: start;
+    margin-block-start: auto;
+    padding: var(--space-1) var(--space-3);
+    border: var(--border-width) solid var(--color-card-border);
+    border-radius: var(--radius-sm);
+    background: var(--color-surface);
     font-size: var(--text-sm);
+  }
+  .need-link {
+    gap: var(--space-2);
+    align-self: start;
+    font-weight: var(--weight-strong);
+    text-decoration: none;
+  }
+  .need-link:hover {
+    text-decoration: underline;
+  }
+  :global(html[dir='ltr']) .need-arrow {
+    transform: scaleX(-1);
+  }
+  /* Wide screens: three cards, then two wider ones, so the grid has no empty cell. */
+  @media (min-width: 64rem) {
+    .need-grid {
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+    }
+    .need-grid > li {
+      grid-column: span 2;
+    }
+    /* The two wide cards set the drawing beside the text, which keeps the section close to one screen tall. */
+    .need-grid > li:nth-child(n + 4) {
+      grid-column: span 3;
+      grid-row: auto;
+      grid-template-columns: var(--character-art-width) minmax(0, 1fr);
+      grid-template-rows: auto 1fr;
+      column-gap: var(--space-5);
+    }
+    .need-grid > li:nth-child(n + 4) > :global(.character-scene) {
+      grid-area: 1 / 1 / 3 / 2;
+      align-self: center;
+    }
+    .need-grid > li:nth-child(n + 4) > h3 {
+      grid-area: 1 / 2;
+    }
+    .need-grid > li:nth-child(n + 4) > .visitor-description {
+      grid-area: 2 / 2;
+    }
+  }
+  /* Narrower screens: a lone last card takes the whole row instead of leaving a gap beside it. */
+  @media (max-width: 63.9375rem) {
+    .need-grid > li:last-child:nth-child(odd) {
+      grid-column: 1 / -1;
+    }
   }
   @media (max-width: 47.9375rem) {
     .section {

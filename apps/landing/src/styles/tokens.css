@@ -15,13 +15,6 @@
   --color-focus: var(--color-brand);
   --color-hero-surface: #f4f7ff;
   --color-hero-ink: #14213d;
-  /* The dark band: a deeper shade of the navy ink, with light text and a lighter blue for the brand name. */
-  --color-dark-surface: #0b1633;
-  --color-dark-raised: #1a2850;
-  --color-dark-ink: #ffffff;
-  --color-dark-muted: rgb(255 255 255 / 0.78);
-  --color-dark-rule: rgb(255 255 255 / 0.16);
-  --color-dark-accent: #9db7ff;
   --color-marketing-muted: #58657c;
   --color-preview-glass: rgb(255 255 255 / 0.64);
   --color-preview-paper: rgb(255 255 255 / 0.9);
@@ -55,6 +48,9 @@
   --paper-contrast-ink: #3d4f9e;
   --paper-contrast-soft: #e8ecfa;
   --text-hero: clamp(2rem, 2.9vw, 2.625rem);
+  /* Section titles sit clearly below the hero title. */
+  --text-display: 2.25rem;
+  --color-card-tint: color-mix(in srgb, var(--color-hero-surface) 60%, var(--color-surface));
   --text-price: clamp(1.75rem, 3vw, 2.25rem);
   --hero-weight: 600;
   --weight-regular: 400;
@@ -92,8 +88,8 @@
   --installation-controls-min: 11rem;
   --installation-start-scale: 0.94;
   --installation-reading-start-scale: 0.8;
-  --character-art-height: 10rem;
-  --character-art-width: 15rem;
+  --character-art-height: 7.5rem;
+  --character-art-width: 11.25rem;
   --character-limb-width: 11;
   --illustration-stroke: 2;
   --illustration-line: 4;
