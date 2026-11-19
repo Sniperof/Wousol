@@ -1,0 +1,124 @@
+/*
+ * The request dialog: a light-sky panel on the start side (title, reply time, privacy, the email fallback, all on the
+ * plain sky at the top so they keep their contrast; the glows and dots fill the empty foot) and the
+ * form beside it, compact enough that the send button is in view on a laptop screen. On a phone the panel becomes the
+ * sheet's short header. The fields themselves are styled in enquiry-form.css.
+ */
+.enquiry-dialog {
+  inline-size: min(60rem, calc(100% - var(--space-8)));
+}
+.enquiry-layout {
+  display: grid;
+  grid-template-columns: 17rem minmax(0, 1fr);
+  min-block-size: 0;
+  flex: 1 1 auto;
+}
+.enquiry-aside {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding: var(--space-8) var(--space-6);
+  overflow: hidden;
+  background:
+    radial-gradient(18rem 12rem at 0% 100%, var(--hero-glow-mist), transparent 70%),
+    radial-gradient(16rem 12rem at 100% 100%, var(--hero-glow-deep), transparent 70%),
+    var(--color-hero-surface);
+  color: var(--color-marketing-muted);
+}
+.enquiry-aside::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: color-mix(in srgb, var(--color-brand) 12%, transparent);
+  -webkit-mask:
+    var(--braille) 0 0 / var(--braille-size) repeat,
+    linear-gradient(transparent 60%, black);
+  -webkit-mask-composite: source-in;
+  mask:
+    var(--braille) 0 0 / var(--braille-size) repeat,
+    linear-gradient(transparent 60%, black);
+  mask-composite: intersect;
+}
+.enquiry .enquiry-aside h3 {
+  margin-block-end: var(--space-2);
+  padding: 0;
+  color: var(--color-hero-ink);
+  font-size: var(--text-section);
+}
+.enquiry-aside p {
+  margin: 0;
+}
+.enquiry-aside .enquiry-badge {
+  align-self: start;
+  padding: var(--space-1) var(--space-3);
+  border: var(--border-width) solid var(--color-card-active-border);
+  border-radius: var(--radius-full);
+  background: var(--color-surface);
+  color: var(--color-brand);
+  font-size: var(--text-sm);
+}
+.enquiry-aside .enquiry-mail {
+  display: grid;
+  gap: var(--space-1);
+  font-size: var(--text-sm);
+}
+.enquiry-mail a {
+  font-weight: var(--weight-strong);
+}
+.modal-dialog .enquiry-main {
+  padding: var(--space-6) var(--space-8) var(--space-4);
+}
+.enquiry-main .enquiry-form {
+  row-gap: var(--space-3);
+}
+/* What the visitor asked for is fixed by the button they pressed, so it reads as a tag, not a field to type in. */
+.enquiry [data-choice-summary] {
+  inline-size: auto;
+  justify-self: start;
+  border-color: transparent;
+  border-radius: var(--radius-full);
+  background: var(--color-selected);
+  color: var(--color-brand);
+  font-weight: var(--weight-strong);
+}
+.enquiry input:focus-visible,
+.enquiry select:focus-visible,
+.enquiry textarea:focus-visible {
+  border-color: var(--color-brand);
+  outline: var(--focus-ring) solid var(--color-focus);
+  outline-offset: var(--border-width);
+}
+.enquiry .enquiry-form [data-send] {
+  min-block-size: var(--button-height);
+  margin-block-start: var(--space-2);
+  font-size: var(--text-lg);
+}
+@media (max-width: 47.9375rem) {
+  .enquiry-layout {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto minmax(0, 1fr);
+  }
+  .enquiry-aside {
+    gap: var(--space-1);
+    padding: var(--space-5) var(--space-5) var(--space-4);
+    background: var(--color-hero-surface);
+  }
+  .enquiry-aside::after {
+    display: none;
+  }
+  .enquiry .enquiry-aside h3 {
+    margin: 0;
+    padding-inline-end: var(--target-min);
+  }
+  .enquiry-aside .enquiry-badge,
+  .enquiry-aside .enquiry-mail {
+    display: none;
+  }
+  .modal-dialog .enquiry-main {
+    padding: var(--space-5);
+    padding-block-end: max(var(--space-5), env(safe-area-inset-bottom));
+  }
+}

@@ -1,6 +1,8 @@
 ---
 import '../../styles/enquiry-form.css';
 import '../../styles/dialog.css';
+import '../../styles/enquiry-dialog.css';
+import EnquiryAside from '../ui/enquiry-aside.astro';
 import { enquiryWords } from '../../i18n/enquiry';
 import EnquiryInput from '../ui/enquiry-input.astro';
 import { marketOptions } from '../../enquiry/markets';
@@ -18,104 +20,106 @@ const markets = marketOptions(locale);
 ---
 
 <div class="enquiry" data-enquiry data-locale={locale}>
-  <dialog class="modal-dialog" data-dialog aria-labelledby="enquiry-title">
+  <dialog class="modal-dialog enquiry-dialog" data-dialog aria-labelledby="enquiry-title">
     <button type="button" class="dialog-close" data-close aria-label={words.close}>
       <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
         <path d="M6 6l12 12M18 6L6 18" />
       </svg>
     </button>
-    <div class="dialog-body">
-      <form class="enquiry-form" data-form novalidate aria-labelledby="enquiry-title">
-        <h3 id="enquiry-title">{words.title}</h3>
-        <div class="field wide">
-          <label for="enquiry-choice">{words.choice}</label>
-          <input
-            id="enquiry-choice"
-            type="text"
-            value={words.demo}
-            dir={locale === 'ar' ? 'rtl' : 'ltr'}
-            readonly
-            data-choice-summary
-          />
-          <input type="hidden" name="choice" value="demo" data-field="choice" hidden />
-          <p class="problem" id="enquiry-choice-problem" data-problem="choice" hidden></p>
-        </div>
-        <div class="field wide" data-websites-field hidden>
-          <label for="enquiry-websites">{words.websites}</label>
-          <input
-            id="enquiry-websites"
-            name="websites"
-            type="number"
-            inputmode="numeric"
-            min="1"
-            max="1000"
-            data-field="websites"
-          />
-          <p class="problem" id="enquiry-websites-problem" data-problem="websites" hidden></p>
-        </div>
-        {identity.map((field) => (
-          <EnquiryInput field={field} />
-        ))}
-        <div class="field">
-          <label for="enquiry-country">{words.country}</label>
-          <select
-            id="enquiry-country"
-            name="country"
-            autocomplete="country"
-            required
-            data-field="country"
-            data-picker
-          >
-            <option value="">{words.chooseCountry}</option>
-            {markets.map(({ code, name }) => (
-              <option value={code}>{name}</option>
-            ))}
-          </select>
-          <p class="problem" id="enquiry-country-problem" data-problem="country" hidden></p>
-        </div>
-        {reach.map((field) => (
-          <EnquiryInput field={field} />
-        ))}
-        <div class="field wide">
-          <label for="enquiry-message">{words.message}</label>
-          <textarea
-            id="enquiry-message"
-            name="message"
-            rows="4"
-            dir="auto"
-            data-field="message"
-          ></textarea>
-          <p class="problem" id="enquiry-message-problem" data-problem="message" hidden></p>
-        </div>
-        <div class="trap" aria-hidden="true">
-          <label>
-            {words.trap}
+    <div class="enquiry-layout">
+      <EnquiryAside locale={locale} />
+      <div class="dialog-body enquiry-main">
+        <form class="enquiry-form" data-form novalidate aria-labelledby="enquiry-title">
+          <div class="field wide">
+            <label for="enquiry-choice">{words.choice}</label>
             <input
+              id="enquiry-choice"
               type="text"
-              name="leaveBlank"
-              tabindex="-1"
-              autocomplete="off"
-              data-field="trap"
+              value={words.demo}
+              dir={locale === 'ar' ? 'rtl' : 'ltr'}
+              readonly
+              data-choice-summary
             />
-          </label>
-        </div>
-        <p class="status wide" role="status" data-status></p>
-        <button type="submit" class="button wide" data-send data-sending-label={words.sending}>
-          {words.send}
-        </button>
-      </form>
-      <div class="thanks" data-thanks hidden>
-        <h3 tabindex="-1" data-thanks-title>
-          {words.thanksTitle}
-        </h3>
-        <p data-thanks-body></p>
-        <div class="thanks-actions">
-          <button type="button" class="button" data-close>
-            {words.done}
+            <input type="hidden" name="choice" value="demo" data-field="choice" hidden />
+            <p class="problem" id="enquiry-choice-problem" data-problem="choice" hidden></p>
+          </div>
+          <div class="field wide" data-websites-field hidden>
+            <label for="enquiry-websites">{words.websites}</label>
+            <input
+              id="enquiry-websites"
+              name="websites"
+              type="number"
+              inputmode="numeric"
+              min="1"
+              max="1000"
+              data-field="websites"
+            />
+            <p class="problem" id="enquiry-websites-problem" data-problem="websites" hidden></p>
+          </div>
+          {identity.map((field) => (
+            <EnquiryInput field={field} />
+          ))}
+          <div class="field">
+            <label for="enquiry-country">{words.country}</label>
+            <select
+              id="enquiry-country"
+              name="country"
+              autocomplete="country"
+              required
+              data-field="country"
+              data-picker
+            >
+              <option value="">{words.chooseCountry}</option>
+              {markets.map(({ code, name }) => (
+                <option value={code}>{name}</option>
+              ))}
+            </select>
+            <p class="problem" id="enquiry-country-problem" data-problem="country" hidden></p>
+          </div>
+          {reach.map((field) => (
+            <EnquiryInput field={field} />
+          ))}
+          <div class="field wide">
+            <label for="enquiry-message">{words.message}</label>
+            <textarea
+              id="enquiry-message"
+              name="message"
+              rows="3"
+              dir="auto"
+              data-field="message"
+            ></textarea>
+            <p class="problem" id="enquiry-message-problem" data-problem="message" hidden></p>
+          </div>
+          <div class="trap" aria-hidden="true">
+            <label>
+              {words.trap}
+              <input
+                type="text"
+                name="leaveBlank"
+                tabindex="-1"
+                autocomplete="off"
+                data-field="trap"
+              />
+            </label>
+          </div>
+          <p class="status wide" role="status" data-status></p>
+          <button type="submit" class="button wide" data-send data-sending-label={words.sending}>
+            {words.send}
           </button>
-          <button type="button" class="button secondary" data-again>
-            {words.again}
-          </button>
+        </form>
+        <div class="thanks" data-thanks hidden>
+          <h3 tabindex="-1" data-thanks-title>
+            {words.thanksTitle}
+          </h3>
+          <p data-thanks-body></p>
+          <div class="thanks-actions">
+            <button type="button" class="button" data-close>
+              {words.done}
+            </button>
+            <button type="button" class="button secondary" data-again>
+              {words.again}
+            </button>
+          </div>
         </div>
       </div>
     </div>
