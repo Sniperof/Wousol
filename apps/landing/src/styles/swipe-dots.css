@@ -1,0 +1,47 @@
+/*
+ * Dots under a phone's swipe rows: one per card, the card in view drawn as a longer blue bar. They show only where the
+ * row swipes (features below tablet width, pricing below 40rem), and there they replace the row's scrollbar.
+ */
+.swipe-dots {
+  display: none;
+  justify-content: center;
+  gap: var(--space-2);
+  margin-block-start: var(--space-4);
+}
+.swipe-dots span {
+  inline-size: var(--space-2);
+  block-size: var(--space-2);
+  border-radius: var(--radius-full);
+  background: var(--color-card-active-border);
+  transition:
+    inline-size var(--duration) ease,
+    background-color var(--duration) ease;
+}
+.swipe-dots span[data-current='true'] {
+  inline-size: var(--space-6);
+  background: var(--color-brand);
+}
+@media (prefers-reduced-motion: reduce) {
+  .swipe-dots span {
+    transition: none;
+  }
+}
+:root[data-reduce-motion='true'] .swipe-dots span {
+  transition: none;
+}
+@media (max-width: 47.9375rem) {
+  .need-grid + .swipe-dots {
+    display: flex;
+  }
+  .need-grid {
+    scrollbar-width: none;
+  }
+}
+@media (max-width: 39.9375rem) {
+  .pricing-scroll + .swipe-dots {
+    display: flex;
+  }
+  .pricing-scroll {
+    scrollbar-width: none;
+  }
+}

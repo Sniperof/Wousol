@@ -6,6 +6,7 @@ import BrandText from '../ui/brand-text.astro';
 import '../../styles/card-grid.css';
 import '../../styles/visitor-cards.css';
 import '../../styles/visitor-sample.css';
+import '../../styles/swipe-dots.css';
 interface Props {
   readonly locale: Locale;
 }
@@ -48,6 +49,10 @@ const lastCard = words.cards.length - 1;
     ))}
   </ul>
 </section>
+<script>
+  import { startSwipeRow } from '../../swipe/row';
+  document.querySelectorAll<HTMLElement>('.need-grid').forEach((row) => startSwipeRow(row));
+</script>
 <style>
   .section {
     padding-block-start: calc(var(--space-16) * var(--features-top-space-scale));

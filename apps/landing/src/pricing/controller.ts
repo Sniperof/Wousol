@@ -3,6 +3,7 @@ import { loadCatalog } from './catalog';
 import { updateDemoContact } from './demo-contact';
 import { renderCards, type Period } from './cards';
 import { startFeatureDialog } from './feature-dialog';
+import { bringToStart, startSwipeRow } from '../swipe/row';
 
 function keepFocusedCardVisible(cards: HTMLElement): void {
   cards.addEventListener('focusin', (event) => {
@@ -11,6 +12,14 @@ function keepFocusedCardVisible(cards: HTMLElement): void {
       .closest<HTMLElement>('.price-card')
       ?.scrollIntoView({ block: 'nearest', inline: 'nearest', behavior: 'instant' });
   });
+}
+
+/** On a phone, where the plans sit in one swiped row, the most popular plan is the one in view first. */
+function showFeaturedFirst(cards: HTMLElement): void {
+  const row = cards.parentElement;
+  const featured = cards.querySelector('[data-highlighted="true"]');
+  if (row && featured && window.matchMedia('(max-width: 39.9375rem)').matches)
+    bringToStart(row, featured);
 }
 
 function updatePricingLinks(document: Document, available: boolean): void {
@@ -29,6 +38,7 @@ export function startPricing(root: HTMLElement): void {
   const billing = root.querySelector<HTMLFieldSetElement>('[data-pricing-period]');
   if (!cards || !billing) return;
   keepFocusedCardVisible(cards);
+  if (cards.parentElement) startSwipeRow(cards.parentElement, cards);
   let data: PublicPlanCatalog | undefined;
   let period: Period = 'monthly';
   startFeatureDialog(root, () => data?.plans ?? []);
@@ -47,6 +57,7 @@ export function startPricing(root: HTMLElement): void {
       // Monthly and yearly only differ in price, so the switch goes when every price is on request.
       billing.hidden = !available || data.plans.every((plan) => plan.priceHidden);
       root.hidden = !available;
+      if (available) showFeaturedFirst(cards);
       updatePricingLinks(root.ownerDocument, available);
     } catch {
       root.dataset.pricingState = 'failed';
