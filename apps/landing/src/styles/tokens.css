@@ -16,6 +16,8 @@
   --color-hero-surface: #f4f7ff;
   --color-hero-ink: #14213d;
   --color-marketing-muted: #58657c;
+  /* Form field edges: softer than the stock grey, still 3:1 against white so each field is findable. */
+  --color-field-border: #8a93a5;
   --color-preview-glass: rgb(255 255 255 / 0.64);
   --color-preview-paper: rgb(255 255 255 / 0.9);
   /* The hero sky: our blues only, deepest in the top corner and fading to the page. */

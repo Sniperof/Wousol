@@ -60,12 +60,12 @@ function choiceActions(
     },
     chooseKind: (kind) => {
       choice.value = kind;
-      summary.value = words[kind];
+      summary.placeholder = words[kind];
       syncWebsites(form);
     },
     choosePlan: (label, name, period) => {
       choice.value = planValue(name, period);
-      summary.value = label;
+      summary.placeholder = label;
       syncWebsites(form);
     },
   };

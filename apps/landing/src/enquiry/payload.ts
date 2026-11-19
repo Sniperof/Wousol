@@ -6,6 +6,8 @@ import { marketOf, type MarketCode } from './markets';
 
 export interface FormValues {
   readonly choice: string;
+  /** What the visitor typed under "I'd like"; the request has no field of its own for it, so it leads the message. */
+  readonly wish: string;
   readonly websites: string;
   readonly name: string;
   readonly email: string;
@@ -85,7 +87,7 @@ export function buildRequest(
     website: withScheme(values.website) ?? '',
     language: locale,
     websites: choice.kind === 'custom' ? Number(values.websites) : null,
-    message: optional(values.message),
+    message: optional([values.wish.trim(), values.message.trim()].filter(Boolean).join('\n\n')),
     plan: choice.kind === 'plan' ? { name: choice.name, period: choice.period } : null,
     leaveBlank: optional(values.trap),
   };

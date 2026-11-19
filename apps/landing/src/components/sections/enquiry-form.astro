@@ -2,7 +2,6 @@
 import '../../styles/enquiry-form.css';
 import '../../styles/dialog.css';
 import '../../styles/enquiry-dialog.css';
-import EnquiryAside from '../ui/enquiry-aside.astro';
 import { enquiryWords } from '../../i18n/enquiry';
 import EnquiryInput from '../ui/enquiry-input.astro';
 import { marketOptions } from '../../enquiry/markets';
@@ -27,17 +26,17 @@ const markets = marketOptions(locale);
       </svg>
     </button>
     <div class="enquiry-layout">
-      <EnquiryAside locale={locale} />
       <div class="dialog-body enquiry-main">
         <form class="enquiry-form" data-form novalidate aria-labelledby="enquiry-title">
+          <h3 id="enquiry-title">{words.title}</h3>
           <div class="field wide">
             <label for="enquiry-choice">{words.choice}</label>
             <input
               id="enquiry-choice"
               type="text"
-              value={words.demo}
-              dir={locale === 'ar' ? 'rtl' : 'ltr'}
-              readonly
+              placeholder={words.demo}
+              dir="auto"
+              autocomplete="off"
               data-choice-summary
             />
             <input type="hidden" name="choice" value="demo" data-field="choice" hidden />

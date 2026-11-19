@@ -20,6 +20,7 @@ export function text(form: HTMLFormElement, name: string): string {
 export function readValues(form: HTMLFormElement): FormValues {
   return {
     choice: text(form, 'choice'),
+    wish: form.querySelector<HTMLInputElement>('[data-choice-summary]')?.value ?? '',
     websites: text(form, 'websites'),
     name: text(form, 'name'),
     email: text(form, 'email'),
