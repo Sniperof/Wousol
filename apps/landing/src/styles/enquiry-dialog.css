@@ -112,6 +112,10 @@
   }
 }
 @media (max-width: 47.9375rem) {
+  /* A phone's bottom sheet spans the whole width, as dialog.css sets it; the desktop width above must not narrow it. */
+  .enquiry-dialog {
+    inline-size: 100%;
+  }
   .modal-dialog .enquiry-main {
     padding: var(--space-5);
     padding-block-end: max(var(--space-5), env(safe-area-inset-bottom));
