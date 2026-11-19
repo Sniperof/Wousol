@@ -1,0 +1,25 @@
+/*
+ * On a phone the sample site's preferences card floats over the corner of the laptop instead of stacking below it.
+ * The site scene is the tallest step, so this also shortens the code step, which shares its height.
+ */
+@media (max-width: 47.9375rem) {
+  /* The same space above and below as every other section on a phone. */
+  [data-installation].dark-band {
+    padding-block: var(--space-12);
+  }
+  .installation-visitor {
+    position: relative;
+    display: block;
+  }
+  .installation-laptop {
+    inline-size: 72%;
+    block-size: 10rem;
+  }
+  .installation-preferences {
+    position: absolute;
+    inset-block-end: 0;
+    inset-inline-end: 0;
+    inline-size: 62%;
+    box-shadow: var(--shadow-card);
+  }
+}

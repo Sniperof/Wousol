@@ -65,6 +65,12 @@
 :root:lang(ar) .invitation h2 {
   font-size: var(--text-hero-ar);
 }
+@media (max-width: 47.9375rem) {
+  .invitation h2,
+  :root:lang(ar) .invitation h2 {
+    font-size: var(--text-display);
+  }
+}
 .invitation .open-form {
   display: inline-flex;
   align-items: center;

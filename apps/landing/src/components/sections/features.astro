@@ -114,15 +114,32 @@ const lastCard = words.cards.length - 1;
       grid-area: 2 / 2;
     }
   }
-  /* Narrower screens: a lone last card takes the whole row instead of leaving a gap beside it. */
-  @media (max-width: 63.9375rem) {
+  /* Tablets: a lone last card takes the whole row instead of leaving a gap beside it. */
+  @media (min-width: 48rem) and (max-width: 63.9375rem) {
     .need-grid > li:last-child:nth-child(odd) {
       grid-column: 1 / -1;
     }
   }
+  /* Phones: the cards become one row to swipe, a full card and the edge of the next in view. */
   @media (max-width: 47.9375rem) {
     .section {
       padding-block-start: calc(var(--space-12) * var(--features-top-space-scale));
+    }
+    .need-grid {
+      grid-template-columns: none;
+      grid-template-rows: repeat(3, auto);
+      grid-auto-flow: column;
+      grid-auto-columns: 82%;
+      gap: var(--space-4);
+      margin-inline: calc(-1 * var(--space-4));
+      padding: var(--space-1) var(--space-4) var(--space-3);
+      overflow-x: auto;
+      overscroll-behavior-x: contain;
+      scroll-snap-type: x mandatory;
+      scroll-padding-inline: var(--space-4);
+    }
+    .need-grid > li {
+      scroll-snap-align: start;
     }
   }
 </style>

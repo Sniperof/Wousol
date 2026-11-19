@@ -36,6 +36,11 @@
   font-size: var(--text-xl);
   color: var(--color-hero-ink);
 }
+@media (max-width: 47.9375rem) {
+  .installation-copy h2 {
+    font-size: var(--text-display);
+  }
+}
 .installation-intro {
   margin-block: 0 var(--space-6);
   font-size: var(--text-md);

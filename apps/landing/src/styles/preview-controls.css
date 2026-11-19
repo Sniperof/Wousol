@@ -97,3 +97,9 @@
   background: linear-gradient(var(--preview-guide-light), var(--preview-guide-light)) no-repeat;
   background-size: 100% calc(1em * var(--line-height));
 }
+/* On a phone the sample starts at a readable size; the larger steps grow from there. */
+@media (max-width: 47.9375rem) {
+  .reading-preview {
+    --preview-sample-size: 0.875rem;
+  }
+}

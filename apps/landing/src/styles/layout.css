@@ -36,7 +36,10 @@
   .section {
     padding-block: var(--space-12);
   }
-  h2 {
-    font-size: var(--text-xl);
+  /* On a phone the hero title is the largest, and every section title shares one smaller size. */
+  :root {
+    --text-hero: 2.125rem;
+    --text-hero-ar: 2.125rem;
+    --text-display: 1.75rem;
   }
 }
