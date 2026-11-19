@@ -1,11 +1,9 @@
 ---
 import { homePathOf, messagesFor, otherLocale, type Locale } from '../../i18n';
-import { pricingWords } from '../../i18n/pricing';
 import { demoSalesEmail } from '../../config/contact';
 import { enquiryHref } from '../../pricing/enquiry';
 import Brand from '../ui/brand.astro';
 import BrandText from '../ui/brand-text.astro';
-import DemoLink from '../ui/demo-link.astro';
 interface Props {
   readonly locale: Locale;
 }
@@ -18,10 +16,12 @@ const other = otherLocale(locale);
   <div class="footer-content container">
     <div class="footer-top">
       <div class="footer-brand">
-        <Brand locale={locale} />
+        <Brand locale={locale} tone="white" />
         <p>
           <BrandText text={messages.footer.about} locale={locale} />
         </p>
+      </div>
+      <div class="footer-reach">
         <p class="contact">
           <a href="#request-demo" data-request-kind="demo">
             {messages.nav.contact}
@@ -33,20 +33,8 @@ const other = otherLocale(locale);
         </p>
         <p class="badge">{messages.footer.badge}</p>
       </div>
-      <nav aria-label={messages.footer.navLabel}>
-        <a href="#features">{messages.nav.features}</a>
-        <a href="#sign-language">{messages.nav.signLanguage}</a>
-        <a href="#installation">{messages.nav.installation}</a>
-        <a href="#dashboard">{messages.nav.dashboard}</a>
-        <a href="#pricing" data-pricing-nav hidden>
-          {pricingWords(locale).nav}
-        </a>
-        <DemoLink locale={locale} label={messages.nav.liveDemo} plain />
-      </nav>
     </div>
-  </div>
-  <div class="footer-strip">
-    <div class="footer-bottom container">
+    <div class="footer-bottom">
       <span class="byline">
         <BrandText text={messages.footer.byline} locale={locale} />
         <span aria-hidden="true">·</span>
@@ -63,61 +51,8 @@ const other = otherLocale(locale);
   </div>
 </footer>
 <style>
-  /* A light top with blue text, a rule above it, and the primary-blue strip closing the page below. */
+  /* One compact primary-blue band: who we are and how to reach us on one row, the byline and note under a rule. */
   .footer {
-    --brand-word-color: var(--color-brand);
-    --color-text: var(--color-brand);
-    --color-link: var(--color-brand);
-    color: var(--color-brand);
-    border-block-start: var(--border-width) solid var(--color-card-border);
-  }
-  .footer-content {
-    padding-block: var(--space-12) var(--space-10);
-  }
-  .footer-top {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: var(--space-8);
-  }
-  .footer-brand {
-    display: grid;
-    gap: var(--space-3);
-  }
-  .footer-brand p {
-    max-inline-size: 36ch;
-    margin: 0;
-  }
-  .footer-brand .contact {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 0 var(--space-2);
-  }
-  .footer-brand .badge {
-    justify-self: start;
-    padding: var(--space-1) var(--space-3);
-    border: var(--border-width) solid var(--color-card-active-border);
-    border-radius: var(--radius-full);
-    font-size: var(--text-sm);
-  }
-  nav {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--space-2) var(--space-6);
-  }
-  .footer :global(a) {
-    color: currentColor;
-    text-decoration: none;
-  }
-  .footer :global(a:hover) {
-    text-decoration: underline;
-  }
-  [data-pricing-nav][hidden] {
-    display: none;
-  }
-  .footer-strip {
     --brand-word-color: var(--color-brand-text);
     --color-text: var(--color-brand-text);
     --color-link: var(--color-brand-text);
@@ -125,13 +60,60 @@ const other = otherLocale(locale);
     color: var(--color-brand-text);
     background: var(--color-brand);
   }
+  .footer-content {
+    display: grid;
+    gap: var(--space-5);
+    padding-block: var(--space-8) var(--space-6);
+  }
+  .footer-top,
   .footer-bottom {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
     gap: var(--space-3) var(--space-8);
-    padding-block: var(--space-6) var(--space-24);
+  }
+  .footer-brand {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-2) var(--space-5);
+  }
+  .footer p {
+    margin: 0;
+  }
+  .footer-brand p {
+    max-inline-size: 40ch;
+    color: var(--color-footer-muted);
+  }
+  .footer-reach {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-2) var(--space-5);
+  }
+  .contact {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0 var(--space-2);
+  }
+  .badge {
+    padding: var(--space-1) var(--space-3);
+    border: var(--border-width) solid var(--color-footer-rule);
+    border-radius: var(--radius-full);
+    font-size: var(--text-sm);
+  }
+  .footer :global(a) {
+    color: var(--color-brand-text);
+    text-decoration: none;
+  }
+  .footer :global(a:hover) {
+    text-decoration: underline;
+  }
+  .footer-bottom {
+    padding-block-start: var(--space-5);
+    border-block-start: var(--border-width) solid var(--color-footer-rule);
     font-size: var(--text-sm);
   }
   .byline {
@@ -142,8 +124,17 @@ const other = otherLocale(locale);
     font-weight: var(--weight-strong);
   }
   .footer-bottom p {
-    max-inline-size: 52ch;
-    margin: 0;
+    max-inline-size: 60ch;
     color: var(--color-footer-muted);
+  }
+  /* Phones: the page's floating accessibility button sits in the end corner, so the last line wraps clear of it. */
+  @media (max-width: 47.9375rem) {
+    .footer-content {
+      gap: var(--space-4);
+      padding-block: var(--space-6) var(--space-5);
+    }
+    .footer-bottom p {
+      padding-inline-end: calc(var(--space-16) + var(--space-4));
+    }
   }
 </style>
