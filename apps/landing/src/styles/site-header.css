@@ -90,6 +90,12 @@
 .site-menu-toggle[aria-expanded='true'] .menu-close {
   display: block;
 }
+/* Five section links fit beside the brand and both actions from 64rem up only with closer links until 80rem. */
+@media (min-width: 64rem) and (max-width: 79.9375rem) {
+  .site-nav a {
+    padding-inline: var(--space-2);
+  }
+}
 @media (max-width: 63.9375rem) {
   .site-nav {
     order: 3;
