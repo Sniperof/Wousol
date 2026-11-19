@@ -1,0 +1,67 @@
+/*
+ * The signature: the form opens under a strip of the hero's sky. The title and the reply time sit on its plain light
+ * part; a soft glow and the braille dots that spell the brand drift in from the far side, behind the close button.
+ */
+.enquiry-head {
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  gap: var(--space-1);
+  margin: calc(-1 * var(--space-5)) calc(-1 * var(--space-8)) 0;
+  padding: var(--space-4) var(--space-8);
+  overflow: hidden;
+  border-block-end: var(--border-width) solid var(--color-card-border);
+  background:
+    radial-gradient(22rem 9rem at var(--head-glow) 0%, var(--hero-glow-mist), transparent 70%),
+    var(--color-hero-surface);
+}
+.enquiry-head::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: color-mix(in srgb, var(--color-brand) 16%, transparent);
+  -webkit-mask:
+    var(--braille) 0 0 / var(--braille-size) repeat,
+    linear-gradient(to var(--head-side), transparent 55%, black);
+  -webkit-mask-composite: source-in;
+  mask:
+    var(--braille) 0 0 / var(--braille-size) repeat,
+    linear-gradient(to var(--head-side), transparent 55%, black);
+  mask-composite: intersect;
+}
+.enquiry .enquiry-head p {
+  margin: 0;
+  color: var(--color-marketing-muted);
+  font-size: var(--text-sm);
+}
+/* The send button carries a small arrow that steps forward on hover; drawn in CSS, so the sending label keeps it. */
+.enquiry .enquiry-form [data-send] {
+  min-block-size: var(--button-height);
+  margin-block-start: var(--space-1);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+}
+.enquiry .enquiry-form [data-send]::after {
+  content: '';
+  inline-size: var(--space-4);
+  block-size: var(--space-4);
+  background: currentColor;
+  -webkit-mask: var(--arrow) center / contain no-repeat;
+  mask: var(--arrow) center / contain no-repeat;
+  transition: translate var(--duration) ease;
+}
+:root[dir='ltr'] .enquiry .enquiry-form [data-send]::after {
+  scale: -1 1;
+}
+.enquiry .enquiry-form [data-send]:hover::after {
+  translate: calc(var(--head-step) * var(--space-1));
+}
+@media (max-width: 47.9375rem) {
+  .enquiry-head {
+    margin-inline: calc(-1 * var(--space-5));
+    padding-inline: var(--space-5);
+  }
+}

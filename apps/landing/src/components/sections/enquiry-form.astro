@@ -2,11 +2,13 @@
 import '../../styles/enquiry-form.css';
 import '../../styles/dialog.css';
 import '../../styles/enquiry-dialog.css';
+import '../../styles/enquiry-signature.css';
 import { enquiryWords } from '../../i18n/enquiry';
 import EnquiryInput from '../ui/enquiry-input.astro';
 import { marketOptions } from '../../enquiry/markets';
 import { identityFields, reachFields } from '../../enquiry/text-fields';
-import type { Locale } from '../../i18n';
+import { messagesFor, type Locale } from '../../i18n';
+import BrandText from '../ui/brand-text.astro';
 
 interface Props {
   readonly locale: Locale;
@@ -28,14 +30,19 @@ const markets = marketOptions(locale);
     <div class="enquiry-layout">
       <div class="dialog-body enquiry-main">
         <form class="enquiry-form" data-form novalidate aria-labelledby="enquiry-title">
-          <h3 id="enquiry-title">{words.title}</h3>
+          <header class="enquiry-head wide">
+            <h3 id="enquiry-title">{words.title}</h3>
+            <p>
+              <BrandText text={messagesFor(locale).final.reply} locale={locale} />
+            </p>
+          </header>
           <div class="field wide">
             <label for="enquiry-choice">{words.choice}</label>
             <input
               id="enquiry-choice"
               type="text"
               placeholder={words.demo}
-              dir="auto"
+              dir={locale === 'ar' ? 'rtl' : 'ltr'}
               autocomplete="off"
               data-choice-summary
             />
@@ -83,7 +90,7 @@ const markets = marketOptions(locale);
             <textarea
               id="enquiry-message"
               name="message"
-              rows="3"
+              rows="2"
               dir="auto"
               data-field="message"
             ></textarea>

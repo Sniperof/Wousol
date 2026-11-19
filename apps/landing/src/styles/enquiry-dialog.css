@@ -4,7 +4,15 @@
  * form is taller than the screen; and a slim chevron on the country picker. The field layout is in enquiry-form.css.
  */
 .enquiry-dialog {
+  --head-glow: 100%;
+  --head-side: right;
+  --head-step: 1;
   inline-size: min(44rem, calc(100% - var(--space-8)));
+}
+:root[dir='rtl'] .enquiry-dialog {
+  --head-glow: 0%;
+  --head-side: left;
+  --head-step: -1;
 }
 .enquiry-layout {
   display: flex;
@@ -13,7 +21,7 @@
   min-block-size: 0;
 }
 .modal-dialog .enquiry-main {
-  padding: var(--space-5) var(--space-8);
+  padding: var(--space-5) var(--space-8) var(--space-3);
   scrollbar-width: thin;
   scrollbar-color: var(--color-card-border) transparent;
 }
@@ -58,10 +66,6 @@
   outline: none;
   box-shadow: 0 0 0 var(--focus-ring) color-mix(in srgb, var(--color-brand) 18%, transparent);
 }
-.enquiry .enquiry-form [data-send] {
-  min-block-size: var(--button-height);
-  margin-block-start: var(--space-2);
-}
 /* The thanks title takes focus so a screen reader announces it; it is not a control, so it draws no ring. */
 .enquiry [data-thanks-title]:focus {
   outline: none;
@@ -95,13 +99,15 @@
 }
 .enquiry-dialog {
   --chevron: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5l5 5 5-5' fill='none' stroke='black' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  --arrow: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M13 8H3m4-4L3 8l4 4' fill='none' stroke='black' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
   --chevron-tinted: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5l5 5 5-5' fill='none' stroke='%2358657c' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
 }
 @media (prefers-reduced-motion: reduce) {
   .enquiry input,
   .enquiry select,
   .enquiry textarea,
-  .enquiry select[data-picker]::picker-icon {
+  .enquiry select[data-picker]::picker-icon,
+  .enquiry .enquiry-form [data-send]::after {
     transition: none;
   }
 }
