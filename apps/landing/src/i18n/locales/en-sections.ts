@@ -2,28 +2,28 @@ import type { Messages } from '../messages';
 
 export const enVisit: Messages['visit'] = {
   title: 'No visit is complete without the right access',
-  intro:
-    'What suits one visitor may not suit another. So Wosoul lets each visitor adjust the page to what they need: text, colors, sound, navigation, and sign language.',
   cards: [
     {
       title: 'Bigger, clearer text',
-      body: 'Visitors make text bigger, widen the space between lines and words, and switch to a clearer font.',
-      helps: 'Helps with low vision, dyslexia, and eye strain.',
+      body: 'Text gets bigger, lines and words get more room, and the font gets clearer.',
+      helps: 'For people with low vision or dyslexia, and anyone whose eyes tire quickly.',
     },
     {
       title: 'Color and contrast, as needed',
-      body: 'Visitors change the contrast, turn colors down or up, and hide images or show their descriptions.',
-      helps: 'Helps with low vision, color blindness, and light sensitivity.',
+      body: 'Contrast changes, colors soften or deepen, and images hide or show their descriptions.',
+      helps: 'For people with low vision, color blindness, or light sensitivity.',
     },
     {
       title: 'A page read aloud',
-      body: 'Visitors select text and the device reads it out, at the speed that suits them.',
-      helps: "Helps with dyslexia, reading fatigue, and anyone who'd rather listen.",
+      body: "Selected text is read in the device's voice, at a comfortable speed.",
+      helps:
+        "For people with dyslexia, anyone tired by long reading, and those who'd rather listen.",
     },
     {
       title: 'Easier navigation, calmer focus',
       body: 'Links, headings, and keyboard focus stand out. The cursor gets bigger, motion stops, and a page outline lets visitors jump to any section.',
-      helps: 'Helps keyboard users, and with attention difficulties and motion sensitivity.',
+      helps:
+        'For keyboard users, people who get distracted easily, and anyone bothered by motion on screen.',
     },
     {
       title: 'Sign language',
@@ -31,13 +31,11 @@ export const enVisit: Messages['visit'] = {
       helps: 'For Deaf and hard of hearing visitors and sign language users.',
     },
   ],
-  signLink: 'More about sign language',
 };
 
 export const enSign: Messages['sign'] = {
   title: 'Sign language, built into your website',
   live: 'Live',
-  partner: 'Through MetaSign',
   intro:
     "For many Deaf people, sign language is their first language, and written text doesn't always replace it. So Wosoul adds two ways to communicate in sign language, through MetaSign.",
   cards: [

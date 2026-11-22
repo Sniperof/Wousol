@@ -12,7 +12,6 @@ interface Props {
 }
 const { locale } = Astro.props;
 const words = messagesFor(locale).visit;
-const lastCard = words.cards.length - 1;
 ---
 
 <section id="features" class="section container" aria-labelledby="features-title">
@@ -20,9 +19,6 @@ const lastCard = words.cards.length - 1;
     <h2 id="features-title">
       <BrandText text={words.title} locale={locale} />
     </h2>
-    <p>
-      <BrandText text={words.intro} locale={locale} />
-    </p>
   </div>
   <ul class="card-grid visitor-grid need-grid" role="list">
     {words.cards.map((card, index) => (
@@ -36,14 +32,6 @@ const lastCard = words.cards.length - 1;
             <BrandText text={card.body} locale={locale} />
           </p>
           <p class="need-helps">{card.helps}</p>
-          {index === lastCard && (
-            <a class="need-link" href="#sign-language">
-              {words.signLink}
-              <span class="need-arrow" aria-hidden="true">
-                ←
-              </span>
-            </a>
-          )}
         </div>
       </li>
     ))}
@@ -80,18 +68,6 @@ const lastCard = words.cards.length - 1;
     background: var(--color-surface);
     font-size: var(--text-sm);
   }
-  .need-link {
-    gap: var(--space-2);
-    align-self: start;
-    font-weight: var(--weight-strong);
-    text-decoration: none;
-  }
-  .need-link:hover {
-    text-decoration: underline;
-  }
-  :global(html[dir='ltr']) .need-arrow {
-    transform: scaleX(-1);
-  }
   /* Wide screens: three cards, then two wider ones, so the grid has no empty cell. */
   @media (min-width: 64rem) {
     .need-grid {
@@ -105,8 +81,17 @@ const lastCard = words.cards.length - 1;
       grid-column: span 3;
       grid-row: auto;
       grid-template-columns: var(--character-art-width) minmax(0, 1fr);
+      /* Titles share one line at the top; the "who it helps" boxes share one line at the bottom. */
       grid-template-rows: auto 1fr;
       column-gap: var(--space-5);
+    }
+    /* Both "who it helps" boxes are the same size: the full text width and two lines tall,
+       even when the text needs only one line, so their tops line up too. */
+    .need-grid > li:nth-child(n + 4) .need-helps {
+      align-self: stretch;
+      display: flex;
+      align-items: center;
+      min-block-size: calc(2lh + 2 * var(--space-1) + 2 * var(--border-width));
     }
     .need-grid > li:nth-child(n + 4) > :global(.character-scene) {
       grid-area: 1 / 1 / 3 / 2;

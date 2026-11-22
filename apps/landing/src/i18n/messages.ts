@@ -48,9 +48,7 @@ export interface Messages {
   };
   readonly visit: {
     readonly title: string;
-    readonly intro: string;
     readonly cards: readonly Need[];
-    readonly signLink: string;
   };
   readonly sign: {
     readonly title: string;
@@ -58,7 +56,6 @@ export interface Messages {
     readonly cards: readonly Group[];
     /** The badge on the call scene. */
     readonly live: string;
-    readonly partner: string;
   };
   readonly benefits: {
     readonly title: string;

@@ -68,6 +68,8 @@ const titleLines = messages.hero.title.split('\n');
     margin-block-start: var(--space-6);
     font-size: var(--text-lg);
     color: var(--color-marketing-muted);
+    /* Even line lengths without justifying: justified text opens uneven gaps between words. */
+    text-wrap: pretty;
   }
   .actions {
     display: flex;
@@ -79,6 +81,17 @@ const titleLines = messages.hero.title.split('\n');
   @media (min-width: 64rem) {
     .hero :global(.reading-preview) {
       margin-inline: auto 0;
+    }
+    /* The title sets the column's width; the description fills exactly that width, so both share one edge. */
+    .copy {
+      inline-size: fit-content;
+    }
+    /* Justified only here: three short, nearly full lines, so the added space per gap stays a few pixels.
+       The widget's text-alignment option still turns it off for visitors who need ragged text. */
+    .lede {
+      contain: inline-size;
+      text-align: justify;
+      text-align-last: start;
     }
   }
   .hero :global(.button:not(.secondary)) {

@@ -1,8 +1,9 @@
-/* Sign language: the copy beside a live call scene, with the two ways to sign listed under the call. */
+/* Sign language in four blocks: the copy beside a live call scene, then the videos card under the copy
+   and the call card under the scene. */
 .sign-layout {
   --sign-call-height: 13rem;
   display: grid;
-  gap: var(--space-10);
+  gap: var(--space-6);
   align-items: center;
 }
 .sign-copy-column h2 {
@@ -12,26 +13,6 @@
   margin: 0;
   color: var(--color-marketing-muted);
   font-size: var(--text-lg);
-}
-.sign-partner {
-  display: inline-flex;
-  margin: var(--space-5) 0 var(--space-6);
-  padding: var(--space-1) var(--space-3);
-  border: var(--border-width) solid var(--color-card-border);
-  border-radius: var(--radius-full);
-  background: var(--color-surface);
-  color: var(--color-hero-ink);
-  font-size: var(--text-sm);
-  font-weight: var(--weight-strong);
-}
-.sign-copy-column .button {
-  display: flex;
-  inline-size: fit-content;
-}
-.sign-scene {
-  display: grid;
-  gap: var(--space-4);
-  min-inline-size: 0;
 }
 .sign-call {
   padding: var(--space-3);
@@ -82,14 +63,7 @@
 .sign-call .call-frame {
   stroke: none;
 }
-.sign-ways {
-  display: grid;
-  gap: var(--space-3);
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-.sign-ways li {
+.sign-way {
   display: grid;
   grid-template-columns: auto minmax(0, 1fr);
   gap: var(--space-4);
@@ -98,6 +72,7 @@
   border: var(--border-width) solid var(--color-card-border);
   border-radius: var(--radius-lg);
   background: var(--color-surface);
+  align-self: stretch;
 }
 .sign-way-icon {
   display: grid;
@@ -115,18 +90,18 @@
   stroke-width: 2;
   stroke-linejoin: round;
 }
-.sign-ways h3 {
+.sign-way h3 {
   margin: 0 0 var(--space-1);
   font-size: var(--text-md);
 }
-.sign-ways p {
+.sign-way p {
   margin: 0;
   color: var(--color-marketing-muted);
   font-size: var(--text-sm);
 }
 @media (min-width: 64rem) {
   .sign-layout {
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
-    gap: var(--space-16);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-6) var(--space-10);
   }
 }
