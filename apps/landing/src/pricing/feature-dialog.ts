@@ -1,7 +1,7 @@
 import type { PublicPlan } from '../api/generated';
 import { createDialog } from '../dialog/controller';
 import { pricingWords } from '../i18n/pricing';
-import { fullFeatureList } from './feature-list';
+import { featureTiles } from './feature-tiles';
 import { setBrandText } from '../brand/dom';
 
 /** One dialog serves every card, including cards rebuilt after a billing-period change. */
@@ -26,7 +26,7 @@ export function startFeatureDialog(root: HTMLElement, plans: () => readonly Publ
     setBrandText(name, plan.name, locale);
     const [before, after] = pricingWords(locale).featuresTitle.split('{plan}');
     title.replaceChildren(before ?? '', name, after ?? '');
-    content.replaceChildren(fullFeatureList(plan.features, locale));
+    content.replaceChildren(featureTiles(plan.features, locale));
     dialog.open(button);
     title.focus();
   });

@@ -9,6 +9,7 @@ import '../../styles/swipe-dots.css';
 import '../../styles/pricing-controls.css';
 import '../../styles/pricing-features.css';
 import '../../styles/dialog.css';
+import '../../styles/feature-dialog.css';
 interface Props {
   readonly locale: Locale;
 }
@@ -59,8 +60,10 @@ const words = pricingWords(locale);
       </svg>
     </button>
     <div class="dialog-body">
-      <h3 id="plan-features-title" tabindex="-1" data-feature-title></h3>
-      <div class="plan-features" data-feature-content></div>
+      <header class="feature-dialog-head">
+        <h3 id="plan-features-title" tabindex="-1" data-feature-title></h3>
+      </header>
+      <div data-feature-content></div>
     </div>
   </dialog>
 </section>

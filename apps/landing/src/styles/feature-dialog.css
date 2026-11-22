@@ -1,0 +1,91 @@
+/*
+ * A plan's features dialog: the hero's sky as a header strip, with the braille dots drifting in from the far side
+ * (as in the request dialog), then every preference as a small tile with its icon, three a row, so the whole list
+ * shows at once. A phone keeps the full-width bottom sheet and shows two a row.
+ */
+.feature-dialog {
+  --head-side: right;
+  inline-size: min(46rem, calc(100% - var(--space-8)));
+}
+:root[dir='rtl'] .feature-dialog {
+  --head-side: left;
+}
+.feature-dialog .dialog-body {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-card-border) transparent;
+}
+.feature-dialog-head {
+  position: relative;
+  isolation: isolate;
+  margin: calc(-1 * var(--space-6)) calc(-1 * var(--space-6)) var(--space-5);
+  padding: var(--space-5) var(--space-6);
+  overflow: hidden;
+  border-block-end: var(--border-width) solid var(--color-card-border);
+  background: var(--color-hero-surface);
+}
+.feature-dialog-head::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: color-mix(in srgb, var(--color-brand) 16%, transparent);
+  -webkit-mask:
+    var(--braille) 0 0 / var(--braille-size) repeat,
+    linear-gradient(to var(--head-side), transparent 55%, black);
+  -webkit-mask-composite: source-in;
+  mask:
+    var(--braille) 0 0 / var(--braille-size) repeat,
+    linear-gradient(to var(--head-side), transparent 55%, black);
+  mask-composite: intersect;
+}
+.feature-dialog .feature-dialog-head h3 {
+  margin: 0;
+  padding-inline-end: var(--target-min);
+  color: var(--color-hero-ink);
+  font-size: var(--text-section);
+}
+.feature-dialog .feature-dialog-head h3:focus {
+  outline: none;
+}
+.feature-tiles {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.feature-tiles li {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-block-size: var(--space-10);
+  padding: var(--space-2) var(--space-3);
+  border: var(--border-width) solid var(--color-card-border);
+  border-radius: var(--radius-sm);
+  background: var(--color-card-tint);
+  color: var(--color-hero-ink);
+  font-size: var(--text-sm);
+}
+.feature-tiles svg {
+  flex: none;
+  inline-size: var(--icon-size);
+  block-size: var(--icon-size);
+  fill: none;
+  stroke: var(--color-brand);
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+@media (max-width: 47.9375rem) {
+  .feature-dialog {
+    inline-size: 100%;
+  }
+  .feature-dialog-head {
+    margin: calc(-1 * var(--space-5)) calc(-1 * var(--space-5)) var(--space-4);
+    padding: var(--space-4) var(--space-5);
+  }
+  .feature-tiles {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
