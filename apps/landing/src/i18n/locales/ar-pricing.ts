@@ -17,6 +17,8 @@ export const arPricing = {
     'دعم بأولوية ومساعدة في الإعداد',
   ],
   choose: 'تواصل معنا',
+  /** The request button on a standard plan; the custom plan keeps "choose". */
+  order: 'اطلب الآن',
   notOffered: 'غير متاحة لفترة الاشتراك هذه',
   priceOnRequest: 'السعر عند الطلب',
   /** How many websites a plan covers, by Arabic plural form; {n} is the number. */

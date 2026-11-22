@@ -2,8 +2,10 @@
 import { messagesFor, type Locale } from '../../i18n';
 import DemoLink from '../ui/demo-link.astro';
 import ProductPreview from '../ui/product-preview.astro';
+import FeatureMarquee from '../ui/feature-marquee.astro';
 import BrandText from '../ui/brand-text.astro';
 import '../../styles/hero-sky.css';
+import '../../styles/hero-product.css';
 interface Props {
   readonly locale: Locale;
 }
@@ -27,89 +29,74 @@ const titleLines = messages.hero.title.split('\n');
       </p>
       <div class="actions">
         <DemoLink locale={locale} label={messages.nav.demo} />
-        <a class="button secondary" href="#request-demo" data-request-kind="demo">
-          {messages.nav.contact}
-        </a>
       </div>
     </div>
-    <ProductPreview locale={locale} />
+    <div class="hero-product">
+      <ProductPreview locale={locale} />
+    </div>
+    <FeatureMarquee locale={locale} />
   </section>
 </div>
 <style>
+  /* A centred hero: a large title, the description and the demo button, then the three features side by side. */
   .hero {
     display: grid;
-    grid-template-columns: minmax(0, var(--hero-copy)) minmax(0, 1fr);
-    align-items: center;
-    gap: var(--space-12);
+    /* One column that never grows past the page: the feature strip's moving track is far wider than the screen. */
+    grid-template-columns: minmax(0, 1fr);
+    justify-items: center;
+    gap: var(--space-6);
     max-inline-size: var(--hero-max);
-    /* Sized by its content with fixed space around it, whatever the screen height. */
-    padding-block: var(--space-12) var(--space-16);
+    padding-block: var(--space-10);
+    text-align: center;
   }
   .copy {
-    min-inline-size: 0;
-    max-inline-size: var(--hero-copy);
+    display: grid;
+    justify-items: center;
+    max-inline-size: var(--hero-centre-copy);
+  }
+  /* Spacing by grouping: the title, text and buttons sit close as one message; the cards stand further off. */
+  .hero-product {
+    margin-block-start: var(--space-6);
   }
   h1 {
-    max-inline-size: var(--hero-title-width);
+    margin: 0;
+    font-size: var(--text-hero-centre);
     font-weight: var(--hero-weight);
     line-height: var(--hero-line-height);
     letter-spacing: var(--hero-tracking);
     text-wrap: balance;
   }
+  :global(html:lang(ar)) h1 {
+    font-size: var(--text-hero-centre-ar);
+  }
   .title-line {
     display: block;
   }
-  :global(html:lang(ar)) h1 {
-    max-inline-size: 100%;
-    font-size: var(--text-hero-ar);
-  }
-  /* Large enough to hold its own beside the art, while the title still leads. */
   .lede {
-    margin-block-start: var(--space-6);
-    font-size: var(--text-lg);
+    max-inline-size: 62rem;
+    margin-block-start: var(--space-4);
     color: var(--color-marketing-muted);
-    /* Even line lengths without justifying: justified text opens uneven gaps between words. */
+    font-size: var(--text-md);
     text-wrap: pretty;
   }
   .actions {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
     gap: var(--space-3);
-    margin-block-start: var(--space-8);
-  }
-  /* Side by side, the art sits on the outer edge, in line with the header bar's edge. */
-  @media (min-width: 64rem) {
-    .hero :global(.reading-preview) {
-      margin-inline: auto 0;
-    }
-    /* The title sets the column's width; the description fills exactly that width, so both share one edge. */
-    .copy {
-      inline-size: fit-content;
-    }
-    /* Justified only here: three short, nearly full lines, so the added space per gap stays a few pixels.
-       The widget's text-alignment option still turns it off for visitors who need ragged text. */
-    .lede {
-      contain: inline-size;
-      text-align: justify;
-      text-align-last: start;
-    }
+    margin-block-start: var(--space-2);
   }
   .hero :global(.button:not(.secondary)) {
     border-color: var(--color-brand);
     box-shadow: var(--shadow-hero-cta);
   }
-  @media (max-width: 63.9375rem) {
-    .hero {
-      grid-template-columns: 1fr;
-      gap: var(--space-10);
-    }
-    .copy {
-      max-inline-size: var(--reading-max);
-    }
-  }
   @media (max-width: 39.9375rem) {
     .hero {
-      padding-block: var(--space-10) var(--space-16);
+      gap: var(--space-8);
+      padding-block: var(--space-6) var(--space-12);
+    }
+    .actions {
+      inline-size: 100%;
     }
     .actions :global(.button) {
       flex: 1 1 auto;

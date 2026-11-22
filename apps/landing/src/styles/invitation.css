@@ -13,7 +13,7 @@
   --x5: 18%;
   position: relative;
   isolation: isolate;
-  padding-block: var(--space-24);
+  padding-block: var(--space-16);
   text-align: center;
 }
 :root[dir='rtl'] .invitation {
@@ -57,29 +57,20 @@
 }
 .invitation h2 {
   max-inline-size: 24ch;
-  margin: 0 auto var(--space-8);
+  margin: 0 auto var(--space-6);
   color: var(--color-hero-ink);
-  font-size: var(--text-hero);
+  /* The same size as every other section title. */
+  font-size: var(--text-display);
   text-wrap: balance;
-}
-:root:lang(ar) .invitation h2 {
-  font-size: var(--text-hero-ar);
-}
-@media (max-width: 47.9375rem) {
-  .invitation h2,
-  :root:lang(ar) .invitation h2 {
-    font-size: var(--text-display);
-  }
 }
 .invitation .open-form {
   display: inline-flex;
   align-items: center;
   min-block-size: var(--target-min);
-  margin-block-end: var(--space-8);
-  padding-inline: var(--space-12);
+  margin-block-end: var(--space-6);
+  padding-inline: var(--space-8);
   border-color: var(--color-brand);
   font: inherit;
-  font-size: var(--text-lg);
   font-weight: var(--weight-strong);
   cursor: pointer;
 }

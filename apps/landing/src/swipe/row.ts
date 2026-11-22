@@ -32,6 +32,19 @@ export function bringToStart(scroller: HTMLElement, card: Element): void {
   });
 }
 
+/**
+ * A row that scrolls sideways must be reachable by keyboard so it can be scrolled with the arrow keys. It takes a tab
+ * stop only while it actually scrolls (on a phone); a row that sets its own tabindex in markup keeps it.
+ */
+function keepReachable(scroller: HTMLElement): () => void {
+  const managed = !scroller.hasAttribute('tabindex');
+  return () => {
+    if (!managed) return;
+    if (scroller.scrollWidth > scroller.clientWidth + 1) scroller.tabIndex = 0;
+    else scroller.removeAttribute('tabindex');
+  };
+}
+
 export function startSwipeRow(scroller: HTMLElement, list: HTMLElement = scroller): void {
   const dots = document.createElement('div');
   dots.className = 'swipe-dots';
@@ -43,9 +56,11 @@ export function startSwipeRow(scroller: HTMLElement, list: HTMLElement = scrolle
       (dot as HTMLElement).dataset.current = String(index === current);
     });
   };
+  const reach = keepReachable(scroller);
   const build = (): void => {
     dots.replaceChildren(...[...list.children].map(() => document.createElement('span')));
     mark();
+    reach();
   };
   let frame = 0;
   scroller.addEventListener(
@@ -57,6 +72,13 @@ export function startSwipeRow(scroller: HTMLElement, list: HTMLElement = scrolle
     { passive: true },
   );
   new MutationObserver(build).observe(list, { childList: true });
-  window.addEventListener('resize', mark, { passive: true });
+  window.addEventListener(
+    'resize',
+    () => {
+      mark();
+      reach();
+    },
+    { passive: true },
+  );
   build();
 }

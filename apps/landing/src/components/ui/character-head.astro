@@ -16,9 +16,18 @@ const { persona } = Astro.props;
       <path d="M90 12c11 3 16 14 13 28-4-4-9-7-15-9V12Z" />
     </g>
   )}
-  <path class="character-skin" d="M69 51h14v12c-4 4-10 4-14 0V51Z" />
-  <circle class="character-skin" cx="57" cy="37" r="3.5" />
-  <circle class="character-skin" cx="95" cy="37" r="3.5" />
+  {persona.style === 'hijab' ? (
+    <path
+      class="character-scarf"
+      d="M52 36c0-16 10-27 24-27s24 11 24 27v16c0 9-11 15-24 15s-24-6-24-15V36Z"
+    />
+  ) : (
+    <g>
+      <path class="character-skin" d="M69 51h14v12c-4 4-10 4-14 0V51Z" />
+      <circle class="character-skin" cx="57" cy="37" r="3.5" />
+      <circle class="character-skin" cx="95" cy="37" r="3.5" />
+    </g>
+  )}
   {persona.style === 'turtleneck' && (
     <g class="character-earring">
       <circle cx="56" cy="42" r="2.2" />
@@ -41,6 +50,11 @@ const { persona } = Astro.props;
     <path
       class="character-hair"
       d="M56 33c-2-14 7-23 20-23s22 9 20 23c-5-8-13-11-20-11s-15 3-20 11Z"
+    />
+  ) : persona.style === 'hijab' ? (
+    <path
+      class="character-scarf"
+      d="M57 31c1-12 9-19 19-19s18 7 19 19c-5-5-11-8-19-8s-14 3-19 8Z"
     />
   ) : persona.style === 'cardigan' ? (
     <path

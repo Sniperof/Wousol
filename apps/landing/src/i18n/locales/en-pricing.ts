@@ -17,6 +17,8 @@ export const enPricing = {
     'Priority support and onboarding',
   ],
   choose: 'Contact us',
+  /** The request button on a standard plan; the custom plan keeps "choose". */
+  order: 'Order now',
   notOffered: 'Not offered for this billing period',
   priceOnRequest: 'Price on request',
   /** How many websites a plan covers, by plural form; {n} is the number. */

@@ -60,6 +60,13 @@
   stroke-linecap: round;
   stroke-linejoin: round;
 }
+/* The headscarf of the colours-and-contrast character, in that card's own indigo. */
+.character-scarf {
+  fill: var(--paper-contrast-ink);
+  stroke: var(--color-hero-ink);
+  stroke-width: var(--illustration-stroke);
+  stroke-linejoin: round;
+}
 .character-badge {
   fill: var(--character-badge-fill);
 }

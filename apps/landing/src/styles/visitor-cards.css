@@ -33,13 +33,9 @@
 }
 .installation-copy h2 {
   margin-block-end: var(--space-4);
-  font-size: var(--text-xl);
+  /* The same size as every other section title. */
+  font-size: var(--text-display);
   color: var(--color-hero-ink);
-}
-@media (max-width: 47.9375rem) {
-  .installation-copy h2 {
-    font-size: var(--text-display);
-  }
 }
 .installation-intro {
   margin-block: 0 var(--space-6);

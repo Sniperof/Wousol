@@ -9,7 +9,7 @@ export type CharacterScene = (typeof featureScenes)[number];
 
 export interface CharacterPersona {
   readonly gender: 'female' | 'male';
-  readonly style: 'blazer' | 'cardigan' | 'turtleneck' | 'bomber';
+  readonly style: 'blazer' | 'cardigan' | 'turtleneck' | 'bomber' | 'hijab';
 }
 
 const personas: Record<CharacterScene, CharacterPersona> = {
@@ -17,7 +17,7 @@ const personas: Record<CharacterScene, CharacterPersona> = {
   'read-aloud': { gender: 'male', style: 'cardigan' },
   reading: { gender: 'female', style: 'turtleneck' },
   navigation: { gender: 'male', style: 'bomber' },
-  contrast: { gender: 'female', style: 'cardigan' },
+  contrast: { gender: 'female', style: 'hijab' },
 };
 
 export function personaFor(scene: CharacterScene): CharacterPersona {

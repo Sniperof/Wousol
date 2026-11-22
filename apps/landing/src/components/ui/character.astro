@@ -65,6 +65,12 @@ const persona = personaFor(scene);
           <path class="character-collar" d="M76 80v34" />
           <circle class="character-badge" cx="91" cy="88" r="8" />
         </g>
+      ) : persona.style === 'hijab' ? (
+        <g>
+          <path class="character-soft-top" d="M42 114V80c0-16 13-24 34-24s34 8 34 24v34H42Z" />
+          <path class="character-scarf" d="M54 60c7 9 37 9 44 0l6 7c-8 13-48 13-56 0Z" />
+          <circle class="character-badge" cx="91" cy="94" r="8" />
+        </g>
       ) : (
         <g>
           <path class="character-fill" d="M42 114V80c0-16 13-24 34-24s34 8 34 24v34H42Z" />

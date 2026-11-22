@@ -1,0 +1,36 @@
+---
+import type { Locale } from '../../i18n';
+import { pricingFeatures, pricingWords } from '../../i18n/pricing';
+import { featureIcons } from '../../features/icons';
+import '../../styles/feature-marquee.css';
+interface Props {
+  readonly locale: Locale;
+}
+const { locale } = Astro.props;
+const names = pricingFeatures(locale);
+const items = featureIcons.filter(([key]) => names[key]);
+const copies = [false, true];
+---
+
+<div class="feature-marquee" data-marquee>
+  <div class="marquee-window" role="region" aria-label={pricingWords(locale).features} tabindex="0">
+    <div class="marquee-track">
+      {copies.map((repeat) => (
+        <ul class="marquee-list" role="list" aria-hidden={repeat ? 'true' : undefined}>
+          {items.map(([key, path]) => (
+            <li>
+              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path d={path} />
+              </svg>
+              {names[key]}
+            </li>
+          ))}
+        </ul>
+      ))}
+    </div>
+  </div>
+</div>
+<script>
+  import { startMarquee } from '../../features/marquee';
+  document.querySelectorAll<HTMLElement>('[data-marquee]').forEach(startMarquee);
+</script>

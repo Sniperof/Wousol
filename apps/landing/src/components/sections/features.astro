@@ -20,7 +20,7 @@ const words = messagesFor(locale).visit;
       <BrandText text={words.title} locale={locale} />
     </h2>
   </div>
-  <ul class="card-grid visitor-grid need-grid" role="list">
+  <ul class="card-grid visitor-grid need-grid" role="list" aria-labelledby="features-title">
     {words.cards.map((card, index) => (
       <li id={`feature-${featureScenes[index] ?? 'reading'}`} class="visitor-card aligned-card">
         <Character scene={featureScenes[index] ?? featureScenes[0]} />
@@ -47,6 +47,7 @@ const words = messagesFor(locale).visit;
   }
   .need-grid {
     --card-min: var(--solution-card-min);
+    --feature-art-compact: 5.5rem;
   }
   .need-grid > li {
     padding: var(--space-5);
@@ -68,10 +69,24 @@ const words = messagesFor(locale).visit;
     background: var(--color-surface);
     font-size: var(--text-sm);
   }
-  /* Wide screens: three cards, then two wider ones, so the grid has no empty cell. */
+  /* Wide screens: three cards, then two wider ones, trimmed so the section fits one laptop screen. */
   @media (min-width: 64rem) {
+    .section {
+      padding-block: var(--space-8);
+    }
+    .section :global(.section-heading) {
+      margin-block-end: var(--space-5);
+    }
     .need-grid {
       grid-template-columns: repeat(6, minmax(0, 1fr));
+      gap: var(--space-4);
+    }
+    .need-grid > li {
+      row-gap: var(--space-3);
+      padding: var(--space-4);
+    }
+    .need-grid > li > :global(.character-scene) {
+      block-size: var(--feature-art-compact);
     }
     .need-grid > li {
       grid-column: span 2;

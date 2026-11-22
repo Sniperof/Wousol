@@ -60,3 +60,25 @@
     grid-template-rows: auto auto auto 1fr auto;
   }
 }
+/* Laptops: the same cards with less space around and inside them, so a plan's button is in view with the rest. */
+@media (min-width: 64rem) {
+  #pricing.section {
+    padding-block: var(--space-8);
+  }
+  .pricing-heading h2 {
+    margin-block-end: var(--space-3);
+  }
+  .pricing-scroll {
+    margin-block-start: var(--space-6);
+  }
+  .pricing-grid .price-card {
+    row-gap: var(--space-3);
+    padding: var(--space-5);
+  }
+  .pricing-grid .plan-features {
+    padding-block-start: var(--space-3);
+  }
+  .pricing-grid .plan-features li {
+    margin-block: var(--space-1);
+  }
+}

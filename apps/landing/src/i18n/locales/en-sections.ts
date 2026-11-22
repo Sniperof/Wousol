@@ -57,7 +57,7 @@ export const enBenefits: Messages['benefits'] = {
   cards: [
     {
       title: 'More visitors finish what they came for',
-      body: 'About 1.3 billion people worldwide live with a disability, one in six people. When a website works for them, they stay and finish what they came for.',
+      body: 'When a website works for them, they stay and finish what they came for.',
     },
     {
       title: 'Easier for everyone',

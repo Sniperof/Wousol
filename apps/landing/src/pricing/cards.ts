@@ -53,7 +53,7 @@ function standard(plan: PublicPlan, locale: Locale, period: Period): HTMLElement
   const action = element('div', '', 'plan-action');
   if (amount !== null || plan.priceHidden)
     action.append(
-      requestLink(words.choose, plan.name, { plan: plan.name, period }, plan.isFeatured),
+      requestLink(words.order, plan.name, { plan: plan.name, period }, plan.isFeatured),
     );
   const offer = offerOf(plan, amount, locale, period);
   const sites = sitesLabel(plan.siteLimit, locale);

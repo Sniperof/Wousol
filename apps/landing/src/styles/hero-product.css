@@ -1,0 +1,70 @@
+/*
+ * The centred hero's product row: on a wide hero the Wosoul panel opens into its three features as cards side by
+ * side, straight on the sky; narrower, it stays one card with stacked rows. The panel is display-only and keeps its
+ * autoplay. The hero's own sizes live here too, beside the only component that uses them.
+ */
+:root {
+  --hero-centre-copy: 54rem;
+  --hero-product-max: 64rem;
+  --text-hero-centre: clamp(2.125rem, 3.6vw, 3.125rem);
+  --text-hero-centre-ar: clamp(2rem, 3.4vw, 2.875rem);
+}
+@media (max-width: 47.9375rem) {
+  :root {
+    --text-hero-centre: 2.125rem;
+    --text-hero-centre-ar: 2rem;
+  }
+}
+.hero-product {
+  inline-size: min(100%, var(--hero-product-max));
+  text-align: start;
+}
+.hero-product .reading-preview {
+  max-inline-size: none;
+}
+.hero-product .preview-stage {
+  inline-size: 100%;
+  min-block-size: 0;
+  margin: 0;
+}
+.hero-product .accessibility-orbit {
+  display: none;
+}
+@container reading-preview (min-width: 50rem) {
+  .hero-product .preview-panel {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-4);
+    padding: 0;
+    border: 0;
+    background: transparent;
+    box-shadow: none;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+  .hero-product .preview-panel .preview-card {
+    padding: var(--space-3) var(--space-4);
+    border: var(--border-width) solid var(--color-card-border);
+    background: var(--color-surface);
+    box-shadow: var(--shadow-product);
+  }
+  /* The panel is display-only (inert), so its rows need no touch-target height: they sit closer, and the cards are
+     shorter. */
+  .hero-product .preview-panel .preview-control {
+    min-block-size: var(--space-8);
+    padding-block: 0;
+  }
+  /* The sample box holds its largest text: one line in Arabic, two in English, so the card never changes height. */
+  .hero-product .preview-panel .reading-sample {
+    min-block-size: calc(var(--preview-sample-150) * var(--line-height) * 2 + var(--space-2) * 2);
+  }
+  :root:lang(ar) .hero-product .preview-panel .reading-sample {
+    min-block-size: calc(var(--preview-sample-150) * var(--line-height) + var(--space-2) * 2);
+  }
+  .hero-product .preview-panel .voice-card .button {
+    min-block-size: var(--space-8);
+    padding-block: 0;
+  }
+  .hero-product .sign-service .interpreter-preview {
+    inline-size: min(100%, 7rem);
+  }
+}

@@ -1,0 +1,62 @@
+/*
+ * Every widget preference in one line under the hero cards, straight on the sky from one edge of the screen to the
+ * other, each with its icon. A script moves it round without end and lets the visitor drag it to steer it
+ * (features/marquee.ts). Without the script it is a still line that scrolls by hand. The edges fade so the loop has
+ * no hard ends.
+ */
+.feature-marquee {
+  justify-self: start;
+  inline-size: 100vw;
+  margin-inline: calc(50% - 50vw);
+}
+.marquee-window {
+  overflow: hidden;
+  -webkit-mask: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+  mask: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+}
+.feature-marquee[data-ready='true'] .marquee-window {
+  cursor: grab;
+  touch-action: pan-y;
+  user-select: none;
+  -webkit-user-select: none;
+}
+.feature-marquee[data-ready='true'] .marquee-window:active {
+  cursor: grabbing;
+}
+.feature-marquee:not([data-ready='true']) .marquee-window {
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.feature-marquee:not([data-ready='true']) .marquee-list[aria-hidden='true'] {
+  display: none;
+}
+.marquee-track {
+  display: flex;
+  inline-size: max-content;
+}
+.marquee-list {
+  display: flex;
+  gap: var(--space-8);
+  margin: 0;
+  padding-inline: var(--space-4);
+  list-style: none;
+}
+.marquee-list li {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding-block: var(--space-2);
+  color: var(--color-hero-ink);
+  font-size: var(--text-sm);
+  white-space: nowrap;
+}
+.marquee-list svg {
+  inline-size: var(--icon-size);
+  block-size: var(--icon-size);
+  flex: none;
+  fill: none;
+  stroke: var(--color-brand);
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
