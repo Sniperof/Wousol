@@ -2,6 +2,7 @@
 import { homePathOf, messagesFor, otherLocale, type Locale } from '../../i18n';
 import { pricingWords } from '../../i18n/pricing';
 import '../../styles/site-header.css';
+import '../../styles/header-autohide.css';
 import Brand from '../ui/brand.astro';
 interface Props {
   readonly locale: Locale;
@@ -45,5 +46,8 @@ const other = otherLocale(locale);
 </header>
 <script>
   import { mountSiteNavigation } from '../../navigation/site-navigation';
+  import { autoHideHeader } from '../../navigation/header-visibility';
   mountSiteNavigation();
+  const header = document.querySelector<HTMLElement>('[data-site-header]');
+  if (header) autoHideHeader(header);
 </script>

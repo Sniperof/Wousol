@@ -1,0 +1,18 @@
+/*
+ * The header slides up out of view while the page scrolls down and back while it scrolls up
+ * (navigation/header-visibility.ts). With reduced motion it simply appears and disappears.
+ */
+.site-header {
+  transition: translate var(--duration) ease;
+}
+.site-header[data-hidden='true'] {
+  translate: 0 calc(-100% - var(--space-6));
+}
+@media (prefers-reduced-motion: reduce) {
+  .site-header {
+    transition: none;
+  }
+}
+:root[data-reduce-motion='true'] .site-header {
+  transition: none;
+}
