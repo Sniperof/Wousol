@@ -91,10 +91,10 @@
     border-inline-start: var(--border-width) solid var(--color-card-border);
   }
   .benefit-lead h3 {
-    font-size: var(--text-section);
+    font-size: var(--text-lg);
   }
   .benefit-lead p {
-    font-size: var(--text-lg);
+    font-size: var(--text-md);
   }
 }
 /* Laptops: the same design with less space around and between its blocks. */
