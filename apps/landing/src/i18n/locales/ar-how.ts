@@ -19,7 +19,6 @@ export const arInstallation: Messages['installation'] = {
   ],
   snippet: '<script\n  src="…/dap.js"\n  data-site-key="dap_…"\n  defer\n></script>',
   caption: 'مثال توضيحي. السطر الفعلي يصل مع مفتاح الموقع من فريق وصول.',
-  ignore: 'أي جزء موسوم بـ {attribute} يبقى كما صُمّم، مهما فعّل الزائر من ميزات.',
   previewLabel: 'معاينة خطوات إعداد الأداة',
   preferencesTitle: 'تفضيلات القراءة',
 };

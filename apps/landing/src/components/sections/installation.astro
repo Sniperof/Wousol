@@ -12,11 +12,9 @@ interface Props {
   readonly locale: Locale;
 }
 const { locale } = Astro.props;
-const messages = messagesFor(locale);
-const words = messages.installation;
+const words = messagesFor(locale).installation;
 const numberFormat = new Intl.NumberFormat(locale);
 const lastStep = words.steps.length - 1;
-const [beforeAttribute, afterAttribute] = words.ignore.split('{attribute}');
 ---
 
 <section
@@ -69,14 +67,6 @@ const [beforeAttribute, afterAttribute] = words.ignore.split('{attribute}');
           </li>
         ))}
       </ol>
-      <p class="installation-ignore">
-        {beforeAttribute}
-        <code dir="ltr">data-dap-ignore</code>
-        {afterAttribute}
-      </p>
-      <a class="button secondary" href="#request-demo" data-request-kind="demo">
-        {messages.nav.contact}
-      </a>
     </div>
     <InstallationPreview locale={locale} />
   </div>
@@ -86,18 +76,6 @@ const [beforeAttribute, afterAttribute] = words.ignore.split('{attribute}');
     display: flex;
     align-items: center;
     min-block-size: var(--button-height);
-  }
-  .installation-ignore {
-    margin-block: var(--space-6);
-    color: var(--color-marketing-muted);
-    font-size: var(--text-sm);
-  }
-  code {
-    padding-inline: var(--space-1);
-    border-radius: var(--radius-sm);
-    background: var(--color-selected);
-    color: var(--color-hero-ink);
-    font-family: var(--font-mono);
   }
 </style>
 <script>

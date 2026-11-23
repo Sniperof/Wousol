@@ -94,9 +94,6 @@
 .dark-band .installation-step-select:hover:not(:disabled) {
   color: var(--color-dark-accent);
 }
-.dark-band .installation-copy .button.secondary {
-  --brand-word-color: var(--color-brand);
-}
 .dark-band .installation-snippet {
   border-color: var(--color-dark-rule);
   background: var(--color-dark-raised);

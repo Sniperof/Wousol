@@ -72,8 +72,6 @@ export interface Messages {
     readonly steps: readonly Group[];
     readonly snippet: string;
     readonly caption: string;
-    /** `{attribute}` marks where the attribute name appears, set as code. */
-    readonly ignore: string;
     readonly previewLabel: string;
     readonly preferencesTitle: string;
   };

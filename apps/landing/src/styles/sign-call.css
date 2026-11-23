@@ -104,4 +104,10 @@
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: var(--space-6) var(--space-10);
   }
+  /* Justified like the hero description: a short paragraph of nearly full lines, the last line left as it is.
+     The widget's text-alignment option still turns it off for visitors who need ragged text. */
+  .sign-intro {
+    text-align: justify;
+    text-align-last: start;
+  }
 }

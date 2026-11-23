@@ -20,7 +20,6 @@ export const enInstallation: Messages['installation'] = {
   ],
   snippet: '<script\n  src="…/dap.js"\n  data-site-key="dap_…"\n  defer\n></script>',
   caption: 'Example only. Your actual line arrives with your site key from the Wosoul team.',
-  ignore: 'Anything marked {attribute} stays exactly as designed, whatever a visitor turns on.',
   previewLabel: 'Installation walkthrough preview',
   preferencesTitle: 'Reading preferences',
 };
