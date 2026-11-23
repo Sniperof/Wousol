@@ -25,7 +25,7 @@ export const en: Messages = {
   },
   hero: {
     title: 'With Wosoul\nyour website is closer to everyone',
-    lede: 'Wosoul is a widget dedicated to digital accessibility. It makes websites and online services easier for everyone to use, including people with disabilities and older adults.',
+    lede: 'Wosoul is a widget dedicated to digital accessibility. It makes websites and online services easier for everyone to use, including people with disabilities and older adults. Because what suits one visitor may not suit another, each visitor can adjust text, colors, sound, and navigation, or reach a sign language interpreter.',
   },
   preview: {
     textSize: 'Bigger text',

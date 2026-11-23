@@ -65,7 +65,7 @@ export const enBenefits: Messages['benefits'] = {
     },
     {
       title: 'A step toward the standard',
-      body: 'The path to WCAG 2.2 starts with options for visitors and ends with a website built to the standard. The Wosoul team works with you on both.',
+      body: 'WCAG 2.2 is the global reference for accessibility. The Wosoul widget serves visitors from day one, and the Wosoul team helps you build what it takes to meet it.',
     },
     {
       title: 'A commitment visitors notice',

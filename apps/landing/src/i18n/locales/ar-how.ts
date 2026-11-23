@@ -25,7 +25,7 @@ export const arInstallation: Messages['installation'] = {
 
 export const arDashboard: Messages['dashboard'] = {
   title: 'وصول إلى كل التفاصيل، من لوحة تحكم واحدة',
-  intro: 'كل ما يخص وصول في مكان واحد، وتصل بيانات الدخول مع مفتاح الموقع من فريق وصول.',
+  intro: 'صورة واضحة عن الخطة والمواقع والاستخدام، متاحة لصاحب الموقع مباشرة.',
   cards: [
     {
       title: 'الخطة والمواقع',

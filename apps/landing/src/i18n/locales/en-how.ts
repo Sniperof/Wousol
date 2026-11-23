@@ -26,8 +26,7 @@ export const enInstallation: Messages['installation'] = {
 
 export const enDashboard: Messages['dashboard'] = {
   title: 'Access to every detail, from one dashboard',
-  intro:
-    'Everything about Wosoul in one place. Your access arrives with your site key from the Wosoul team.',
+  intro: 'A clear view of your plan, websites, and usage, right at hand.',
   cards: [
     {
       title: 'Plan and websites',
